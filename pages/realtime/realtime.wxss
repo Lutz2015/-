@@ -1,0 +1,128 @@
+.realtimeTab{
+  height: 70rpx;
+  overflow: hidden;
+  clear: both;
+  text-align: center;
+  line-height: 70rpx;
+  font-size: 32rpx;
+  color: #999;
+  background: #fff;
+  box-shadow: 0rpx 6rpx 6rpx #ddd;
+  position: fixed;
+  width: 100%;
+}
+.realtimeTab .checkTab {
+  width: 50%;
+  height: 70rpx;
+  position: relative;
+  float: left;
+}
+
+.active {
+  color: #ff5b5b;
+}
+
+.activeImg {
+  width: 92rpx;
+  height: 16rpx;
+  position: absolute;
+  bottom: -6rpx;
+  left: 50%;
+  margin-left: -46rpx;
+}
+
+.competitionJ{
+  padding:0 30rpx;
+}
+.competitionT{
+  padding: 30rpx;
+  font-size: 32rpx;
+}
+.competitionJ .list .listTop{
+  height: 80rpx;
+  text-align: left;
+  font-size: 26rpx;
+  display: flex;
+  align-items: center;
+  color: #999999;
+}
+.competitionJ .list .listTop image{
+  width: 24rpx;
+  height: 24rpx;
+  margin-right: 20rpx;
+}
+
+
+
+.countryTeam {
+  height: 200rpx;
+  background: #fff;
+  border-radius: 10rpx;
+  box-shadow: 0rpx 6rpx 6rpx #ddd;
+  box-sizing: border-box;
+  padding: 30rpx 0;
+  position: relative;
+}
+.leftCbox{
+  width: 150rpx;
+  height: 140rpx;
+  position: absolute;
+  top: 30rpx;
+  left: 30rpx;
+  text-align: center;
+  font-size: 28rpx;
+  
+}
+.rightCbox{
+  width: 150rpx;
+  height: 140rpx;
+  position: absolute;
+  top: 30rpx;
+  right: 30rpx;
+  text-align: center;
+  font-size: 28rpx;
+  
+}
+.leftC {
+  height: 92rpx;
+  width: 92rpx;
+ 
+}
+
+.rightC {
+  height: 92rpx;
+  width: 92rpx;
+}
+
+.cInfoBox {
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  font-size: 28rpx;
+}
+
+.cInfoBox .red {
+  font-size: 46rpx;
+  color: #ff5b5b;
+  font-weight: bold;
+}
+.cInfoBox .vs {
+  font-size: 46rpx;
+  margin: 0 30rpx;
+}
+.timeBox {
+  height: 40rpx;
+  line-height: 40rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28rpx;
+  color: #bdbdbd;
+  margin-top: 20rpx;
+}
+
+.timeBox image {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 10rpx;
+}

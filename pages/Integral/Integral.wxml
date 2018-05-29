@@ -1,0 +1,25 @@
+<view class='realtimeTab'>
+  <view class='checkTab' bindtap='swichrealtimeTab' data-index='1'>
+    <text class='{{realtimeCheck == 1?"active":""}}'>积分获取</text>
+    <image class='activeImg' hidden='{{realtimeCheck != 1}}' src='../../images/icon/active.png'></image>
+  </view>
+  <view class='checkTab' bindtap='swichrealtimeTab' data-index='2'>
+    <text class='{{realtimeCheck == 2?"active":""}}'>积分消耗</text>
+    <image class='activeImg' hidden='{{realtimeCheck != 2}}' src='../../images/icon/active.png'></image>
+  </view>
+</view>
+<view style='height:76rpx'></view>
+<view class='coreGet' hidden='{{realtimeCheck != 1}}'>
+    <view class='list'>
+        <view class='cname'>巴西vs德国</view>
+        <view class='time'>2018/06/12 23:00</view>
+        <view class='core'>+2</view>
+    </view>
+</view>
+<view class='coreConsume' hidden='{{realtimeCheck != 2}}'>
+    <view class='list'>
+        <view class='cname'>巴西vs德国</view>
+        <view class='time'>2018/06/12 23:00</view>
+        <view class='core'>-1</view>
+    </view>
+</view>

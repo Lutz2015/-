@@ -1,0 +1,44 @@
+<view class='realtimeTab'>
+  <view class='checkTab' bindtap='swichrealtimeTab' data-index='1'>
+    <text class='{{realtimeCheck == 1?"active":""}}'>赛事结果</text>
+    <image class='activeImg' hidden='{{realtimeCheck != 1}}' src='../../images/icon/active.png'></image>
+  </view>
+  <view class='checkTab' bindtap='swichrealtimeTab' data-index='2'>
+    <text class='{{realtimeCheck == 2?"active":""}}'>赛事通知</text>
+    <image class='activeImg' hidden='{{realtimeCheck != 2}}' src='../../images/icon/active.png'></image>
+  </view>
+</view>
+<view style='height:76rpx'></view>
+
+<view class='competitionJ' hidden='{{realtimeCheck != 1}}'>
+  <view class='list'>
+    <view class='listTop'>
+      <image src='../../images/login/home.png'></image>
+      <text>05/23 星期三</text>
+    </view>
+    <view class='listBottom'>
+      <view class='countryTeam'>
+        <view class='leftCbox'>
+          <image class='leftC' src='../../images/other/jpan.png'></image>
+          <view>俄罗斯</view>
+        </view>
+        <view class='rightCbox'>
+          <image class='rightC' src='../../images/other/jpan.png'></image>
+          <view>中国</view>          
+        </view>
+        <view class='cInfoBox'>
+          <text class='red'>1</text>
+          <text class='vs'>vs</text>
+          <text class='red'>2</text>          
+        </view>
+        <view class='timeBox'>
+          <image src='../../images/icon/time.png'></image>
+          <text>05/23 星期三</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class='competitionT' hidden='{{realtimeCheck != 2}}'>
+  <view>中国我爱你中国我爱你中国我爱你中国我爱你中国我爱你中国我爱你中国我爱你中国我爱你中国我爱你中国我爱你中国我爱你中国我爱你中国我爱你中国我爱你中国我爱你中国我爱你中国我爱你中国我爱你</view>
+</view>

@@ -1,0 +1,10 @@
+<view class='winInfoBox'>
+  <view class='winInfoList'>
+    <view class='userImg'>
+      <image src='../../images/icon/topbg.png'></image>
+    </view>
+    <view class='userName'>顾北</view>
+    <view class='goodsName'>飞利浦电动牙刷</view>
+  </view>
+
+</view>

@@ -1,0 +1,22 @@
+<import src="../../template/template.wxml" />
+<view class='realtimeTab'>
+  <view class='checkTab' bindtap='swichrealtimeTab' data-index='1'>
+    <text class='{{realtimeCheck == 1?"active":""}}'>我猜对的</text>
+    <image class='activeImg' hidden='{{realtimeCheck != 1}}' src='../../images/icon/active.png'></image>
+  </view>
+  <view class='checkTab' bindtap='swichrealtimeTab' data-index='2'>
+    <text class='{{realtimeCheck == 2?"active":""}}'>我猜错的</text>
+    <image class='activeImg' hidden='{{realtimeCheck != 2}}' src='../../images/icon/active.png'></image>
+  </view>
+</view>
+<view style='height:76rpx'></view>
+<view class='guessTrue' hidden='{{realtimeCheck != 1}}'>
+  <block wx:for="{{gamelist}}" wx:for-index="idx" wx:for-item="item">
+    <template is="countryTeam" data="{{item,idx}}" />
+  </block>
+</view>
+<view class='guessFalse' hidden='{{realtimeCheck != 2}}'>
+  <block wx:for="{{gamelist}}" wx:for-index="idx" wx:for-item="item">
+    <template is="countryTeam" data="{{item,idx,noEdite}}" />
+  </block>
+</view>

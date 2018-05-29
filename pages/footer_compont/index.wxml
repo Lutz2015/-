@@ -1,0 +1,17 @@
+<view class='footer'>
+    <view class='iconBox' bindtap='gotoHome'>
+        <image wx:if="{{activeType == 1}}" class='icon' src='../../images/icon/home1.png'></image>
+        <image wx:else class='icon' src='../../images/icon/home.png'></image>
+        <text class='{{activeType == 1?"active":""}}'>首页</text>
+    </view>
+    <view class='iconBox' bindtap='gotoDraw'>
+        <image wx:if="{{activeType == 2}}" class='icon' src='../../images/icon/cart1.png'></image>
+        <image wx:else class='icon' src='../../images/icon/cart.png'></image>
+        <text class='{{activeType == 2?"active":""}}'>抽奖</text>
+    </view>
+    <view class='iconBox' bindtap='gotoMe'>
+        <image wx:if="{{activeType == 3}}" class='icon' src='../../images/icon/me1.png'></image>
+        <image wx:else class='icon' src='../../images/icon/me.png'></image>        
+        <text class='{{activeType == 3?"active":""}}'>我的</text>
+    </view>
+</view>

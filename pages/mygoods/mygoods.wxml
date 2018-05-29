@@ -1,0 +1,48 @@
+<view class='realtimeTab'>
+  <view class='checkTab' bindtap='swichrealtimeTab' data-index='1'>
+    <text class='{{realtimeCheck == 1?"active":""}}'>待领取</text>
+    <image class='activeImg' hidden='{{realtimeCheck != 1}}' src='../../images/icon/active.png'></image>
+  </view>
+  <view class='checkTab' bindtap='swichrealtimeTab' data-index='2'>
+    <text class='{{realtimeCheck == 2?"active":""}}'>已领取</text>
+    <image class='activeImg' hidden='{{realtimeCheck != 2}}' src='../../images/icon/active.png'></image>
+  </view>
+</view>
+
+<view class='pageBox'>
+  <view style='height:76rpx'></view>
+
+  <view class='waitGet' hidden='{{realtimeCheck != 1}}'>
+    <view class='goodsBox'>
+      <image class='goodsImg' src='../../images/me/1.png'></image>
+      <view class="goodsName">ipheonx手机</view>
+      <view class="goodstype">128G 银色</view>
+      <view class="goodsGet">立即领取</view>
+      <view class='bottom'>
+        <view class='username'>收件人：六月的风 18250476269</view>
+        <view class='address'>地址：北京市 还定区 神鹿审结</view>
+        <view class='upBox'>
+          <view class='up' bindtap='openPage' data-type='0' data-idx='{{idx}}'>收起</view>
+          <view class='postGuess'>确认</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='hasGet' hidden='{{realtimeCheck != 2}}'>
+    <view class='goodsBox'>
+      <image class='goodsImg' src='../../images/me/1.png'></image>
+      <view class="goodsName">ipheonx手机</view>
+      <view class="goodstype">128G 银色</view>
+      <view class="goodsGet" style='background:#DDDDDD'>已领取</view>
+      <view class='bottom'>
+        <view class='username'>收件人：六月的风 18250476269</view>
+        <view class='address'>地址：北京市 还定区 神鹿审结</view>
+        <view class='address'>快递：顺丰</view>
+        <view class='address'>单号：231312312312</view>
+        
+      </view>
+    </view>
+  </view>
+  <button class='kefu' open-type='contact'>联系客服</button>
+  <view class='complain' bindtap='gotoComplaint'>投诉</view>
+</view>

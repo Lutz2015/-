@@ -1,0 +1,6 @@
+<import src="../../template/template.wxml" />
+<template is="footer" data="{{activeType}}" />
+<view class="rotate">
+  <image animation="{{animationData}}" class="rotate_disk" src="../../images/other/drawbg.png"></image>
+  <image class="rotate_btn" bindtap='goDraw'  src="../../images/other/get.png"></image>
+</view>

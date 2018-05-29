@@ -1,0 +1,13 @@
+<view class="questionBox">
+  <block wx:for="{{list}}" wx:for-index="idx" wx:for-item="item">
+    <view class='boxlist' bindtap='openList' data-index='{{idx}}'>
+      <view class='listTop'>
+        <text>{{item.title}}</text>
+        <image class='{{item.isOpen?"open":"close"}}' src='../../images/me/right.png'></image>
+      </view>
+      <view class='listcont' hidden='{{!item.isOpen}}'> 
+        <text>{{item.content}}</text>
+      </view>
+    </view>
+  </block>
+</view>

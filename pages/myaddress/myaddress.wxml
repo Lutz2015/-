@@ -1,0 +1,6 @@
+<view class='pageBox'>
+  <view class='list' bindtap='checkAddress'>
+    <view class='cname'>{{address.userName}},{{address.telNumber}}</view>
+    <view class='time'>{{address.provinceName}} {{address.cityName}} {{address.countyName}} {{address.detailInfo}}</view>
+  </view>
+</view>

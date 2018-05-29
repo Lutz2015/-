@@ -1,0 +1,149 @@
+.realtimeTab{
+  height: 70rpx;
+  overflow: hidden;
+  clear: both;
+  text-align: center;
+  line-height: 70rpx;
+  font-size: 32rpx;
+  color: #999;
+  background: #fff;
+  box-shadow: 0rpx 6rpx 6rpx #ddd;
+  position: fixed;
+  width: 100%;
+}
+.realtimeTab .checkTab {
+  width: 50%;
+  height: 70rpx;
+  position: relative;
+  float: left;
+}
+
+.active {
+  color: #ff5b5b;
+}
+
+.activeImg {
+  width: 92rpx;
+  height: 16rpx;
+  position: absolute;
+  bottom: -6rpx;
+  left: 50%;
+  margin-left: -46rpx;
+}
+.pageBox{
+  padding: 0 30rpx;
+}
+.goodsBox{
+  background: #fff;
+  padding: 30rpx;
+  border-radius: 5px;
+  margin-top: 30rpx;
+  position: relative;
+  min-height: 180rpx;
+
+}
+.goodsBox .goodsImg{
+  height: 180rpx;
+  width: 180rpx;
+  position: absolute;
+  top: 30rpx;
+  left: 30rpx;
+    box-shadow: 0rpx 6rpx 6rpx #ddd;
+
+}
+.goodsName{
+  padding-left: 210rpx;
+  line-height: 40rpx;
+  font-size: 32rpx;
+  margin-top: 10rpx;
+  
+}
+.goodstype{
+  padding-left: 210rpx;
+  line-height: 40rpx;
+  font-size: 28rpx;
+  color: #bbbbbb;
+  margin-top: 10rpx;
+  
+}
+.goodsGet{
+  height: 62rpx;
+  line-height: 62rpx;
+  border-radius: 31rpx;
+  color: #fff;
+  font-size: 28rpx;
+  text-align: center;
+    background: -webkit-linear-gradient(top, rgb(17, 123, 230), rgb(45, 149, 255));
+  width: 180rpx;
+  position: absolute;
+  top: 148rpx;
+  right: 30rpx;
+}
+.bottom .username{
+  font-size: 36rpx;
+  padding: 15rpx 0;
+  border-top: 1px solid #e9e9e9;
+  margin-top: 120rpx;
+}
+.bottom .address{
+  font-size: 24rpx;
+  color: #999;
+}
+
+.upBox {
+  height: 80rpx;
+  padding: 30rpx 0 10rpx;
+  clear: both;
+  overflow: hidden;
+}
+
+.upBox .postGuess {
+  height: 78rpx;
+  line-height: 78rpx;
+  background: -webkit-linear-gradient(top, rgb(255, 83, 83), rgb(255, 123, 123));
+  color: #fff;
+  width: 65%;
+  border-radius: 40rpx;
+  text-align: center;
+  font-size: 32rpx;
+  float: right;
+}
+
+.upBox .up {
+  height: 76rpx;
+  line-height: 76rpx;
+  width: 30%;
+  border: 1px solid #ff5b5b;
+  color: #ff5b5b;
+  border-radius: 40rpx;
+  text-align: center;
+  font-size: 32rpx;
+  float: left;
+}
+.kefu{
+  width: 90%;
+  position: fixed;
+  background: -webkit-linear-gradient(top, rgb(255, 83, 83), rgb(255, 123, 123));  
+  height: 80rpx;
+  line-height: 80rpx;
+  color: #fff;
+  text-align: center;
+  font-size: 32rpx;
+  bottom: 160rpx;
+  left: 5%;
+  border: 0;
+  border-radius: 40rpx;
+}
+.complain{
+  width: 90%;
+  position: fixed;
+  height: 78rpx;
+  line-height: 78rpx;
+  color: #ff5353;
+  text-align: center;
+  font-size: 32rpx;
+  bottom: 40rpx;
+  left: 5%;
+  border-radius: 39rpx;
+  border: 1px solid #ff5353;
+}

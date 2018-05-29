@@ -1,0 +1,144 @@
+<template name="loginView">
+  <view class='loginView' hidden='{{isLogin}}'>
+    <image class='loginBg' mode='scaleToFill' src='../../images/login/loginbg.jpeg'></image>
+    <view class='agreebutton'>
+      <image src='../../images/login/agree.png'></image>
+      <button open-type="getUserInfo" bindgetuserinfo="getUserInfo"></button>
+    </view>
+  </view>
+</template>
+
+<template name="footer">
+  <view class='footer'>
+    <view class='iconBox' bindtap='gotoHome'>
+      <image wx:if="{{activeType == 1}}" class='icon' src='../../images/login/home.png'></image>
+      <image wx:else class='icon' src='../../images/login/home1.png'></image>
+      <text class='{{activeType == 1?"active":""}}'>首页</text>
+    </view>
+    <view class='iconBox' bindtap='gotoDraw'>
+      <image wx:if="{{activeType == 2}}" class='icon' src='../../images/login/win.png'></image>
+      <image wx:else class='icon' src='../../images/login/win1.png'></image>
+      <text class='{{activeType == 2?"active":""}}'>抽奖</text>
+    </view>
+    <view class='iconBox' bindtap='gotoMe'>
+      <image wx:if="{{activeType == 3}}" class='icon' src='../../images/login/me.png'></image>
+      <image wx:else class='icon' src='../../images/login/me1.png'></image>
+      <text class='{{activeType == 3?"active":""}}'>我的</text>
+    </view>
+  </view>
+</template>
+<!-- 正在比赛 -->
+<template name="countryTeam">
+  <view class='countryTeam'>
+    <image class='leftC' src='{{item.countrylicon}}'></image>
+    <image class='rightC' src='{{item.countryricon}}'></image>
+    <view class='cInfoBox'>
+      <text>{{item.countrynamel}}</text>
+      <text class='red'>vs</text>
+      <text>{{item.countrynamer}}</text>
+    </view>
+    <view class='timeBox' hidden='{{!item.openpage}}'>
+      <image src='../../images/icon/time.png'></image>
+      <text>{{item.gametime}}</text>
+    </view>
+
+    <view class='backUpBox' hidden='{{item.openpage}}'>
+      <view class='timeLeft'>
+        <image src='../../images/icon/time.png'></image>
+        <text>{{item.gametime}}</text>
+      </view>
+      <view class='btnRight hasCheck' bindtap='openPage' data-type='1'  data-idx='{{idx}}'>我要竞猜</view>
+    </view>
+    <view class='upfoldBox' hidden='{{!item.openpage}}'>
+      <view class='checkBox'>
+        <view class='checkTopBox'>
+          <view class='checkTab' bindtap='itemCheckGameType' data-type='1' data-idx='{{idx}}'>
+            <text class='{{item.gametype == 1?"active":""}}'>猜比分</text>
+            <image class='activeImg' hidden='{{item.gametype != 1}}' src='../../images/icon/active.png'></image>
+          </view>
+          <view class='checkTab' bindtap='itemCheckGameType' data-type='2'  data-idx='{{idx}}'>
+            <text class='{{item.gametype == 2?"active":""}}'>猜输赢</text>
+            <image class='activeImg' hidden='{{item.gametype != 2}}' src='../../images/icon/active.png'></image>
+          </view>
+          <view class='checkTab' bindtap='itemCheckGameType' data-type='3'  data-idx='{{idx}}'>
+            <text class='{{item.gametype == 3?"active":""}}'>猜比分加输赢</text>
+            <image class='activeImg' hidden='{{item.gametype != 3}}' src='../../images/icon/active.png'></image>
+          </view>
+        </view>
+      </view>
+      <view class='guessingBox guessingBox1' hidden='{{item.gametype != 1}}'>
+        <view class='guess'>
+          <input class="inputLeft" disabled='{{noEdite}}' type='number' placeholder='请输入该队的比分'></input>
+          <view>vs</view>
+          <input class="inputRight" disabled='{{noEdite}}' type='number' placeholder='请输入该队的比分'></input>
+        </view>
+      </view>
+      <view class='guessingBox guessingBox2' hidden='{{item.gametype != 2}}'>
+        <view class='suspect'>
+          <view bindtap='itemCheckGameSuspect' data-index='1' data-idx='{{idx}}' class='{{item.suspect == 1?"active":""}}'>赢</view>
+          <view bindtap='itemCheckGameSuspect' data-index='2' data-idx='{{idx}}'  class='{{item.suspect == 2?"active":""}}'>平局</view>
+          <view bindtap='itemCheckGameSuspect' data-index='3' data-idx='{{idx}}' class='{{item.suspect == 3?"active":""}}'>赢</view>
+        </view>
+      </view>
+      <view class='guessingBox guessingBox3' hidden='{{item.gametype != 3}}'>
+        <view class="guessView">猜比分</view>
+        <view class='guess'>
+          <input class="inputLeft" disabled='{{noEdite}}' type='number' placeholder='请输入该队的比分'></input>
+          <view>vs</view>
+          <input class="inputRight" disabled='{{noEdite}}' type='number' placeholder='请输入该队的比分'></input>
+        </view>
+        <view class="guessView" style='margin-top:30rpx;'>猜输赢</view>
+        <view class='suspect'>
+          <view bindtap='itemCheckGameSuspect' data-index='1' data-idx='{{idx}}' class='{{item.suspect == 1?"active":""}}'>赢</view>
+          <view bindtap='itemCheckGameSuspect' data-index='2' data-idx='{{idx}}' class='{{item.suspect == 2?"active":""}}'>平局</view>
+          <view bindtap='itemCheckGameSuspect' data-index='3' data-idx='{{idx}}' class='{{item.suspect == 3?"active":""}}'>赢</view>
+        </view>
+      </view>
+      <view class='upBox'>
+        <view class='up' bindtap='openPage' data-type='0'  data-idx='{{idx}}'>收起</view>
+        <view class='postGuess'>提交竞猜</view>
+      </view>
+      <view class='infoTest'>*以上三种竞猜模式，提交选择后，赛前2小时内不能更改。</view>
+    </view>
+  </view>
+</template>
+
+<!-- 比赛结束 -->
+<template name="countryTeamEnd">
+  <view class='countryTeam'>
+    <image class='leftC' src='../../images/other/jpan.png'></image>
+    <image class='rightC' src='../../images/other/jpan.png'></image>
+    <view class='cInfoBox'>
+      <text>俄罗斯</text>
+      <text class='red'>vs</text>
+      <text>中国</text>
+    </view>
+    <view class='backUpBox'>
+      <view class='timeLeft'>
+        <image src='../../images/icon/time.png'></image>
+        <text>06/14 23:00</text>
+      </view>
+      <view class='btnRight' style='background:#DDDDDD;'>竞猜结束</view>
+    </view>
+  </view>
+</template>
+
+<!-- 比赛未开启 -->
+<template name="countryTeamNoStar">
+  <view class='countryTeam'>
+    <image class='leftC' src='../../images/other/jpan.png'></image>
+    <image class='rightC' src='../../images/other/jpan.png'></image>
+    <view class='cInfoBox'>
+      <text>俄罗斯</text>
+      <text class='red'>vs</text>
+      <text>中国</text>
+    </view>
+    <view class='backUpBox'>
+      <view class='timeLeft'>
+        <image src='../../images/icon/time.png'></image>
+        <text>06/14 23:00</text>
+      </view>
+      <view class='btnRight' style='background:#DDDDDD;'>暂未开启</view>
+    </view>
+  </view>
+</template>

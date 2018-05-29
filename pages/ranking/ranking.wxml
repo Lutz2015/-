@@ -1,0 +1,27 @@
+<view class='realtimeTab'>
+  <view class='checkTab' bindtap='swichrealtimeTab' data-index='1'>
+    <text class='{{realtimeCheck == 1?"active":""}}'>积分排行榜</text>
+    <image class='activeImg' hidden='{{realtimeCheck != 1}}' src='../../images/icon/active.png'></image>
+  </view>
+  <view class='checkTab' bindtap='swichrealtimeTab' data-index='2'>
+    <text class='{{realtimeCheck == 2?"active":""}}'>邀请好友排行榜</text>
+    <image class='activeImg' hidden='{{realtimeCheck != 2}}' src='../../images/icon/active.png'></image>
+  </view>
+</view>
+<view style='height:76rpx'></view>
+<view class='corerank' hidden='{{realtimeCheck != 1}}'>
+    <view class='list'>
+        <view class='rank'>1</view>
+        <image class='userHead' src='../../images/icon/topbg.png'></image>
+        <view class='userName'>顾北</view>
+        <view class='core'>120</view>
+    </view>
+</view>
+<view class='invete' hidden='{{realtimeCheck != 2}}'>
+    <view class='list'>
+        <view class='rank'>1</view>
+        <image class='userHead' src='../../images/icon/topbg.png'></image>
+        <view class='userName'>顾北</view>
+        <view class='core'>120</view>
+    </view>
+</view>

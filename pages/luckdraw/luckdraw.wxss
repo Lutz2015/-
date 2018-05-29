@@ -1,0 +1,29 @@
+.rotate {
+  position: relative;
+  margin-top: 300rpx;
+}
+
+.rotate_disk {
+  width: 615rpx;
+  height: 615rpx;
+  margin: 0 auto;
+  display: block;
+}
+
+.rotate_btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 240rpx;
+  height: 240rpx;
+  margin-top: -120rpx;
+  margin-left: -120rpx;
+  -moz-transition: all 3s ease-in-out 0s;
+  -o-transition: all 3s ease-in-out 0s;
+  -webkit-transition: all 3s ease-in-out 0s;
+  transition: all 3s ease-in-out 0s;
+  -moz-transform-origin: center center;
+  -o-transform-origin: center center;
+  -webkit-transform-origin: center center;
+  transform-origin: center center;
+}

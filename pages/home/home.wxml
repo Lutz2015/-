@@ -1,0 +1,58 @@
+<import src="../../template/template.wxml" />
+<template is="loginView" data="{{isLogin}}" />
+<template is="footer" data="{{activeType}}" />
+<view class='pubCover' hidden='pubCoverHide'></view>
+<view class='rule'>
+  <image src="../../images/icon/rules.png" class="slide-image" mode='aspectFill' />
+</view>
+<view class='pageTop'>
+  <image class='pageTopBg' src='../../images/icon/topbg.png'></image>
+  <swiper class='bannerSwiper' indicator-dots="false" autoplay="true" interval="5000" duration="1000">
+    <block>
+      <swiper-item>
+        <image src="../../images/other/banner.png" class="slide-image" mode='aspectFill' />
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+<view class='tabBox'>
+  <view class='tab winInfo' bindtap='gotoWinInfo'>
+    <image class='winInfoImg' src='../../images/icon/win_info.png'></image>
+    <view class="testP">中奖信息</view>
+    <view class='testS'>参与活动拿奖</view>
+  </view>
+  <view class='tab realTime' bindtap='gotoRealTime'>
+    <image class="realTimeImg" src='../../images/icon/real_time.png'></image>
+    <view class="testP">实时赛讯</view>
+    <view class='testS'>最新赛事了解</view>
+  </view>
+</view>
+<view class='statusTab'>
+  <view class='checkTab' bindtap='swichStatusTab' data-index='1'>
+    <text class='{{statusCheck == 1?"active":""}}'>进行中</text>
+    <image class='activeImg' hidden='{{statusCheck != 1}}' src='../../images/icon/active.png'></image>
+  </view>
+  <view class='checkTab' bindtap='swichStatusTab' data-index='2'>
+    <text class='{{statusCheck == 2?"active":""}}'>未开始</text>
+    <image class='activeImg' hidden='{{statusCheck != 2}}' src='../../images/icon/active.png'></image>
+  </view>
+  <view class='checkTab' bindtap='swichStatusTab' data-index='3'>
+    <text class='{{statusCheck == 3?"active":""}}'>已结束</text>
+    <image class='activeImg' hidden='{{statusCheck != 3}}' src='../../images/icon/active.png'></image>
+  </view>
+</view>
+<view class='ibox nowingBox' hidden='{{statusCheck != 1}}'>
+    <block wx:for="{{gamelist}}" wx:for-index="idx" wx:for-item="item">    
+      <template is="countryTeam" data="{{item,idx}}"/>    
+    </block>          
+</view>
+<view class='ibox didnotBox' hidden='{{statusCheck != 2}}'>
+    <template is="countryTeamNoStar"/>    
+</view>
+<view class='ibox endingBox' hidden='{{statusCheck != 3}}'>
+    <template is="countryTeamEnd"/>    
+</view>
+<view class='botomBlock'></view>
+<!-- <view class="marquee_container" style="--marqueeWidth--:{{-marquee.width}}em;">
+    <view class="marquee_text" style='animation-duration: {{marquee.time}}s;'>{{marquee.text}}</view>
+</view> -->
