@@ -7,7 +7,7 @@
     </view>
   </view>
 </template>
-
+<!-- 底部模版 -->
 <template name="footer">
   <view class='footer'>
     <view class='iconBox' bindtap='gotoHome'>
@@ -68,9 +68,9 @@
       </view>
       <view class='guessingBox guessingBox1' hidden='{{item.gametype != 1}}'>
         <view class='guess'>
-          <input class="inputLeft" disabled='{{noEdite}}' type='number' placeholder='请输入该队的比分'></input>
+          <input class="inputLeft"  type='number' placeholder='请输入该队的比分'></input>
           <view>vs</view>
-          <input class="inputRight" disabled='{{noEdite}}' type='number' placeholder='请输入该队的比分'></input>
+          <input class="inputRight"  type='number' placeholder='请输入该队的比分'></input>
         </view>
       </view>
       <view class='guessingBox guessingBox2' hidden='{{item.gametype != 2}}'>
@@ -83,9 +83,9 @@
       <view class='guessingBox guessingBox3' hidden='{{item.gametype != 3}}'>
         <view class="guessView">猜比分</view>
         <view class='guess'>
-          <input class="inputLeft" disabled='{{noEdite}}' type='number' placeholder='请输入该队的比分'></input>
+          <input class="inputLeft"  type='number' placeholder='请输入该队的比分'></input>
           <view>vs</view>
-          <input class="inputRight" disabled='{{noEdite}}' type='number' placeholder='请输入该队的比分'></input>
+          <input class="inputRight" type='number' placeholder='请输入该队的比分'></input>
         </view>
         <view class="guessView" style='margin-top:30rpx;'>猜输赢</view>
         <view class='suspect'>
@@ -102,7 +102,81 @@
     </view>
   </view>
 </template>
+<!-- 比赛记录 -->
+<template name="countryTeamOver">
+  <view class='countryTeam'>
+    <image class='leftC' src='{{item.countrylicon}}'></image>
+    <image class='rightC' src='{{item.countryricon}}'></image>
+    <view class='cInfoBox'>
+      <text>{{item.countrynamel}}</text>
+      <text class='red'>vs</text>
+      <text>{{item.countrynamer}}</text>
+    </view>
+    <view class='timeBox' hidden='{{!item.openpage}}'>
+      <image src='../../images/icon/time.png'></image>
+      <text>{{item.gametime}}</text>
+    </view>
 
+    <view class='backUpBox' hidden='{{item.openpage}}'>
+      <view class='timeLeft'>
+        <image src='../../images/icon/time.png'></image>
+        <text>{{item.gametime}}</text>
+      </view>
+      <view class='btnRight hasCheck' bindtap='openPage' data-type='1'  data-idx='{{idx}}'>查看记录</view>
+    </view>
+    <view class='upfoldBox' hidden='{{!item.openpage}}'>
+      <view class='checkBox'>
+        <view class='checkTopBox'>
+          <view class='checkTab'>
+            <text class='{{item.gametype == 1?"active":""}}'>猜比分</text>
+            <image class='activeImg' hidden='{{item.gametype != 1}}' src='../../images/icon/active.png'></image>
+          </view>
+          <view class='checkTab'>
+            <text class='{{item.gametype == 2?"active":""}}'>猜输赢</text>
+            <image class='activeImg' hidden='{{item.gametype != 2}}' src='../../images/icon/active.png'></image>
+          </view>
+          <view class='checkTab'>
+            <text class='{{item.gametype == 3?"active":""}}'>猜比分加输赢</text>
+            <image class='activeImg' hidden='{{item.gametype != 3}}' src='../../images/icon/active.png'></image>
+          </view>
+        </view>
+      </view>
+      <view class='guessingBox guessingBox1' hidden='{{item.gametype != 1}}'>
+        <view class='guess'>
+          <input class="inputLeft" disabled="true"  type='number' placeholder='请输入该队的比分'></input>
+          <view>vs</view>
+          <input class="inputRight" disabled="true"  type='number' placeholder='请输入该队的比分'></input>
+        </view>
+      </view>
+      <view class='guessingBox guessingBox2' hidden='{{item.gametype != 2}}'>
+        <view class='suspect'>
+          <view  class='{{item.suspect == 1?"active":""}}'>赢</view>
+          <view  class='{{item.suspect == 2?"active":""}}'>平局</view>
+          <view  class='{{item.suspect == 3?"active":""}}'>赢</view>
+        </view>
+      </view>
+      <view class='guessingBox guessingBox3' hidden='{{item.gametype != 3}}'>
+        <view class="guessView">猜比分</view>
+        <view class='guess'>
+          <input class="inputLeft" disabled="true"  type='number' placeholder='请输入该队的比分'></input>
+          <view>vs</view>
+          <input class="inputRight" disabled="true" type='number' placeholder='请输入该队的比分'></input>
+        </view>
+        <view class="guessView" style='margin-top:30rpx;'>猜输赢</view>
+        <view class='suspect'>
+          <view  class='{{item.suspect == 1?"active":""}}'>赢</view>
+          <view  class='{{item.suspect == 2?"active":""}}'>平局</view>
+          <view  class='{{item.suspect == 3?"active":""}}'>赢</view>
+        </view>
+      </view>
+      <view class='upBox'>
+        <view class='up' bindtap='openPage' data-type='0'  data-idx='{{idx}}'>收起</view>
+        <view class='postGuess' style='background:#DDDDDD;'>已选择</view>
+      </view>
+      <view class='infoTest'>*以上三种竞猜模式，提交选择后，赛前2小时内不能更改。</view>
+    </view>
+  </view>
+</template>
 <!-- 比赛结束 -->
 <template name="countryTeamEnd">
   <view class='countryTeam'>
@@ -122,7 +196,6 @@
     </view>
   </view>
 </template>
-
 <!-- 比赛未开启 -->
 <template name="countryTeamNoStar">
   <view class='countryTeam'>

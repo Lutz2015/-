@@ -37,6 +37,7 @@ const getToken = () => {
       url: BASEURL + 'vapi/token/get',
       success: function (res) {
         if (res.statusCode == 200) {
+          wx.setStorageSync('token',res.data.data) //保存token
           resolve(res.data);
         } else {
           reject(error);
@@ -56,7 +57,7 @@ const getApi = (urls, options = {}, METHOD = "POST") => {
       'loginKey': loginkey
     })
     if (!tokenKey || !tokenValue) {
-      getTokenApi(urls, _data, resolve, reject)      
+      getTokenApi(urls, _data, METHOD, resolve, reject)      
     } else {
       wx.request({
         method: METHOD,
@@ -70,7 +71,7 @@ const getApi = (urls, options = {}, METHOD = "POST") => {
         data: _data,
         success: function (res) {
           if (res.data.code == "TOKEN_KEY_NULL") {
-            getTokenApi(urls, _data, resolve, reject)
+            getTokenApi(urls, _data, METHOD, resolve, reject)
           } else {
             resolve(res.data);
           }
@@ -87,7 +88,7 @@ const getApi = (urls, options = {}, METHOD = "POST") => {
   return promise;
 }
 //token过期的情况
-const getTokenApi = (urls, _data, resolve, reject) => {
+const getTokenApi = (urls, _data, METHOD, resolve, reject) => {
   getToken().then(res => {
     wx.request({
       method: METHOD,

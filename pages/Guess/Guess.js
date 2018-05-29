@@ -6,7 +6,6 @@ Page({
    */
   data: {
     realtimeCheck: 1,
-    noEdite:true, //不可编辑
     gamelist: [{
       countrylicon: '../../images/other/jpan.png',//左队国家icon
       countryricon: '../../images/other/jpan.png',//右队国家icon

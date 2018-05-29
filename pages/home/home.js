@@ -127,7 +127,6 @@ Page({
   agreelogin(userdata) {
     let that = this;
     app.agreelogin(userdata, function () {
-      toast('成功登陆！')
       that.setData({
         isLogin: true
       })

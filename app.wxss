@@ -99,3 +99,10 @@ page {
 .botomBlock {
   height: 100rpx;
 }
+.noMore{
+  font-size: 32rpx;
+  text-align: center;
+  color: #999999;
+  height: 80rpx;
+  line-height: 80rpx;
+}

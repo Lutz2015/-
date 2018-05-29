@@ -1,10 +1,11 @@
 <view class='winInfoBox'>
-  <view class='winInfoList'>
-    <view class='userImg'>
-      <image src='../../images/icon/topbg.png'></image>
-    </view>
-    <view class='userName'>顾北</view>
-    <view class='goodsName'>飞利浦电动牙刷</view>
-  </view>
 
+  <view class='winInfoList' wx:for="{{lists}}" wx:for-index="idx" wx:for-item="item">
+    <view class='userImg'>
+      <image src='{{item.avatar}}'></image>
+    </view>
+    <view class='userName'>{{item.nickName}}</view>
+    <view class='goodsName'>{{item.name}}</view>
+  </view>
+  <view class='noMore' hidden='{{lists.length <= 0}}'>{{pages.current == pages.last?'没有更多了～':'正在加载中～'}}</view>
 </view>

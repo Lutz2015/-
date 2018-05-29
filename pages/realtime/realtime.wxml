@@ -11,29 +11,29 @@
 <view style='height:76rpx'></view>
 
 <view class='competitionJ' hidden='{{realtimeCheck != 1}}'>
-  <view class='list'>
+  <view class='list' wx:for="{{lists}}" wx:for-index="idx" wx:for-item="item">
     <view class='listTop'>
       <image src='../../images/login/home.png'></image>
-      <text>05/23 星期三</text>
+      <text>{{item.match_date}}</text>
     </view>
     <view class='listBottom'>
       <view class='countryTeam'>
         <view class='leftCbox'>
-          <image class='leftC' src='../../images/other/jpan.png'></image>
-          <view>俄罗斯</view>
+          <image class='leftC' src='{{item.htImg}}'></image>
+          <view>{{item.htname}}</view>
         </view>
         <view class='rightCbox'>
-          <image class='rightC' src='../../images/other/jpan.png'></image>
-          <view>中国</view>          
+          <image class='rightC' src='{{item.vtImg}}'></image>
+          <view>{{item.vtname}}</view>          
         </view>
         <view class='cInfoBox'>
-          <text class='red'>1</text>
+          <text class='red'>{{item.htscore}}</text>
           <text class='vs'>vs</text>
-          <text class='red'>2</text>          
+          <text class='red'>{{item.vtscore}}</text>          
         </view>
         <view class='timeBox'>
           <image src='../../images/icon/time.png'></image>
-          <text>05/23 星期三</text>
+          <text>{{item.match_date}}</text>
         </view>
       </view>
     </view>

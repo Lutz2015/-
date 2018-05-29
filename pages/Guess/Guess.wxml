@@ -12,11 +12,11 @@
 <view style='height:76rpx'></view>
 <view class='guessTrue' hidden='{{realtimeCheck != 1}}'>
   <block wx:for="{{gamelist}}" wx:for-index="idx" wx:for-item="item">
-    <template is="countryTeam" data="{{item,idx}}" />
+    <template is="countryTeamOver" data="{{item,idx}}" />
   </block>
 </view>
 <view class='guessFalse' hidden='{{realtimeCheck != 2}}'>
   <block wx:for="{{gamelist}}" wx:for-index="idx" wx:for-item="item">
-    <template is="countryTeam" data="{{item,idx,noEdite}}" />
+    <template is="countryTeamOver" data="{{item,idx}}" />
   </block>
 </view>
