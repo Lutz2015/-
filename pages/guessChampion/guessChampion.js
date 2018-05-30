@@ -1,38 +1,18 @@
-import { toast } from '../../utils/util.js';
-
+// pages/guessChampion/guessChampion.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    address:{}
+  
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let that = this;
-    let _address = wx.getStorageSync('address');
-    if (!_address){
-        wx.chooseAddress({
-          success: function (res) {
-            wx.setStorageSync('address', res);
-            that.setData({
-              address: res
-            })
-          },
-          fail:function(){
-            toast('授权失败，您将无法领取,重新授权请删除小程序后再次进入')
-          }
-        })
-    }else{
-      that.setData({
-        address: _address
-      })
-    }
-    wx.hideShareMenu()
+  
   },
 
   /**
@@ -82,16 +62,5 @@ Page({
    */
   onShareAppMessage: function () {
   
-  },
-  checkAddress(){
-    let that = this;
-    wx.chooseAddress({
-      success: function (res) {
-        wx.setStorageSync('address', res);
-        that.setData({
-          address: res
-        })
-      }
-    })
   }
 })

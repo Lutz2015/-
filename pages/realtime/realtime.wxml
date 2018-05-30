@@ -14,7 +14,7 @@
   <view class='list' wx:for="{{lists}}" wx:for-index="idx" wx:for-item="item">
     <view class='listTop'>
       <image src='../../images/login/home.png'></image>
-      <text>{{item.match_date}}</text>
+      <text>{{item.match_date}} {{item.match_weekday}}</text>
     </view>
     <view class='listBottom'>
       <view class='countryTeam'>
@@ -33,11 +33,13 @@
         </view>
         <view class='timeBox'>
           <image src='../../images/icon/time.png'></image>
-          <text>{{item.match_date}}</text>
+          <text>{{item.match_date}}  {{item.match_weekday}}</text>
         </view>
       </view>
     </view>
   </view>
+   <view class='noMore' wx:if='{{lists.length > 0}}'>{{pages.current == pages.last?'没有更多了～':'正在加载中～'}}</view>
+    <view class='noMore' wx:else>空空如也～</view>
 </view>
 <view class='competitionT' hidden='{{realtimeCheck != 2}}'>
   <view>中国我爱你中国我爱你中国我爱你中国我爱你中国我爱你中国我爱你中国我爱你中国我爱你中国我爱你中国我爱你中国我爱你中国我爱你中国我爱你中国我爱你中国我爱你中国我爱你中国我爱你中国我爱你</view>

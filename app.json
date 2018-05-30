@@ -12,7 +12,8 @@
     "pages/mygoods/mygoods",
     "pages/myaddress/myaddress",
     "pages/Questions/Questions",
-    "pages/complaint/complaint"
+    "pages/complaint/complaint",
+    "pages/guessChampion/guessChampion"
   ],
   "window": {
     "backgroundColor": "#FF5B5B",

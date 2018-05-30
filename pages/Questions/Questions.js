@@ -9,7 +9,15 @@ Page({
       title:'1.如何收到获得的奖品',
       content:'厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥',
       isOpen:false
-    }]
+    }, {
+      title: '1.如何收到获得的奖品',
+      content: '厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥',
+      isOpen: false
+      }, {
+        title: '1.如何收到获得的奖品',
+        content: '厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥',
+        isOpen: false
+      }]
   },
 
   /**
@@ -69,9 +77,16 @@ Page({
   },
   openList(e){
     let _data = e.currentTarget.dataset;
-    console.log(_data)
+    let _list = this.data.list.map(function(item,index){
+      if(_data.index == index){
+        item.isOpen = true;        
+      }else{
+        item.isOpen = false;       
+      }
+       return item;
+    })
     this.setData({
-      [`${'list'}[${_data.index}].isOpen`]: !this.data.list[_data.index].isOpen 
+      list: _list
     })
   }
 })

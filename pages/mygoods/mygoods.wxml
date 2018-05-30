@@ -13,36 +13,40 @@
   <view style='height:76rpx'></view>
 
   <view class='waitGet' hidden='{{realtimeCheck != 1}}'>
-    <view class='goodsBox'>
-      <image class='goodsImg' src='../../images/me/1.png'></image>
-      <view class="goodsName">ipheonx手机</view>
-      <view class="goodstype">128G 银色</view>
-      <view class="goodsGet">立即领取</view>
-      <view class='bottom'>
-        <view class='username'>收件人：六月的风 18250476269</view>
-        <view class='address'>地址：北京市 还定区 神鹿审结</view>
+    <view class='goodsBox' wx:for="{{lists}}" wx:for-index="idx" wx:for-item="item">
+      <image class='goodsImg' src='{{item.img}}'></image>
+      <view class="goodsName">{{item.name}}</view>
+      <view class="goodstype">{{item.extra}}</view>
+      <view class="goodsGet" bindtap='openPage' data-index='{{idx}}' data-wpid='{{item.wp_id}}'>立即领取</view>
+      <view class='bottom' hidden='{{item.isopen}}'>
+        <view class='username' bindtap='checkAddress'>收件人：{{address.userName}}  {{address.telNumber}}</view>
+        <view class='address' bindtap='checkAddress'>地址：{{address.provinceName}} {{address.cityName}} {{address.countyName}} {{address.detailInfo}}</view>
         <view class='upBox'>
-          <view class='up' bindtap='openPage' data-type='0' data-idx='{{idx}}'>收起</view>
-          <view class='postGuess'>确认</view>
+          <view class='up' bindtap='closePage'  data-index='{{idx}}'>收起</view>
+          <view class='postGuess' bindtap='getGoods' data-index='{{idx}}' data-wpid='{{item.wp_id}}'>确认</view>
         </view>
       </view>
     </view>
+    <view class='noMore' wx:if='{{lists.length > 0}}'>{{pages.current == pages.last?'没有更多了～':'正在加载中～'}}</view>
+    <view class='noMore' wx:else>空空如也～</view>
   </view>
   <view class='hasGet' hidden='{{realtimeCheck != 2}}'>
-    <view class='goodsBox'>
-      <image class='goodsImg' src='../../images/me/1.png'></image>
-      <view class="goodsName">ipheonx手机</view>
-      <view class="goodstype">128G 银色</view>
+    <view class='goodsBox' wx:for="{{lists1}}" wx:for-index="idx" wx:for-item="item">
+      <image class='goodsImg' src='{{item.img}}'></image>
+      <view class="goodsName">{{item.name}}</view>
+      <view class="goodstype">{{item.extra}}</view>
       <view class="goodsGet" style='background:#DDDDDD'>已领取</view>
       <view class='bottom'>
-        <view class='username'>收件人：六月的风 18250476269</view>
-        <view class='address'>地址：北京市 还定区 神鹿审结</view>
-        <view class='address'>快递：顺丰</view>
-        <view class='address'>单号：231312312312</view>
-        
+        <view class='username'>收件人：{{item.uname}} {{item.phone}}</view>
+        <view class='address'>地址：{{item.address}}</view>
+        <view class='address' wx:if="{{item.express}}">快递：{{item.express}}</view>
+        <view class='address'>单号：{{item.track_no}}</view>
       </view>
     </view>
+     <view class='noMore' wx:if='{{lists1.length > 0}}'>{{pages1.current == pages1.last?'没有更多了～':'正在加载中～'}}</view>
+    <view class='noMore' wx:else>空空如也～</view>
   </view>
+
   <button class='kefu' open-type='contact'>联系客服</button>
   <view class='complain' bindtap='gotoComplaint'>投诉</view>
 </view>

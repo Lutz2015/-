@@ -1,7 +1,7 @@
 <import src="../../template/template.wxml" />
 <template is="loginView" data="{{isLogin}}" />
 <template is="footer" data="{{activeType}}" />
-<view class='pubCover' hidden='pubCoverHide'></view>
+<view class='pubCover' hidden='{{pubCoverHide}}'></view>
 <view class='rule'>
   <image src="../../images/icon/rules.png" class="slide-image" mode='aspectFill' />
 </view>

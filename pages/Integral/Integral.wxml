@@ -10,16 +10,20 @@
 </view>
 <view style='height:76rpx'></view>
 <view class='coreGet' hidden='{{realtimeCheck != 1}}'>
-    <view class='list'>
-        <view class='cname'>巴西vs德国</view>
-        <view class='time'>2018/06/12 23:00</view>
-        <view class='core'>+2</view>
+    <view class='list' wx:for="{{lists}}" wx:for-index="idx" wx:for-item="item">
+        <view class='cname'>{{item.from_source}}</view>
+        <view class='time'>{{item.create_time}}</view>
+        <view class='core'>{{item.score}}</view>
     </view>
+     <view class='noMore' wx:if='{{lists.length > 0}}'>{{pages.current == pages.last?'没有更多了～':'正在加载中～'}}</view>
+    <view class='noMore' wx:else>空空如也～</view>
 </view>
 <view class='coreConsume' hidden='{{realtimeCheck != 2}}'>
-    <view class='list'>
-        <view class='cname'>巴西vs德国</view>
-        <view class='time'>2018/06/12 23:00</view>
-        <view class='core'>-1</view>
+    <view class='list' wx:for="{{lists1}}" wx:for-index="idx" wx:for-item="item">
+        <view class='cname'>{{item.from_source}}</view>
+        <view class='time'>{{item.create_time}}</view>
+        <view class='core'>{{item.score}}</view>
     </view>
+     <view class='noMore' wx:if='{{lists1.length > 0}}'>{{pages1.current == pages1.last?'没有更多了～':'正在加载中～'}}</view>
+    <view class='noMore' wx:else>空空如也～</view>
 </view>

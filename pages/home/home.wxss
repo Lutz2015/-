@@ -28,7 +28,7 @@
   position: relative;
   clear: both;
   overflow: hidden;
-  box-shadow: 0rpx 6rpx 6rpx #ddd;
+  box-shadow: 0rpx 7rpx 6rpx rgba(255,91,91,0.1);
 }
 
 .tabBox .tab {
@@ -93,7 +93,7 @@
   color: #999;
   background: #fff;
   margin-top: 6rpx;
-  box-shadow: 0rpx 6rpx 6rpx #ddd;
+  box-shadow: 0rpx 7rpx 6rpx rgba(255,91,91,0.1);
 }
 
 .statusTab .checkTab {

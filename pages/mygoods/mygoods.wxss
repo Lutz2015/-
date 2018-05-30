@@ -7,9 +7,10 @@
   font-size: 32rpx;
   color: #999;
   background: #fff;
-  box-shadow: 0rpx 6rpx 6rpx #ddd;
+  box-shadow: 0rpx 7rpx 6rpx rgba(255,91,91,0.1);
   position: fixed;
   width: 100%;
+  z-index: 99;
 }
 .realtimeTab .checkTab {
   width: 50%;
@@ -48,7 +49,7 @@
   position: absolute;
   top: 30rpx;
   left: 30rpx;
-    box-shadow: 0rpx 6rpx 6rpx #ddd;
+    box-shadow: 0rpx 7rpx 6rpx rgba(255,91,91,0.1);
 
 }
 .goodsName{
@@ -80,7 +81,7 @@
   right: 30rpx;
 }
 .bottom .username{
-  font-size: 36rpx;
+  font-size: 32rpx;
   padding: 15rpx 0;
   border-top: 1px solid #e9e9e9;
   margin-top: 120rpx;
@@ -129,12 +130,12 @@
   color: #fff;
   text-align: center;
   font-size: 32rpx;
-  bottom: 160rpx;
+  bottom: 100rpx;
   left: 5%;
   border: 0;
   border-radius: 40rpx;
 }
-.complain{
+/* .complain{
   width: 90%;
   position: fixed;
   height: 78rpx;
@@ -146,4 +147,15 @@
   left: 5%;
   border-radius: 39rpx;
   border: 1px solid #ff5353;
+} */
+.complain{
+  width: 10%;
+  position: fixed;
+  height: 78rpx;
+  line-height: 78rpx;
+  color: #2D95FF;
+  text-align: center;
+  font-size: 28rpx;
+  bottom: 20rpx;
+  left: 45%;
 }

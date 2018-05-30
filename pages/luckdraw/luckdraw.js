@@ -1,7 +1,10 @@
 import { toast } from '../../utils/util.js';
 Page({
   data: {
-    activeType: 2,
+    activeType: 2,  //底部tab选中
+    pubCoverHide: true,//遮罩曾隐藏
+    alertBoxOneHide:true,//中奖弹窗1
+    alertBoxTwoHide: true,//中奖弹窗2
     animationData: {},
     sum: 0, //当前角度
     prevSum:0,//记录上一次的角度
@@ -58,7 +61,7 @@ Page({
       that.setData({
         animationData: that.animation.export(),
         sum: sum,
-        prevSum: 45 * ruleFigure + 22.5
+        prevSum: 72 * ruleFigure + 36
       })
       setTimeout(function () {
         that.setData({

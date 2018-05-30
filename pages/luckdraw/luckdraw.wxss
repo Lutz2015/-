@@ -1,29 +1,230 @@
-.rotate {
+page{
+  background: #fff;
+}
+.titleBg{
+  height: 935rpx;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+.activeBox{
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  text-align: center;
+  width: 100%;
+}
+.drawBox{
+  width: 670rpx;
+  height: 670rpx;
+  margin: 0 auto;
   position: relative;
-  margin-top: 300rpx;
+}
+.drawbg{
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 8;
+}
+.titleImg{
+  height: 451rpx;
+  width: 578rpx;
+  margin: 42rpx auto 0;
+}
+.rotate {
+ position: absolute;
+ top: 62rpx;
+ left: 62rpx;
+ width: 548rpx;
+  z-index: 9; 
+ height: 548rpx;
 }
 
 .rotate_disk {
-  width: 615rpx;
-  height: 615rpx;
-  margin: 0 auto;
-  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
-
+.rotate_btnc{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 88rpx;
+  height: 88rpx;
+  margin-top: -100rpx;
+  margin-left: -44rpx;
+  z-index: 7;
+}
 .rotate_btn {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 240rpx;
-  height: 240rpx;
-  margin-top: -120rpx;
-  margin-left: -120rpx;
-  -moz-transition: all 3s ease-in-out 0s;
-  -o-transition: all 3s ease-in-out 0s;
-  -webkit-transition: all 3s ease-in-out 0s;
-  transition: all 3s ease-in-out 0s;
-  -moz-transform-origin: center center;
-  -o-transform-origin: center center;
-  -webkit-transform-origin: center center;
-  transform-origin: center center;
+  width: 160rpx;
+  height: 160rpx;
+  margin-top: -80rpx;
+  margin-left: -80rpx;
+  z-index: 9;
+}
+.shadow{
+  height: 40rpx;
+  width: 600rpx;
+  position: absolute;
+  bottom: -16rpx;
+  left: 50%;
+  margin-left: -300rpx;
+  z-index: 7;
+}
+.countNum{
+  color: #DE461B;
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-top: 60rpx;
+}
+.activeRuleBox{
+  width: 670rpx;
+  height: 594rpx;
+  border-radius: 6px;
+  background: #DE461B;
+  padding: 30rpx;
+  margin: 80rpx auto 0;
+  color: #fff;
+  box-sizing: border-box;
+  text-align: left;
+  position: relative;
+}
+.activeRuleBox .ruleImg{
+  height: 72rpx;
+  width: 186rpx;
+  position: absolute;
+  left: 50%;
+  margin-left: -98rpx;
+  top: -42rpx;
+}
+.activeRuleBox .zq{
+  height: 108rpx;
+  width: 108rpx;
+  position: absolute;
+  right: 40rpx;
+  top: -54rpx;
+}
+.activeRuleBox view{
+  font-size: 24rpx;
+  line-height: 50rpx;
+}
+.activeRuleBox text{
+  color: #F5DB02;
+}
+.bottombg{
+  height: 268rpx;
+  width: 100%;
+  margin-top: 30rpx;
+}
+
+.alertBox1,.alertBox2{
+  height: 450rpx;
+  border-radius: 5px;
+  width: 692rpx;
+  background: #fff;
+  position: fixed;
+  top: 25%;
+  left: 50%;
+  margin-left: -346rpx;
+  z-index: 9999;
+  padding: 30rpx;
+  text-align: center;
+  box-sizing: border-box;
+}
+.alertBox2{
+  top: 20%;
+  height: 556rpx;
+}
+.alertBox2 .goodsBox{
+  border-radius: 5px;
+  position: relative;
+  min-height: 180rpx;
+  text-align: left;
+  padding-top: 20rpx;
+}
+.alertBox2 .goodsBox .goodsImg{
+  height: 180rpx;
+  width: 180rpx;
+  position: absolute;
+  top: 20rpx;
+  left: 0rpx;
+  box-shadow: 0rpx 6rpx 6rpx #ddd;
+
+}
+.alertBox2 .goodsName{
+  padding-left: 210rpx;
+  line-height: 40rpx;
+  font-size: 32rpx;
+  margin-top: 10rpx;
+}
+.alertBox2 .goodstype{
+  padding-left: 210rpx;
+  line-height: 40rpx;
+  font-size: 28rpx;
+  color: #bbbbbb;
+  margin-top: 10rpx;
+  
+}
+.alertBox2 .bottom .username{
+  font-size: 32rpx;
+  padding: 15rpx 0 0;
+  border-top: 1px solid #e9e9e9;
+  margin-top: 120rpx;
+}
+.alertBox2 .bottom .address{
+  font-size: 24rpx;
+  color: #999;
+}
+.alertBox1 .title,.alertBox2 .title{
+  color: #D9441A;
+  font-size: 32rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  font-weight: bold;
+}
+.alertBox1 .alerBox1Img{
+  height: 180rpx;
+  width: 180rpx;
+  margin: 30rpx 0 0;
+}
+.upBox {
+  height: 80rpx;
+  padding: 30rpx 0 0;
+  clear: both;
+  overflow: hidden;
+}
+
+.upBox .postGuess {
+  height: 78rpx;
+  line-height: 78rpx;
+  background: -webkit-linear-gradient(top, rgb(255, 83, 83), rgb(255, 123, 123));
+  color: #fff;
+  width: 65%;
+  border-radius: 40rpx;
+  text-align: center;
+  font-size: 32rpx;
+  float: right;
+}
+
+.upBox .up {
+  height: 76rpx;
+  line-height: 76rpx;
+  width: 30%;
+  border: 1px solid #ff5b5b;
+  color: #ff5b5b;
+  border-radius: 40rpx;
+  text-align: center;
+  font-size: 32rpx;
+  float: left;
 }

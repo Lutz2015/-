@@ -1,4 +1,5 @@
 import { getOverMatchList } from '../../utils/getdata.js'
+import { week } from '../../utils/util.js'
 
 Page({
   /**
@@ -20,8 +21,11 @@ Page({
 
   },
 
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
   onReady: function () {
-   
+  
   },
 
   /**
@@ -77,13 +81,18 @@ Page({
     let that = this;
     getOverMatchList(pageIndex)
       .then(res => {
+        let _list = res.data.lists.map(function (item, index) {
+          item.match_weekday = week(parseInt(item.match_weekday))
+          return item;
+        })
         if (changtype == 1) {
+          
           that.setData({
-            lists: res.data.lists,
+            lists: _list,
             pages: res.data.pages
           })
         } else {
-          let _nowLists = that.data.lists.concat(res.data.lists);
+          let _nowLists = that.data.lists.concat(_list);
           that.setData({
             lists: _nowLists,
             pages: res.data.pages
