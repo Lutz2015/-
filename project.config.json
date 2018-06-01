@@ -108,6 +108,12 @@
 					"name": "猜冠亚军",
 					"pathName": "pages/guessChampion/guessChampion",
 					"query": ""
+				},
+				{
+					"id": 13,
+					"name": "首页",
+					"pathName": "pages/home/home",
+					"query": ""
 				}
 			]
 		}

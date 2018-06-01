@@ -11,12 +11,16 @@
 </view>
 <view style='height:76rpx'></view>
 <view class='guessTrue' hidden='{{realtimeCheck != 1}}'>
-  <block wx:for="{{gamelist}}" wx:for-index="idx" wx:for-item="item">
+  <block wx:for="{{lists}}" wx:for-index="idx" wx:for-item="item">
     <template is="countryTeamOver" data="{{item,idx}}" />
   </block>
+    <view class='noMore' wx:if='{{lists.length > 0}}'>{{pages.current == pages.last?'没有更多了～':'正在加载中～'}}</view>
+    <view class='noMore' wx:else>空空如也～</view>
 </view>
 <view class='guessFalse' hidden='{{realtimeCheck != 2}}'>
-  <block wx:for="{{gamelist}}" wx:for-index="idx" wx:for-item="item">
+  <block wx:for="{{lists1}}" wx:for-index="idx" wx:for-item="item">
     <template is="countryTeamOver" data="{{item,idx}}" />
   </block>
+    <view class='noMore' wx:if='{{lists1.length > 0}}'>{{pages1.current == pages1.last?'没有更多了～':'正在加载中～'}}</view>
+    <view class='noMore' wx:else>空空如也～</view>
 </view>

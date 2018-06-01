@@ -1,4 +1,5 @@
 import { getRewardList} from '../../utils/getdata.js'
+import { toast, formatTime } from '../../utils/util.js';
 Page({
 
   /**
@@ -73,13 +74,17 @@ Page({
     let that = this;
     getRewardList(pageIndex)
       .then(res => {
+        let _list = res.data.lists.map(function (item, index) {
+          item.create_time = formatTime(item.create_time)
+          return item;
+        })
         if (changtype == 1) {
           that.setData({
-            lists: res.data.lists,
+            lists: _list,
             pages: res.data.pages
           })
         } else {
-          let _nowLists = that.data.lists.concat(res.data.lists);
+          let _nowLists = that.data.lists.concat(_list);
           that.setData({
             lists: _nowLists,
             pages: res.data.pages

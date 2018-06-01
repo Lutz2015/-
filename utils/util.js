@@ -13,9 +13,8 @@ const formatTime = timeStamp => {
   var second = date.getSeconds();
   minute = minute < 10 ? ('0' + minute) : minute;
   second = second < 10 ? ('0' + second) : second;
-  return y + '/' + m + '/' + d + ' ' + h + ':' + minute;
+  return m + '/' + d + ' ' + h + ':' + minute;
 }
-
 const toast = (msg, icon = 'none', time = 2000) => {
   wx.showToast({
     title: msg,
@@ -23,7 +22,20 @@ const toast = (msg, icon = 'none', time = 2000) => {
     duration: time
   })
 }
-//格式化时间，将秒数转为0:00格式
+const formatWeek = timerStamp => {
+  let _week = new Date(timerStamp * 1000);
+  var weekday = new Array(7)
+  weekday[0] = "星期日"
+  weekday[1] = "星期一"
+  weekday[2] = "星期二"
+  weekday[3] = "星期三"
+  weekday[4] = "星期四"
+  weekday[5] = "星期五"
+  weekday[6] = "星期六"
+  return weekday[_week.getDay()];
+}
+
+//获取星期
 const week = n => {
   let x;
   switch (n) {
@@ -60,4 +72,4 @@ const formate = n => {
   return minute + ':' + seconds;
 }
 
-export { formatTime, toast, formate, week}
+export { formatTime, toast, formate, week, formatWeek}

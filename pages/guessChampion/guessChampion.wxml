@@ -1,1 +1,116 @@
-<view class="pageBox"></view>
+<import src="../../template/template.wxml" />
+<view class='pubCover' hidden='{{pubCoverHide}}' bindtap='closeAll'></view>
+<view class="pageBox">
+    <view class='pageTop'> 
+       <image class='pageTopImg' src="../../images/other/5.jpg" />
+       <image class='activeRuleImg' bindtap='showRule' src="../../images/other/4.png" />
+    </view>
+    <view class='champion'>
+          <image src='../../images/other/jpan.png'></image>
+          <view>您选中的冠军：俄罗斯</view>
+    </view>
+    <view class='countryBox'>
+        <view class='cList'>
+          <image src='../../images/other/jpan.png'></image>
+          <view>俄罗斯</view>
+        </view>
+        <view class='cList'>
+          <image src='../../images/other/jpan.png'></image>
+          <view>俄罗斯</view>
+        </view>
+        <view class='cList'>
+          <image src='../../images/other/jpan.png'></image>
+          <view>俄罗斯</view>
+        </view>
+        <view class='cList'>
+          <image src='../../images/other/jpan.png'></image>
+          <view>俄罗斯</view>
+        </view>
+        <view class='cList'>
+          <image src='../../images/other/jpan.png'></image>
+          <view>俄罗斯</view>
+        </view>
+         <view class='cList'>
+          <image src='../../images/other/jpan.png'></image>
+          <view>俄罗斯</view>
+        </view>
+        <view class='cList'>
+          <image src='../../images/other/jpan.png'></image>
+          <view>俄罗斯</view>
+        </view>
+        <view class='cList'>
+          <image src='../../images/other/jpan.png'></image>
+          <view>俄罗斯</view>
+        </view>
+        <view class='cList'>
+          <image src='../../images/other/jpan.png'></image>
+          <view>俄罗斯</view>
+        </view>
+        <view class='cList'>
+          <image src='../../images/other/jpan.png'></image>
+          <view>俄罗斯</view>
+        </view>
+         <view class='cList'>
+          <image src='../../images/other/jpan.png'></image>
+          <view>俄罗斯</view>
+        </view>
+        <view class='cList'>
+          <image src='../../images/other/jpan.png'></image>
+          <view>俄罗斯</view>
+        </view>
+        <view class='cList'>
+          <image src='../../images/other/jpan.png'></image>
+          <view>俄罗斯</view>
+        </view>
+        <view class='cList'>
+          <image src='../../images/other/jpan.png'></image>
+          <view>俄罗斯</view>
+        </view>
+        <view class='cList'>
+          <image src='../../images/other/jpan.png'></image>
+          <view>俄罗斯</view>
+        </view>
+         <view class='cList'>
+          <image src='../../images/other/jpan.png'></image>
+          <view>俄罗斯</view>
+        </view>
+        <view class='cList'>
+          <image src='../../images/other/jpan.png'></image>
+          <view>俄罗斯</view>
+        </view>
+        <view class='cList'>
+          <image src='../../images/other/jpan.png'></image>
+          <view>俄罗斯</view>
+        </view>
+        <view class='cList'>
+          <image src='../../images/other/jpan.png'></image>
+          <view>俄罗斯</view>
+        </view>
+        <view class='cList'>
+          <image src='../../images/other/jpan.png'></image>
+          <view>俄罗斯</view>
+        </view>
+    </view>
+    <view style='height:100rpx;'></view>
+    <view class='bottomBox'>
+        <view class='choseChampion' hidden='true'>
+            <image src="../../images/other/btnbg.png" />
+            <view>选择冠军</view>
+        </view>
+        <view class='hasChoseChampion'>
+            <view class='hasChoseName'>已选：俄罗斯</view>
+            <view class='sureBox'>
+                <view>确定</view>
+                <image src="../../images/other/sure.png" />
+            </view>
+        </view> 
+    </view>
+    <view class='ruleBox' hidden='{{ruleBoxHide}}'>
+        <view class='titleRule'>活动说明</view>
+        <view>1.活动时间为6月14号早9点开始到6月30号晚6点结束</view>
+         <view>2.活动期间可以有一次更改选择冠军的机会，64场比赛结束后选择正确的用户可以参与抽奖</view>
+         <view>3.抽奖时间为7月16号上午9点到7月18号18点结束.</view>
+         <view>4.活动过程中如发现违规作弊行为我公司有权取消您已获得的奖品必要时追究法律责任。</view>
+         <image  class="close" bindtap='closeAll' src='../../images/other/close.png'></image>
+    </view>
+</view>

@@ -1,19 +1,28 @@
+import { myData } from '../../utils/getdata.js'
 const app = getApp();
 Page({
 
   data: {
     activeType: 3,
-    userinfo:{}
+    userinfo:{},
+    myData:{}
   },
   
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let that = this;
     let _userInfo =  wx.getStorageSync('userInfo').userInfo;
-    this.setData({
+    that.setData({
        userinfo:_userInfo
     })
+    myData()
+     .then(res => {
+       that.setData({
+         myData: res.data
+       })
+     })
   },
 
   /**

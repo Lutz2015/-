@@ -1,30 +1,24 @@
-// pages/realtime/realtime.js
-Page({
+import { myQuizRecordList } from '../../utils/getdata.js'
+import { toast, formatTime } from '../../utils/util.js';
 
-  /**
-   * 页面的初始数据
-   */
+Page({
   data: {
     realtimeCheck: 1,
-    gamelist: [{
-      countrylicon: '../../images/other/jpan.png',//左队国家icon
-      countryricon: '../../images/other/jpan.png',//右队国家icon
-      countrynamel: '俄罗斯',//左队国家名字
-      countrynamer: '中国',//右队国家名字
-      gametime: '06/14 23:00',
-      openpage: 1,//是否展开
-      gametype: 1,//比赛方式 1猜比分 2猜输赢 3猜比分加输赢
-      coinl: 0, //猜左队的比分 
-      coinr: 0, //猜右队的比分 
-      suspect: 1//猜输赢类型 1左队赢 2平局 3右队赢
-    }]
+    isLoding: false,//竞猜记录加载状态
+    lists: [],//竞猜记录列表
+    pages: [],//竞猜记录分页
+    isLoding1: false,//竞猜记录加载状态
+    lists1: [],//竞猜记录列表
+    pages1: []//竞猜记录分页
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.hideShareMenu()
+    wx.hideShareMenu();
+    this.myQuizRecordListFn(1, 1, 0); //首次加载猜错
+    this.myQuizRecordListFn(1, 1, 1); //首次加载猜对
   },
 
   /**
@@ -61,23 +55,85 @@ Page({
   onPullDownRefresh: function () {
 
   },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
   onReachBottom: function () {
-
+    let that = this;
+    //防止一直加
+    if (that.data.realtimeCheck == 1) {
+      //待领取
+      if (that.data.isLoding || that.data.pages.current == that.data.pages.last) {
+        return;
+      }
+      that.setData({
+        isLoding: true
+      })
+      that.myQuizRecordListFn(2, that.data.pages.next, 1)
+    } else {
+      //已领取
+      if (that.data.isLoding1 || that.data.pages1.current == that.data.pages1.last) {
+        return;
+      }
+      that.setData({
+        isLoding1: true
+      })
+      that.myQuizRecordListFn(2, that.data.pages1.next, 0)
+    }
   },
-
-  /**
-   * 用户点击右上角分享
-   */
+  //获取加载列表 changtype = 1表示第一次加载
+  myQuizRecordListFn: function (changtype, pageIndex, status) {
+    let that = this;
+    myQuizRecordList(pageIndex, status)
+      .then(res => {
+        let _list = res.data.lists.map(function (item, index) {
+          item.match_date = formatTime(item.match_date)
+          return item;
+        })
+        if (!status) {
+          //猜对
+          if (changtype == 1) {
+            that.setData({
+              lists1: _list,
+              pages1: res.data.pages
+            })
+          } else {
+            let _nowLists = that.data.lists1.concat(_list);
+            that.setData({
+              lists1: _nowLists,
+              pages1: res.data.pages
+            })
+          }
+          that.setData({
+            isLoding1: false
+          })
+        } else {
+          //猜错
+          if (changtype == 1) {
+            that.setData({
+              lists: _list,
+              pages: res.data.pages
+            })
+          } else {
+            let _nowLists = that.data.lists.concat(_list);
+            that.setData({
+              lists: _nowLists,
+              pages: res.data.pages
+            })
+          }
+          that.setData({
+            isLoding: false
+          })
+        }
+      })
+  },
   onShareAppMessage: function () {
 
   },
   openPage(e) {
     let _data = e.currentTarget.dataset;
-    this.setData({ [`${'gamelist'}[${_data.idx}].openpage`]: Number(_data.type) });
+    if (this.data.realtimeCheck == 1){
+      this.setData({ [`${'lists'}[${_data.idx}].isopen`]: parseInt(_data.type) });
+    }else{
+      this.setData({ [`${'lists1'}[${_data.idx}].isopen`]: parseInt(_data.type) });
+    }
   },
   itemCheckGameSuspect(e) {
     // let _data = e.currentTarget.dataset;

@@ -1,5 +1,5 @@
 .boxlist{
-  font-size: 34rpx;
+  font-size: 32rpx;
   background: #fff;
 }
 .listTop{
@@ -19,7 +19,7 @@
 }
 .listcont{
   padding: 30rpx;
-  font-size: 32rpx;
+  font-size: 28rpx;
   color: #999999;
   border-bottom: 1px solid #e9e9e9;
   

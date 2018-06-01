@@ -31,9 +31,18 @@
   overflow: hidden;
   text-align: left;
 }
-.goodsName{
-  font-size: 28rpx;
+.goodsInfo{
   width: 50%;
+  height: 144rpx;
   overflow: hidden;
   text-align: right;
 }
+.goodsInfo .goodsName{
+  font-size: 28rpx;
+  margin:30rpx 0 10rpx;
+}
+.goodsInfo .goodsTime{
+  font-size: 24rpx;
+  color: #999;
+}
+ 

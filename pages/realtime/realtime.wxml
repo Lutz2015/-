@@ -19,11 +19,11 @@
     <view class='listBottom'>
       <view class='countryTeam'>
         <view class='leftCbox'>
-          <image class='leftC' src='{{item.htImg}}'></image>
+          <image class='leftC' src='../../images/country/{{item.htsign}}.png'></image>
           <view>{{item.htname}}</view>
         </view>
         <view class='rightCbox'>
-          <image class='rightC' src='{{item.vtImg}}'></image>
+          <image class='rightC' src='../../images/country/{{item.vtsign}}.png'></image>
           <view>{{item.vtname}}</view>          
         </view>
         <view class='cInfoBox'>

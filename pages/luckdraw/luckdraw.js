@@ -10,14 +10,12 @@ Page({
     prevSum:0,//记录上一次的角度
     isRoll:false,
     rotatePrize: {
-      0: '10礼券',
-      1: '感谢参与',
-      2: '神兵鬼炎',
-      3: '50礼券',
-      4: '神兵冥日',
-      5: '神兵撼天',
-      6: '20礼券',
-      7: '神兵暗月'
+      0: '感谢参与',
+      1: '豌豆枕',
+      2: '抱枕',
+      3: '陶瓷杯',
+      4: '帽子',
+      5: '吉祥物'  
     }
   },
   onLoad: function (options) {
@@ -56,30 +54,33 @@ Page({
     let tran_promise = new Promise(function (resolve,reject){
       var ruleFigure = index, //获取规定产品转盘位置
         ratateTxt = that.data.rotatePrize[ruleFigure]; //获取规定产品名字
-      let sum = that.data.sum - that.data.prevSum + 360 * (Math.floor((Math.random() * 5)) + 5) + 72 * ruleFigure + 36; //最终角度
+      let sum = that.data.sum - that.data.prevSum + 360 * (Math.floor((Math.random() * 5)) + 5) + 60 * ruleFigure + 30; //最终角度
       that.animation.rotate(sum).step();
       that.setData({
         animationData: that.animation.export(),
         sum: sum,
-        prevSum: 72 * ruleFigure + 36
+        prevSum: 60 * ruleFigure + 30
       })
       setTimeout(function () {
         that.setData({
           isRoll: false
         })
-        resolve()
+        resolve(ratateTxt)
       }, 3000)
     })
     return tran_promise;
   },
   goDraw() {
+    let that = this;
     if (this.data.isRoll) return;
     this.setData({
       isRoll: true
     })
-    this.tran(5)
+    let _num = Math.floor((Math.random() * 6));
+    console.log(_num)
+    this.tran(_num)
       .then(res => {
-        toast('可牛逼了')
+        toast(res)
       })
   },
   //底部tab页面跳转

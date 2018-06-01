@@ -1,9 +1,9 @@
 import { getApi} from './common.js'
 //中奖信息列表
-const getRewardList = (page) => {
+const getRewardList = (page,limit = 10) => {
   return getApi('wcup/lottery/getRewardList',{
     'page':page,
-    'limit':10 //默认10条
+    'limit': limit //默认10条
   })
 }
 //赛事结果
@@ -52,5 +52,34 @@ const myScoreDetail = (page,status) => {
     'limit': 10 //默认10条
   })
 }
-export { getRewardList, getOverMatchList, myPrizeList, GetPrize, scoreRank, inviteRank, myScoreDetail};
+//我的数据
+const myData = () => {
+  return getApi('wcup/my/myData')
+}
+//竞猜记录
+const myQuizRecordList = (page, guess_result) => {
+  return getApi('wcup/my/myQuizRecordList',{
+    'page': page,
+    'guess_result': guess_result,
+    'limit': 10 //默认10条
+  })
+}
+//邀请好友
+const inviteCallBack = (u_loginKey, ui_loginKey) => {
+  return getApi('wcup/my/inviteCallBack',{
+    'u_loginKey': u_loginKey,
+    'ui_loginKey': ui_loginKey
+  })
+}
+//赛事竞猜列表
+const matchGuessList = (status) => {
+  return getApi('wcup/match/matchGuessList',{
+    'status': status
+  })
+}
+//我要竞猜
+const matchGuess = (data) => {
+  return getApi('wcup/match/matchGuess', data)
+}
+export { getRewardList, getOverMatchList, myPrizeList, GetPrize, scoreRank, inviteRank, myScoreDetail, myData, myQuizRecordList, inviteCallBack, matchGuessList, matchGuess};
 

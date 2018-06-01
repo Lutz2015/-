@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    pubCoverHide: true,
+    ruleBoxHide:true, 
   },
 
   /**
@@ -62,5 +63,17 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+  closeAll() {
+    this.setData({
+      pubCoverHide: true,
+      ruleBoxHide: true
+    })
+  },
+  showRule(){
+    this.setData({
+      pubCoverHide: false,
+      ruleBoxHide: false
+    })
   }
 })

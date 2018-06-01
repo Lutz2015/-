@@ -6,6 +6,7 @@
   box-sizing: border-box;
   padding: 30rpx 0;
   position: relative;
+  margin-bottom: 30rpx;
 }
 
 .leftC {
@@ -46,6 +47,7 @@
   align-items: center;
   font-size: 28rpx;
   color: #bdbdbd;
+  margin-top: 20rpx;
 }
 
 .timeBox image {
@@ -90,7 +92,7 @@
 }
 
 .backUpBox .btnRight {
-  width: 266rpx;
+  width: 180rpx;
   height: 62rpx;
   line-height: 62rpx;
   position: absolute;
@@ -102,7 +104,9 @@
   color: #fff;
   background: -webkit-linear-gradient(top, rgb(255, 83, 83), rgb(255, 123, 123));
 }
-
+.checkBox{
+    box-shadow: 0rpx 7rpx 6rpx rgba(255,91,91,0.1);  
+}
 .checkBox .checkTopBox {
   height: 70rpx;
   overflow: hidden;
@@ -171,6 +175,9 @@
   color: #666;
   margin-bottom: 20rpx;
 }
+.upfoldBox{
+  margin-top: 30rpx;
+}
 
 
 
@@ -213,4 +220,10 @@
 }
 .hasCheck{
   background: -webkit-linear-gradient(top, rgb(17, 123, 230), rgb(45, 149, 255)) !important;  
+}
+.c_white{
+  color: #fff !important;  
+}
+.not_chose{
+  background: -webkit-linear-gradient(top, rgb(221, 221, 221), rgb(208, 208, 208)) !important;      
 }

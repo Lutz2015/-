@@ -124,12 +124,104 @@
   height: 106rpx;
   position: fixed;
   right: 30rpx;
-  top: 35%;
+  top: 420rpx;
   z-index: 888;
 }
-
-
-/* @keyframes around {
+.guideBox1{
+  position: fixed;
+  height: 480rpx;
+  width: 596rpx;
+  top: 368rpx;
+  left: 30rpx;
+  z-index: 1000;
+}
+.guideBox1 image{
+  height: 100%;
+  width: 100%;
+}
+.guideBox2{
+  position: fixed;
+  height: 480rpx;
+  width: 596rpx;
+  top: 368rpx;
+  right: 30rpx;
+  z-index: 1000;
+}
+.guideBox2 image{
+  height: 100%;
+  width: 100%;
+}
+.guideBox3{
+  position: fixed;
+  height: 480rpx;
+  width: 596rpx;
+  top: 400rpx;
+  right: 10rpx;
+  z-index: 1000;
+}
+.guideBox3 image{
+  height: 100%;
+  width: 100%;
+}
+.guideBox4{
+  position: fixed;
+  height: 480rpx;
+  width: 596rpx;
+  bottom: 30rpx;
+  right: 10rpx;
+  z-index: 1000;
+}
+.guideBox4 image{
+  height: 100%;
+  width: 100%;
+}
+.ruleBox{
+  height: 600rpx;
+  width: 90%;
+  position: fixed;
+  top: 50%;
+  margin-top: -300rpx;
+  left: 5%;
+  border-radius: 5px;
+  z-index: 9999;
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 24rpx;
+  padding: 30rpx;
+  box-sizing: border-box;
+  text-align: left;
+}
+.ruleContBox{
+    overflow-y: auto;
+    height: 540rpx;
+}
+.ruleBox .ruleContBox view{
+  line-height: 50rpx;
+}
+.ruleBox .titleRule{
+  position: absolute;
+  height: 72rpx;
+  width: 186rpx;
+  line-height: 72rpx;
+  text-align: center;
+  font-size: 32rpx;
+  color: #FF5B5B;
+  border:1px solid #FF5B5B;
+  font-weight: bold;
+  border-radius: 3px;
+  top: -46rpx;
+  left: 50%;
+  margin-left: -93rpx;
+  background: rgba(255, 255, 255, 0.9);
+}
+.ruleBox .close{
+  height: 84rpx;
+  width: 84rpx;
+  position: absolute;
+    bottom: -100rpx;
+  left: 50%;
+  margin-left: -42rpx
+}
+ @keyframes around {
   from {
     margin-left: 100%;
   }
@@ -140,10 +232,10 @@
 }
 
 .marquee_container {
-  font-size: 32rpx;
-  background-color: #97845e;
-  height: 60rpx;
-  line-height: 60rpx;
+  font-size: 24rpx;
+  background:rgba(0, 0, 0, 0.2);
+  height: 56rpx;
+  line-height: 56rpx;
   color: #fff;
   position: relative;
   width: 100%;
@@ -160,4 +252,4 @@
   animation-name: around;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
-} */
+} 

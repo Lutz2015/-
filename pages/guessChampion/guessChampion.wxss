@@ -1,0 +1,162 @@
+.pageBox{
+  height: 100%;
+  width: 100%;
+  background-image: url('https://bx-resource.oss-cn-hangzhou.aliyuncs.com/images/f2f36c21f730308a58f292f6ebaf8b22_1527733234.jpg');
+  background-color: rgb(106, 154, 45);
+  background-repeat: repeat-y;
+  background-size: 100% 300rpx;
+  text-align: center;
+  overflow-y: scroll;
+}
+.pageTop {
+  height: 380rpx;
+  width: 100%;
+  position: relative;
+}
+.pageTopImg{
+  height: 100%;
+  width: 100%;
+}
+.activeRuleImg{
+  height: 58rpx;
+  width: 186rpx;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-left: -93rpx;
+}
+.champion{
+  width: 100%;
+  height: 160rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction:column;
+  font-size: 24rpx;
+  color: #fff;
+}
+.champion image{
+  height: 92rpx;
+  width: 92rpx;
+}
+.countryBox{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap:wrap;  
+}
+.cList{
+   width: 25%;
+  height: 160rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction:column;
+  font-size: 24rpx;
+  color: #fff;
+}
+.cList image{
+  height: 92rpx;
+  width: 92rpx;  
+}
+.bottomBox{
+  height: 100rpx;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: #fff;
+}
+.bottomBox .choseChampion{
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+.choseChampion image{
+  height: 100%;
+  width: 100%;
+}
+.choseChampion view{
+  height: 100rpx;
+  font-size: 32rpx;
+  line-height: 100rpx;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+.hasChoseChampion{
+   height: 100%;
+  width: 100%;
+  position: relative;
+}
+.hasChoseChampion .hasChoseName{
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 32rpx;
+  padding: 0 30rpx;
+  text-align: left;
+}
+.hasChoseChampion .sureBox{
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 32rpx;
+  width: 250rpx;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+.hasChoseChampion .sureBox image{
+  height: 100%;
+  width: 100%;
+}
+.hasChoseChampion .sureBox view{
+   height: 100rpx;
+  font-size: 32rpx;
+  line-height: 100rpx;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+.ruleBox{
+  height: 360rpx;
+  width: 90%;
+  position: fixed;
+  top: 50%;
+  margin-top: -180rpx;
+  left: 5%;
+  border-radius: 5px;
+  z-index: 9999;
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 24rpx;
+  padding: 30rpx;
+  box-sizing: border-box;
+  text-align: left;
+}
+.ruleBox view{
+  line-height: 50rpx;
+}
+.ruleBox .titleRule{
+  position: absolute;
+  height: 72rpx;
+  width: 186rpx;
+  line-height: 72rpx;
+  text-align: center;
+  font-size: 32rpx;
+  border: 1px solid #699522;
+  color: #699522;
+  font-weight: bold;
+  border-radius: 3px;
+  top: -46rpx;
+  left: 50%;
+  margin-left: -93rpx;
+  background: rgba(255, 255, 255, 1);
+}
+.ruleBox .close{
+  height: 84rpx;
+  width: 84rpx;
+  position: absolute;
+    bottom: -100rpx;
+  left: 50%;
+  margin-left: -42rpx
+}

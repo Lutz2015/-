@@ -1,4 +1,4 @@
-import { scoreRank, inviteRank} from '../../utils/getdata.js'
+import { scoreRank, inviteRank } from '../../utils/getdata.js'
 import { toast } from '../../utils/util.js';
 Page({
   data: {
@@ -9,15 +9,19 @@ Page({
     isLoding1: false,//邀请好友加载状态
     lists1: [],//邀请好友列表
     pages1: [],//邀请好友分页
+    userinfo: {},//用户信息
+    mydata: {},//积分排行自己
+    mydata1: {}//邀请好友排行自己
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
     wx.hideShareMenu()
-    this.scoreRankFn(1, 1); //首次加载
-    this.inviteRankFn(1, 1); //首次加载
+    let that = this;
+    let _userInfo = wx.getStorageSync('userInfo').userInfo;
+    that.setData({
+      userinfo: _userInfo
+    })
+    that.scoreRankFn(1, 1); //首次加载
+    that.inviteRankFn(1, 1); //首次加载
 
   },
 
@@ -27,31 +31,15 @@ Page({
   onReady: function () {
 
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow: function () {
 
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
   onHide: function () {
 
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
   onUnload: function () {
 
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
   onPullDownRefresh: function () {
 
   },
@@ -87,6 +75,7 @@ Page({
         if (changtype == 1) {
           that.setData({
             lists: res.data.lists,
+            mydata: res.data.mydata,
             pages: res.data.pages
           })
         } else {
@@ -109,6 +98,7 @@ Page({
         if (changtype == 1) {
           that.setData({
             lists1: res.data.lists,
+            mydata1: res.data.mydata,
             pages1: res.data.pages
           })
         } else {
@@ -123,13 +113,43 @@ Page({
         })
       })
   },
-  onShareAppMessage: function () {
-
+  onShareAppMessage: function (res) {
+    if (res.from === 'button') {
+      if (wx.getStorageSync('loginKey')){
+        return {
+          title: '快来参与世界杯竞猜，大奖等你来拿！',
+          path: `/pages/home/home?shareid=${wx.getStorageSync('loginKey')}`
+        }
+      }else{
+        toast('请您先授权登陆～')
+      }
+     
+    }
   },
   swichrealtimeTab(e) {
     let _index = e.currentTarget.dataset.index;
     this.setData({
       realtimeCheck: _index
+    })
+  },
+  showJfRule() {
+    wx.showModal({
+      title: '积分说明',
+      showCancel:false,
+      content: '积分达到100积分以上的用户均可参与抽奖',
+      success: function (res) {
+        console.log(res)
+      }
+    })
+  },
+  showYqRule() {
+    wx.showModal({
+      title: '邀请好友说明',
+      showCancel: false,      
+      content: '邀请好哟数在前20名的用户可以参与抽奖，邀请好友数相同则视为同一名（均可参与抽奖）',
+      success: function (res) {
+        console.log(res)
+      }
     })
   }
 })

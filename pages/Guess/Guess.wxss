@@ -12,6 +12,7 @@
     box-shadow: 0rpx 7rpx 6rpx rgba(255,91,91,0.1);
   position: fixed;
   width: 100%;
+  z-index: 99;
 }
 .realtimeTab .checkTab {
   width: 50%;

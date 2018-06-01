@@ -1,11 +1,13 @@
 <view class='winInfoBox'>
-
   <view class='winInfoList' wx:for="{{lists}}" wx:for-index="idx" wx:for-item="item">
     <view class='userImg'>
       <image src='{{item.avatar}}'></image>
     </view>
     <view class='userName'>{{item.nickName}}</view>
-    <view class='goodsName'>{{item.name}}</view>
+    <view class='goodsInfo'>
+        <view class='goodsName'>{{item.name}}</view>
+        <view class='goodsTime'>{{item.create_time}}</view>
+    </view>
   </view>
   <view class='noMore' wx:if='{{lists.length > 0}}'>{{pages.current == pages.last?'没有更多了～':'正在加载中～'}}</view>
     <view class='noMore' wx:else>空空如也～</view>
