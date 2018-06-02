@@ -1,4 +1,6 @@
-// pages/guessChampion/guessChampion.js
+import { championGuessList, championGuess} from '../../utils/getdata.js'
+import { toast } from '../../utils/util.js';
+
 Page({
 
   /**
@@ -7,13 +9,29 @@ Page({
   data: {
     pubCoverHide: true,
     ruleBoxHide:true, 
+    lists:[],
+    guess_result:null,
+    isFrist:null,
+    lottery_times:null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    let that = this;
+    championGuessList()
+    .then(res => {
+      console.log(res)
+      that.setData({
+        lists:res.data.lists,
+        isFrist: res.data.guess_result,
+        guess_result: res.data.guess_result,
+        lottery_times:res.data.lottery_times
+      })
+    })
+    wx.hideShareMenu()
+
   },
 
   /**
@@ -75,5 +93,56 @@ Page({
       pubCoverHide: false,
       ruleBoxHide: false
     })
+  },
+  choseCountry(e){
+    console.log(e)
+    let _guessresult = e.currentTarget.dataset;
+    toast(`您已选择：${_guessresult.country}`)    
+    this.setData({
+      guess_result: _guessresult
+    })
+  }, 
+  postChampionGuess(){
+    let _guessresult = this.data.guess_result;
+    let _this = this;
+    if(!_this.data.isFrist){
+      championGuess(_guessresult.country)
+        .then(res => {
+          if (res.code == "SUCCESS") {
+            _this.setData({
+              isFrist: _guessresult
+            })
+          }
+          toast(res.msg)
+        }, err => {
+          toast('修改失败')
+        })
+    }else{
+      wx.showModal({
+        title: '提示',
+        content: '冠军竞猜，结果仅能修改2次，确定修改？',
+        success: function (res) {
+          if (res.confirm) {
+            championGuess(_guessresult.country)
+              .then(res => {
+                if (res.code == "SUCCESS") {
+                  _this.setData({
+                    isFrist: null,
+                    guess_result: null
+                  })
+                }
+                toast(res.msg)
+              }, err => {
+                toast('修改失败')
+              })
+
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+    }
+     
+   
   }
 })

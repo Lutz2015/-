@@ -12,10 +12,10 @@
 <view class='corerank' hidden='{{realtimeCheck != 1}}'>
   <view class='topListBox'>
     <view class='list listActive'>
-      <view class='rank'>{{mydata.order}}</view>
+      <view class='rank'>{{mydata.order || 0}}</view>
       <image class='userHead' src='{{userinfo.avatarUrl}}'></image>
       <view class='userName'>{{userinfo.nickName}}</view>
-      <view class='core'>{{mydata.score}}积分</view>
+      <view class='core'>{{mydata.score || 0}}积分</view>
     </view>
   </view>
   <view style='height:144rpx;'></view>
@@ -27,15 +27,16 @@
   </view>
   <view class='noMore' wx:if='{{lists.length > 0}}'>{{pages.current == pages.last?'没有更多了～':'正在加载中～'}}</view>
   <view class='noMore' wx:else>空空如也～</view>
+  <button class='kefu' open-type='share' data-type='1'>邀请好友</button>  
   <view class='complain' bindtap='showJfRule'>规则说明</view>
 </view>
 <view class='invete' hidden='{{realtimeCheck != 2}}'>
   <view class='topListBox'>
     <view class='list listActive'>
-      <view class='rank'>{{mydata1.order}}</view>
+      <view class='rank'>{{mydata1.order || 0}}</view>
       <image class='userHead' src='{{userinfo.avatarUrl}}'></image>
       <view class='userName'>{{userinfo.nickName}}</view>
-      <view class='core'>{{mydata1.invite_num}}人</view>
+      <view class='core'>{{mydata1.invite_num || 0}}人</view>
     </view>
   </view>
   <view style='height:144rpx;'></view>
@@ -48,6 +49,6 @@
   </view>
   <view class='noMore' wx:if='{{lists1.length > 0}}'>{{pages1.current == pages1.last?'没有更多了～':'正在加载中～'}}</view>
   <view class='noMore' wx:else>空空如也～</view>
-  <button class='kefu' open-type='share'>邀请好友</button>
+  <button class='kefu' open-type='share' data-type='2'>邀请好友</button>
   <view class='complain' bindtap='showYqRule'>规则说明</view>
 </view>

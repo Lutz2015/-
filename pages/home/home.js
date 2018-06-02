@@ -1,14 +1,13 @@
-import { toast, formatWeek, formatTime} from '../../utils/util.js';
-import { inviteCallBack, matchGuessList, matchGuess, getRewardList} from '../../utils/getdata.js'
+import { toast, formatWeek, formatData, formatTime} from '../../utils/util.js';
+import { getBannerInfo, inviteCallBack, myData, matchGuessList, matchGuess, getRewardList} from '../../utils/getdata.js'
 
 const app = getApp();
 Page({
   data: {
-    marquee: {
-      text: '',
-      time:10
-    },
-    shareid:"",
+    marquee: {},
+    shareid:"",//分享者id
+    myLotteryTimesLastday:'',//昨日抽奖次数
+    bannerInfo:[],
     list1:[],//可竞猜
     list2: [],//已结束
     list:[],//待竞猜
@@ -20,15 +19,36 @@ Page({
     guideBox4hide:true,
     inviteBoxhide:true,
     ruleBoxHide: true, 
+    drawBoxhide:true,
     isLogin: true,//默认开启启动页
     activeType: 1 //底部tab选中
   },
   onLoad: function (options) {
+    let that = this;
     if (wx.getStorageSync('loginKey')) {
       this.matchGuessListFn(0);
       this.matchGuessListFn(1);
       this.matchGuessListFn(2);
       this.getRewardListFn();
+      this.getBannerInfoFn();
+      let _data = new Date();
+      let _dataNow = formatData(Date.parse(new Date()));
+      var logs = wx.getStorageSync('logs') || {};
+      if (!logs[_dataNow] || !logs[_dataNow].hasLogin) {
+        logs[_dataNow] = {};
+        logs[_dataNow].hasLogin = true;
+        wx.setStorageSync('logs', logs);
+        myData()
+          .then(res => {
+            if (res.data.myLotteryTimesLastday) {
+              that.setData({
+                myLotteryTimesLastday: res.data.myLotteryTimesLastday,
+                pubCoverHide: false,
+                drawBoxhide: false
+              })
+            }
+          })
+      } 
     } else {
       //开启引导授权
       if (options.shareid){
@@ -63,8 +83,32 @@ Page({
   onReachBottom: function () {
 
   },
-  onShareAppMessage: function () {
-
+  onShareAppMessage: function (res) {
+    //1 不带参数  2带参数
+    if (res.from === 'button') {
+      if (res.target.dataset.type == 1) {
+        return {
+          title: '我猜中了世界杯比赛，你的运气如何？',
+          imageUrl: '../../images/other/share.png',
+          path: `/pages/home/home`
+        }
+      } else if (res.target.dataset.type == 2) {
+        if (wx.getStorageSync('loginKey')) {
+          return {
+            title: '快来参与世界杯竞猜，大奖等你来拿！',
+            imageUrl: '../../images/other/share.png',
+            path: `/pages/home/home?shareid=${wx.getStorageSync('loginKey')}`
+          }
+        } else {
+          toast('请您先授权登陆～')
+        }
+      }
+    }
+    return {
+      title: '快来参与世界杯竞猜，大奖等你来拿！',
+      imageUrl: '../../images/other/share.png',
+      path: `/pages/home/home`
+    }
   },
   //tab切换
   swichStatusTab(e){
@@ -127,8 +171,8 @@ Page({
         toast('请您选择胜方～')
         return;
       }
-      _data.quiz_htscore = 0;
-      _data.quiz_vtscore = 0;
+      _data.quiz_htscore = "";
+      _data.quiz_vtscore = "";
       _data.quiz_result = _list.guessHistory.quiz_result;            
     }else{
       toast('请选择竞猜模式')
@@ -191,13 +235,15 @@ Page({
   closeFour(){
     this.setData({
       guideBox4hide: true,
-      pubCoverHide: true,
+      inviteBoxhide: false,
     })
   },
   closeAll(){
     this.setData({
       ruleBoxHide: true,
-      pubCoverHide: true
+      pubCoverHide: true,
+      inviteBoxhide:true,
+      drawBoxhide:true
     })
   },
   showRuleBox(){
@@ -210,14 +256,13 @@ Page({
    * marquee相关
    */
   getDuration: (width) => {// 保留，根据文字长度设置时间
-    return width / 5;
+    return width / 6;
   },
   codePointLength:(text) => {
     var result = text.match(/[\s\S]/gu);
     return result ? result.length : 0;
   },
-  startMarquee(){
-    const str = this.data.marquee.text;
+  startMarquee(str){
     const width = this.codePointLength(str);
     const time = this.getDuration(width);
     this.setData({ [`${'marquee'}.width`]: width, [`${'marquee'}.time`]: time});
@@ -273,13 +318,29 @@ Page({
      .then(res => {
        let text = "";
        for(var i=0;i<res.data.lists.length;i++){
-         text += ` 球迷${res.data.lists[i].nickName}抽中了${res.data.lists[i].name}`
+         let _nickName = res.data.lists[i].nickName || '玩家';
+         text += `球迷${_nickName}抽中了${res.data.lists[i].name}\xa0\xa0\xa0\xa0`
        }
        that.setData({
          [`${'marquee'}.text`]: text
        })
-       that.startMarquee();
+       that.startMarquee(text);
        
+     })
+  },
+  gotoWhere(e){
+    console.log(e)
+    wx.navigateTo({
+      url: `${e.target.dataset.url}`
+    })
+  },
+  getBannerInfoFn(){
+    let that = this;
+    getBannerInfo()
+     .then(res => {
+       that.setData({
+         bannerInfo:res.data
+       })
      })
   },
   getUserInfo(e) {
@@ -300,7 +361,7 @@ Page({
       that.matchGuessListFn(1);
       that.matchGuessListFn(2);
       that.getRewardListFn();
-      
+      that.getBannerInfoFn();      
       that.setData({
         isLogin: true,
         pubCoverHide:false,

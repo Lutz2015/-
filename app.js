@@ -1,5 +1,5 @@
 import { isUserAutor, login } from './utils/common.js';
-import { toast } from './utils/util.js';
+import { toast, formatData } from './utils/util.js';
 App({
     onLaunch: function(page) {
       let _loginKey = wx.getStorageSync('loginKey');
@@ -17,11 +17,15 @@ App({
       let that = this;
       if (e.detail.errMsg == "getUserInfo:ok") {
         //同意授权
+        toast('同意授权')
+       
         wx.setStorageSync('userInfo', e.detail);
         that.globalData.userInfo = e.detail;
         pageThis.agreelogin(e.detail);
       } else {
         //不同意授权
+        toast('不同意授权')
+        
         pageThis.openSetting();
       }
     },
@@ -34,11 +38,8 @@ App({
             wx.setStorageSync('loginKey', res.data.data.loginKey);
             //成功获取loginkey后执行回调函数
             c && c();
-          } else {
-            toast('获取loginkey失败!')
           }
         }, err => {
-          toast('获取loginkey失败!')
         })
     },
     openSetting: function (pageThis) {

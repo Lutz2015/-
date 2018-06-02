@@ -23,6 +23,7 @@
   position: absolute;
   top: 30rpx;
   right: 30rpx;
+  border-radius: 50%;
 }
 
 .cInfoBox {

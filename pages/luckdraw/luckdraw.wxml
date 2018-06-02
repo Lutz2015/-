@@ -3,55 +3,65 @@
 <view class='pubCover' hidden='{{pubCoverHide}}'></view>
 
 <view class='alertBox1' hidden='{{alertBoxOneHide}}'>
-  <view class='title'>恭喜您抽中iphoneX一台</view>
-  <image class='alerBox1Img' src="../../images/other/title.png"></image>
+  <view class='title'>恭喜您抽中了{{lotteryGoods.prize_info.name}}</view>
+  <image class='alerBox1Img' src="{{lotteryGoods.prize_info.img}}"></image>
   <view class='upBox'>
-    <view class='up'>暂不领取</view>
-    <view class='postGuess'>立即领取</view>
+    <view class='up' bindtap='temporary'>暂不领取</view>
+    <view class='postGuess' bindtap='nowGet'>立即领取</view>
   </view>
 </view>
 <view class='alertBox2' hidden='{{alertBoxTwoHide}}'>
-    <view class='title'>恭喜您抽中iphoneX一台</view>
-     <view class='goodsBox'>
-      <image class='goodsImg' src='../../images/other/title.png'></image>
-      <view class="goodsName">ipone8</view>
-      <view class="goodstype">128g 银色</view>
-      <view class='bottom'>
-        <view class='username' bindtap='checkAddress'>收件人：六月的风</view>
-        <view class='address' bindtap='checkAddress'>地址：福建省福州市</view>
-        <view class='upBox'>
-          <view class='up' bindtap='closePage'>修改</view>
-          <view class='postGuess'>确认</view>
-        </view>
+  <view class='title'>恭喜您抽中了{{lotteryGoods.prize_info.name}}一台</view>
+  <view class='goodsBox'>
+    <image class='goodsImg' src='{{lotteryGoods.prize_info.img}}'></image>
+    <view class="goodsName">{{lotteryGoods.prize_info.name}}</view>
+    <view class="goodstype">{{lotteryGoods.prize_info.extra}}</view>
+    <view class='bottom'>
+      <view class='username' bindtap='checkAddress'>收件人：{{address.userName}} {{address.telNumber}}</view>
+      <view class='address' bindtap='checkAddress'>地址：{{address.provinceName}} {{address.cityName}} {{address.countyName}} {{address.detailInfo}}</view>
+      <view class='upBox'>
+        <view class='up' bindtap='checkAddress'>修改</view>
+        <view class='postGuess' bindtap='sureGet'>确认</view>
       </view>
     </view>
+  </view>
 </view>
+
+<view class='inviteBox' hidden='{{inviteBoxhide}}'>
+    <view>分享此刻的喜悦</view>
+    <image  class="inviteImg" src='../../images/other/invite.jpg'></image>
+    <button class='inviteBtn' open-type='share' data-type='1'>炫耀一下</button>
+    <image class="close" bindtap='closeAll' src='../../images/other/close.png'></image>    
+</view>
+
 <image src="../../images/other/titlebg.jpg" class='titleBg'></image>
 <view class='activeBox'>
   <image src="../../images/other/title.png" class='titleImg'></image>
   <view class='drawBox'>
     <image src="../../images/other/drawbg1.png" class='drawbg'></image>
     <view class="rotate">
-      <image animation="{{animationData}}" class="rotate_disk" src="../../images/other/drawbg.png"></image>
+      <image animation="{{animationData}}" class="rotate_disk" src="{{initLotteryData.dial_img}}"></image>
       <image class="rotate_btn" bindtap='goDraw' src="../../images/other/get.png"></image>
       <image class="rotate_btnc" src="../../images/other/3.png"></image>
     </view>
     <image src="../../images/other/shadow.png" class='shadow'></image>
   </view>
   <view class='countNum'>
-    <text>剩余抽奖次数:6次  剩余积分:15分</text>
+    <text>剩余抽奖次数:{{initLotteryData.lottery_times}}次  剩余积分:{{initLotteryData.score}}分</text>
   </view>
   <view class='activeRuleBox'>
-    <image src='../../images/other/rule.png' class='ruleImg'></image>
+    <view class='titleRule'>活动规则</view>
     <image src='../../images/other/zq.png' class='zq'></image>
-    <view>1.抽奖一次会消耗一积分，积分记入总分</view>
-    <view>2.抽奖次数将会累计，抽奖开始时间
-      <text>6月14号9点开始到7月16号18点</text> 单次积分抽奖结束</view>
-    <view>3.凡显示有抽奖机会的用户都可参与抽奖，不显示则需要参与首页竞猜活动获得机会</view>
-    <view>4.总共5个奖品，每个奖品的中奖概率相同</view>
-    <view>5.中奖信息在首页显示 </view>
-    <view>6.抽奖获得的奖品会在我的显示，提交地址后会在1~3个工作日发货，节假日不发货。 </view>
-    <view>7.活动过程中如发现违规作弊行为，我公司有权取消您已获得的奖品，必要时追究法律责任 </view>
+    <view class='ruleContBox'>
+      <view>1.抽奖一次会消耗一积分，积分记入总分</view>
+      <view>2.抽奖次数将会累计，抽奖开始时间
+        <text>6月14号9点开始到7月16号18点</text> 单次积分抽奖结束</view>
+      <view>3.凡显示有抽奖机会的用户都可参与抽奖，不显示则需要参与首页竞猜活动获得机会</view>
+      <view>4.总共5个奖品，每个奖品的中奖概率相同</view>
+      <view>5.中奖信息在首页显示 </view>
+      <view>6.抽奖获得的奖品会在我的显示，提交地址后会在1~3个工作日发货，节假日不发货。 </view>
+      <view>7.活动过程中如发现违规作弊行为，我公司有权取消您已获得的奖品，必要时追究法律责任 </view>
+    </view>
   </view>
   <image src='../../images/other/bottombg.jpg' class='bottombg'></image>
   <view class='botomBlock'></view>

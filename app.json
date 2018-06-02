@@ -13,7 +13,8 @@
     "pages/myaddress/myaddress",
     "pages/Questions/Questions",
     "pages/complaint/complaint",
-    "pages/guessChampion/guessChampion"
+    "pages/guessChampion/guessChampion",
+    "pages/invite/invite"
   ],
   "window": {
     "backgroundColor": "#FF5B5B",

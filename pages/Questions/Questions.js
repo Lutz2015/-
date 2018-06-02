@@ -1,10 +1,12 @@
-// pages/Questions/Questions.js
+
+var utils = require('../../utils/util2.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    pageContent:'',
     list:[{
       title:'1.如何收到获得的奖品',
       content:'厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥',
@@ -24,7 +26,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.hideShareMenu()
+    wx.hideShareMenu();
+    var body = utils.parseStory('<p><span>这是一段p标签</span></p>', false);
+    console.log(body)
+    this.setData({
+      "pageContent": body[0]
+    });
   },
 
   /**

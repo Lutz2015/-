@@ -1,8 +1,8 @@
 <template name="loginView">
   <view class='loginView' hidden='{{isLogin}}'>
-    <image class='loginBg' mode='scaleToFill' src='../../images/login/loginbg.jpeg'></image>
+    <image class='loginBg' mode='scaleToFill' src='../../images/login/loginbg.jpg'></image>
     <view class='agreebutton'>
-      <image src='../../images/login/agree.png'></image>
+      <view>点击进入</view>
       <button open-type="getUserInfo" bindgetuserinfo="getUserInfo"></button>
     </view>
   </view>
@@ -48,7 +48,7 @@
           <image src='../../images/icon/time.png'></image>
           <text>{{item.match_date}}</text>
         </view>
-        <view class='btnRight {{item.isGuess?"hasCheck":""}}' bindtap='openPage' data-type='0' data-idx='{{idx}}'>{{item.isGuess?"查看记录":"我要竞猜"}}</view>
+        <view class='btnRight {{item.isGuess?"hasCheck":""}}' bindtap='openPage' data-type='0' data-idx='{{idx}}'>{{item.isGuess?"修改":"我要竞猜"}}</view>
       </view>
       <view class='upfoldBox' hidden='{{item.isopen}}'>
         <view class='checkBox'>
@@ -97,7 +97,7 @@
         </view>
         <view class='upBox'>
           <view class='up' bindtap='openPage' data-type='1' data-idx='{{idx}}'>收起</view>
-          <button formType="submit"  data-matchid='{{item.m_id}}' data-idx='{{idx}}' class='postGuess {{item.isGuess && item.gameInStatus?"not_chose":""}}'>{{item.isGuess?"修改":"提交竞猜"}}</button>
+          <button formType="submit"  data-matchid='{{item.m_id}}' data-idx='{{idx}}' class='postGuess {{item.isGuess && item.gameInStatus?"not_chose":""}}'>提交竞猜</button>
         </view>
         <view class='infoTest'>*以上三种竞猜模式，提交选择后，赛前2小时内不能更改。</view>
       </view>

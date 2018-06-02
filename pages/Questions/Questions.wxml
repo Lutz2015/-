@@ -10,4 +10,8 @@
       </view>
     </view>
   </block>
+  <blcok wx:for="{{pageContent.content}}">
+  <view class="article_p" wx:if="{{item.type==='p'}}">{{item.value}}</view>
+  <view class="article_strong" wx:if="{{item.type==='pstrong'}}">{{item.value}}</view>
+  </blcok>
 </view>

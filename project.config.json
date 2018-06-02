@@ -114,6 +114,12 @@
 					"name": "首页",
 					"pathName": "pages/home/home",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "邀请好友",
+					"pathName": "pages/invite/invite",
+					"query": ""
 				}
 			]
 		}

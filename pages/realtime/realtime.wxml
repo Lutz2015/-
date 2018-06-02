@@ -13,7 +13,7 @@
 <view class='competitionJ' hidden='{{realtimeCheck != 1}}'>
   <view class='list' wx:for="{{lists}}" wx:for-index="idx" wx:for-item="item">
     <view class='listTop'>
-      <image src='../../images/login/home.png'></image>
+      <image src='../../images/login/zq.png'></image>
       <text>{{item.match_date}} {{item.match_weekday}}</text>
     </view>
     <view class='listBottom'>

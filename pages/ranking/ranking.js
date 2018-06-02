@@ -114,16 +114,25 @@ Page({
       })
   },
   onShareAppMessage: function (res) {
+    //1 不带参数  2带参数
     if (res.from === 'button') {
-      if (wx.getStorageSync('loginKey')){
+      if (res.target.dataset.type == 1){
         return {
           title: '快来参与世界杯竞猜，大奖等你来拿！',
-          path: `/pages/home/home?shareid=${wx.getStorageSync('loginKey')}`
+          imageUrl: '../../images/other/share.png',
+          path: `/pages/home/home`
         }
-      }else{
-        toast('请您先授权登陆～')
+      } else if (res.target.dataset.type == 2){
+        if (wx.getStorageSync('loginKey')) {
+          return {
+            title: '快来参与世界杯竞猜，大奖等你来拿！',
+            imageUrl: '../../images/other/share.png',
+            path: `/pages/home/home?shareid=${wx.getStorageSync('loginKey')}`
+          }
+        } else {
+          toast('请您先授权登陆～')
+        }
       }
-     
     }
   },
   swichrealtimeTab(e) {

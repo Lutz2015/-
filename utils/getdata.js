@@ -1,4 +1,22 @@
 import { getApi} from './common.js'
+//抽奖初始化
+const initLotteryData = () => {
+  return getApi('wcup/lottery/initLotteryData')
+}
+//抽奖
+const lottery = () => {
+  return getApi('wcup/lottery/lottery')
+}
+//冠亚军竞猜国家列表
+const championGuessList = () => {
+  return getApi('wcup/match/championGuessList')
+}
+//冠亚军竞猜
+const championGuess = (country) => {
+  return getApi('wcup/match/championGuess',{
+    'country': country
+  })
+}
 //中奖信息列表
 const getRewardList = (page,limit = 10) => {
   return getApi('wcup/lottery/getRewardList',{
@@ -81,5 +99,9 @@ const matchGuessList = (status) => {
 const matchGuess = (data) => {
   return getApi('wcup/match/matchGuess', data)
 }
-export { getRewardList, getOverMatchList, myPrizeList, GetPrize, scoreRank, inviteRank, myScoreDetail, myData, myQuizRecordList, inviteCallBack, matchGuessList, matchGuess};
+//获取首页banner轮播图配置信息
+const getBannerInfo = (data) => {
+  return getApi('wcup/index/getBannerInfo', data)
+}
+export { getRewardList, getOverMatchList, myPrizeList, GetPrize, scoreRank, inviteRank, myScoreDetail, myData, myQuizRecordList, inviteCallBack, matchGuessList, matchGuess, initLotteryData, lottery, getBannerInfo, championGuessList, championGuess};
 

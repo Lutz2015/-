@@ -8,7 +8,7 @@
 
 .pageTopBg {
   height: 230rpx;
-    width: 100% !important;
+  width: 100% !important;
   margin-top: -2rpx;
 }
 
@@ -28,7 +28,7 @@
   position: relative;
   clear: both;
   overflow: hidden;
-  box-shadow: 0rpx 7rpx 6rpx rgba(255,91,91,0.1);
+  box-shadow: 0rpx 7rpx 6rpx rgba(255, 91, 91, 0.1);
 }
 
 .tabBox .tab {
@@ -93,7 +93,7 @@
   color: #999;
   background: #fff;
   margin-top: 6rpx;
-  box-shadow: 0rpx 7rpx 6rpx rgba(255,91,91,0.1);
+  box-shadow: 0rpx 7rpx 6rpx rgba(255, 91, 91, 0.1);
 }
 
 .statusTab .checkTab {
@@ -119,15 +119,17 @@
 .ibox {
   padding: 30rpx;
 }
-.rule{
+
+.rule {
   width: 88rpx;
   height: 106rpx;
   position: fixed;
   right: 30rpx;
-  top: 420rpx;
+  top: 480rpx;
   z-index: 888;
 }
-.guideBox1{
+
+.guideBox1 {
   position: fixed;
   height: 480rpx;
   width: 596rpx;
@@ -135,11 +137,13 @@
   left: 30rpx;
   z-index: 1000;
 }
-.guideBox1 image{
+
+.guideBox1 image {
   height: 100%;
   width: 100%;
 }
-.guideBox2{
+
+.guideBox2 {
   position: fixed;
   height: 480rpx;
   width: 596rpx;
@@ -147,35 +151,41 @@
   right: 30rpx;
   z-index: 1000;
 }
-.guideBox2 image{
+
+.guideBox2 image {
   height: 100%;
   width: 100%;
 }
-.guideBox3{
+
+.guideBox3 {
   position: fixed;
   height: 480rpx;
   width: 596rpx;
-  top: 400rpx;
+  top: 460rpx;
   right: 10rpx;
   z-index: 1000;
 }
-.guideBox3 image{
+
+.guideBox3 image {
   height: 100%;
   width: 100%;
 }
-.guideBox4{
+
+.guideBox4 {
   position: fixed;
   height: 480rpx;
   width: 596rpx;
-  bottom: 30rpx;
+  bottom: 0rpx;
   right: 10rpx;
   z-index: 1000;
 }
-.guideBox4 image{
+
+.guideBox4 image {
   height: 100%;
   width: 100%;
 }
-.ruleBox{
+
+.ruleBox {
   height: 600rpx;
   width: 90%;
   position: fixed;
@@ -184,28 +194,145 @@
   left: 5%;
   border-radius: 5px;
   z-index: 9999;
-  background: rgba(255, 255, 255, 0.9);
+  background: #fff;
   font-size: 24rpx;
   padding: 30rpx;
   box-sizing: border-box;
   text-align: left;
 }
-.ruleContBox{
-    overflow-y: auto;
-    height: 540rpx;
+.inviteBox{
+  height: 460rpx;
+  width: 90%;
+  position: fixed;
+  top: 50%;
+  margin-top: -300rpx;
+  left: 5%;
+  border-radius: 5px;
+  z-index: 9999;
+  background: #fff;
+  font-size: 24rpx;
+  padding: 30rpx;
+  box-sizing: border-box;
+  text-align: left;
 }
-.ruleBox .ruleContBox view{
+.inviteBox .inviteImg{
+  height: 320rpx;
+  width: 100%;
+}
+.inviteBox .inviteBtn{
+  width: 245rpx;
+  position: absolute;
+  background: -webkit-linear-gradient(top, rgb(220,48,0), rgb(223,68,26));  
+  height: 62rpx;
+  line-height: 62rpx;
+  color: #fff;
+  text-align: center;
+  font-size: 28rpx;
+  bottom: 30rpx;
+  left: 50%;
+  margin-left: -122rpx;
+  border: 0;
+  border-radius: 5rpx;
+}
+.inviteBox .close {
+  height: 84rpx;
+  width: 84rpx;
+  position: absolute;
+  bottom: -100rpx;
+  left: 50%;
+  margin-left: -42rpx;
+}
+.drawBox{
+  height: 765rpx;
+  width: 90%;
+  position: fixed;
+  top: 50%;
+  margin-top: -382rpx;
+  left: 5%;
+  border-radius: 5px;
+  z-index: 9999;
+  background: #fff;
+  font-size: 24rpx;
+  box-sizing: border-box;
+  text-align: left; 
+}
+.drawBox .drawImg{
+  height: 100%;
+  width: 100%;
+}
+.drawBox .textBox{
+  height: 100rpx;
+  width: 100%;
+  line-height: 50rpx;
+  text-align: center;
+  font-size: 32rpx;
+  position: absolute;
+  bottom: 140rpx;
+  left: 0;
+}
+.drawBox .btnBox{
+  height: 62rpx;
+  width: 100%;
+  font-size: 28rpx;
+  position: absolute;
+  bottom: 60rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 0;
+}
+.drawBox .goDraw{
+   width: 245rpx;
+  background: -webkit-linear-gradient(top, rgb(220,48,0), rgb(223,68,26));  
+  height: 62rpx;
+  line-height: 62rpx;
+  color: #fff;
+  text-align: center;
+  font-size: 28rpx;
+  border: 0;
+  border-radius: 6px;
+  margin-left: 20rpx;
+}
+.drawBox .inviteBtn{
+   width: 245rpx;
+  height: 62rpx;
+  line-height: 62rpx;
+  background: #fff !important;
+  text-align: center;
+  font-size: 28rpx;
+  border-radius: 6px  !important;
+  border:1px solid  #D53002 !important;
+  color: #D53002;
+  margin: 0;
+  margin-right: 20rpx;
+  padding: 0;
+}
+.drawBox .close {
+  height: 84rpx;
+  width: 84rpx;
+  position: absolute;
+  bottom: -100rpx;
+  left: 50%;
+  margin-left: -42rpx;
+}
+.ruleContBox {
+  overflow-y: auto;
+  height: 540rpx;
+}
+
+.ruleBox .ruleContBox view {
   line-height: 50rpx;
 }
-.ruleBox .titleRule{
+
+.ruleBox .titleRule {
   position: absolute;
   height: 72rpx;
   width: 186rpx;
   line-height: 72rpx;
   text-align: center;
   font-size: 32rpx;
-  color: #FF5B5B;
-  border:1px solid #FF5B5B;
+  color: #ff5b5b;
+  border: 1px solid #ff5b5b;
   font-weight: bold;
   border-radius: 3px;
   top: -46rpx;
@@ -213,15 +340,31 @@
   margin-left: -93rpx;
   background: rgba(255, 255, 255, 0.9);
 }
-.ruleBox .close{
+
+.ruleBox .close {
   height: 84rpx;
   width: 84rpx;
   position: absolute;
-    bottom: -100rpx;
+  bottom: -100rpx;
   left: 50%;
-  margin-left: -42rpx
+  margin-left: -42rpx;
 }
- @keyframes around {
+.leftIcon{
+  width: 100rpx;
+  height: 60rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #fff;
+}
+.leftIcon image{
+  height: 32rpx;
+  width: 32rpx;
+}
+@keyframes around {
   from {
     margin-left: 100%;
   }
@@ -233,13 +376,14 @@
 
 .marquee_container {
   font-size: 24rpx;
-  background:rgba(0, 0, 0, 0.2);
-  height: 56rpx;
-  line-height: 56rpx;
-  color: #fff;
+  background: #fff;
+  height: 60rpx;
+  line-height: 60rpx;
+  color: #666;
   position: relative;
   width: 100%;
   overflow: hidden;
+  border-bottom: 1px solid #e9e9e9;
 }
 
 .marquee_container:hover {
@@ -252,4 +396,4 @@
   animation-name: around;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
-} 
+}
