@@ -1,6 +1,6 @@
 let { toast } = require("./util.js");
-const BASEURL = "https://v-test.vdailian.com/"; //开发
-// const BASEURL = "https://v-api.vdailian.com/"; //线上
+// const BASEURL = "https://v-test.vdailian.com/"; //开发
+const BASEURL = "https://v-api.vdailian.com/"; //线上
 //登录
 const getLoginKey = (code, token, userInfo) => {
   let promise = new Promise(function (resolve, reject) {
@@ -42,6 +42,16 @@ const getToken = () => {
         } else {
           reject(error);
         }
+      },
+      fail:function(){
+        wx.showModal({
+          title: '提示',
+          showCancel:false,
+          content: '当前网络不好！请检查网络！',
+          success: function (res) {
+            
+          }
+        })
       }
     })
   })
@@ -84,7 +94,6 @@ const getApi = (urls, options = {}, METHOD = "POST") => {
       })
     }
   })
-
   return promise;
 }
 //token过期的情况
@@ -148,6 +157,7 @@ const login = (getUserInfo) => {;
               }, err => {
                 //获取loginkey失败
                 reject();
+                toast('当前网络不好，请稍后再试～')
               })
 
           }, err => {
@@ -158,4 +168,31 @@ const login = (getUserInfo) => {;
   })
   return promise;
 }
-export { getApi, getToken, getLoginKey, isUserAutor, login};
+const checklogin = () => {
+  let promise = new Promise(function (resolve, reject) {
+    getToken().then(res => {
+      wx.request({
+        method: 'POST',
+        responseType: 'text',
+        header: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Token-Key': res.data.TokenKey,
+          'Token-Value': res.data.TokenValue
+        },
+        url: BASEURL + 'vapi/passport/checklogin',
+        data: {},
+        success: function (res) {
+          resolve(res);
+        },
+        fail: function (error) {
+          reject(error);
+        }
+      })
+    }, err => {
+      toast('获取token失败')
+      reject(err);
+    })
+  })
+  return promise;
+}
+export { getApi, getToken, getLoginKey, isUserAutor, login, checklogin};

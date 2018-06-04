@@ -29,7 +29,7 @@
 </template>
 <!-- 正在比赛 -->
 <template name="countryTeam">
-  <form bindsubmit="formSubmit">
+  <form bindsubmit="formSubmit" report-submit>
     <view class='countryTeam'>
       <image class='leftC' src='../../images/country/{{item.htsign}}.png'></image>
       <image class='rightC' src='../../images/country/{{item.vtsign}}.png'></image>
@@ -48,20 +48,20 @@
           <image src='../../images/icon/time.png'></image>
           <text>{{item.match_date}}</text>
         </view>
-        <view class='btnRight {{item.isGuess?"hasCheck":""}}' bindtap='openPage' data-type='0' data-idx='{{idx}}'>{{item.isGuess?"修改":"我要竞猜"}}</view>
+        <view class='btnRight {{item.isGuess?"hasCheck":""}}' bindtap='openPage' data-type='0' data-idx='{{idx}}'>{{item.isGuess?"修改结果":"我要竞猜"}}</view>
       </view>
       <view class='upfoldBox' hidden='{{item.isopen}}'>
         <view class='checkBox'>
           <view class='checkTopBox'>
-            <view class='checkTab' bindtap='itemCheckGameType' data-type='1' data-idx='{{idx}}'>
+            <view class='checkTab' bindtap='itemCheckGameType' data-isguess="{{item.isGuess}}" data-type='1' data-idx='{{idx}}'>
               <text class='{{item.guessHistory.quiz_mode == 1?"active":""}}'>猜比分</text>
               <image class='activeImg' hidden='{{item.guessHistory.quiz_mode != 1}}' src='../../images/icon/active.png'></image>
             </view>
-            <view class='checkTab' bindtap='itemCheckGameType' data-type='2' data-idx='{{idx}}'>
+            <view class='checkTab' bindtap='itemCheckGameType' data-isguess="{{item.isGuess}}"  data-type='2' data-idx='{{idx}}'>
               <text class='{{item.guessHistory.quiz_mode == 2?"active":""}}'>猜输赢</text>
               <image class='activeImg' hidden='{{item.guessHistory.quiz_mode != 2}}' src='../../images/icon/active.png'></image>
             </view>
-            <view class='checkTab' bindtap='itemCheckGameType' data-type='3' data-idx='{{idx}}'>
+            <view class='checkTab' bindtap='itemCheckGameType' data-isguess="{{item.isGuess}}" data-type='3' data-idx='{{idx}}'>
               <text class='{{item.guessHistory.quiz_mode == 3?"active":""}}'>猜比分加输赢</text>
               <image class='activeImg' hidden='{{item.guessHistory.quiz_mode != 3}}' src='../../images/icon/active.png'></image>
             </view>

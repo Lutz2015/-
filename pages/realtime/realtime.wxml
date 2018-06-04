@@ -1,3 +1,4 @@
+<import src="../../wxParse/wxParse.wxml" />
 <view class='realtimeTab'>
   <view class='checkTab' bindtap='swichrealtimeTab' data-index='1'>
     <text class='{{realtimeCheck == 1?"active":""}}'>赛事结果</text>
@@ -42,5 +43,5 @@
     <view class='noMore' wx:else>空空如也～</view>
 </view>
 <view class='competitionT' hidden='{{realtimeCheck != 2}}'>
-  <view>中国我爱你中国我爱你中国我爱你中国我爱你中国我爱你中国我爱你中国我爱你中国我爱你中国我爱你中国我爱你中国我爱你中国我爱你中国我爱你中国我爱你中国我爱你中国我爱你中国我爱你中国我爱你</view>
+   <template is="wxParse" data="{{wxParseData:ruleData.nodes}}" />
 </view>

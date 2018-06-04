@@ -17,8 +17,9 @@
       <view class='userName'>{{userinfo.nickName}}</view>
       <view class='core'>{{mydata.score || 0}}积分</view>
     </view>
+    <image src='../../images/login/pm.png' class='pmImg'></image>
   </view>
-  <view style='height:144rpx;'></view>
+  <view style='height:180rpx;background:#f5f5f5'></view>
   <view class='list' wx:for="{{lists}}" wx:for-index="idx" wx:for-item="item">
     <view class='rank'>{{idx + 1}}</view>
     <image class='userHead' src='{{item.avatar}}'></image>
@@ -38,8 +39,9 @@
       <view class='userName'>{{userinfo.nickName}}</view>
       <view class='core'>{{mydata1.invite_num || 0}}人</view>
     </view>
+    <image src='../../images/login/pm.png' class='pmImg'></image>    
   </view>
-  <view style='height:144rpx;'></view>
+  <view style='height:180rpx;background:#f5f5f5'></view>
 
   <view class='list' wx:for="{{lists1}}" wx:for-index="idx" wx:for-item="item">
     <view class='rank'>{{idx + 1}}</view>

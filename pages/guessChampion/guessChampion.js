@@ -1,5 +1,6 @@
-import { championGuessList, championGuess} from '../../utils/getdata.js'
+import { championGuessList, championGuess, guessChampionRule} from '../../utils/getdata.js'
 import { toast } from '../../utils/util.js';
+var WxParse = require('../../wxParse/wxParse.js');
 
 Page({
 
@@ -10,6 +11,7 @@ Page({
     pubCoverHide: true,
     ruleBoxHide:true, 
     lists:[],
+    ruleData: "",
     guess_result:null,
     isFrist:null,
     lottery_times:null
@@ -30,7 +32,11 @@ Page({
         lottery_times:res.data.lottery_times
       })
     })
-    wx.hideShareMenu()
+    guessChampionRule()
+      .then(res => {
+        WxParse.wxParse('ruleData', 'html', res.data, that);
+      })
+    wx.hideShareMenu();
 
   },
 

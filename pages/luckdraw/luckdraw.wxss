@@ -1,3 +1,5 @@
+ @import "../../wxParse/wxParse.wxss"; 
+
 page{
   background: #fff;
 }
@@ -89,7 +91,8 @@ page{
 }
 .activeRuleBox{
   width: 670rpx;
-  height: 594rpx;
+  height: auto;
+  min-height: 400rpx;
   border-radius: 6px;
   background: #DE461B;
   padding: 50rpx 30rpx 30rpx;
@@ -98,10 +101,6 @@ page{
   box-sizing: border-box;
   text-align: left;
   position: relative;
-}
-.ruleContBox {
-  overflow-y: auto;
-  height: 520rpx;
 }
 .activeRuleBox .titleRule{
    position: absolute;

@@ -1,11 +1,12 @@
-// pages/invite/invite.js
+import { inviteRule } from '../../utils/getdata.js'
+var WxParse = require('../../wxParse/wxParse.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    ruleData: ""
   },
 
   /**
@@ -13,7 +14,11 @@ Page({
    */
   onLoad: function (options) {
     wx.hideShareMenu()
-
+    let that = this;
+    inviteRule()
+      .then(res => {
+        WxParse.wxParse('ruleData', 'html', res.data, that);
+      })
   },
 
   /**

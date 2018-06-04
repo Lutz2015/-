@@ -1,5 +1,7 @@
 <import src="../../template/template.wxml" />
 <template is="footer" data="{{activeType}}" />
+<import src="../../wxParse/wxParse.wxml" />
+
 <view class='pubCover' hidden='{{pubCoverHide}}'></view>
 
 <view class='alertBox1' hidden='{{alertBoxOneHide}}'>
@@ -53,14 +55,7 @@
     <view class='titleRule'>活动规则</view>
     <image src='../../images/other/zq.png' class='zq'></image>
     <view class='ruleContBox'>
-      <view>1.抽奖一次会消耗一积分，积分记入总分</view>
-      <view>2.抽奖次数将会累计，抽奖开始时间
-        <text>6月14号9点开始到7月16号18点</text> 单次积分抽奖结束</view>
-      <view>3.凡显示有抽奖机会的用户都可参与抽奖，不显示则需要参与首页竞猜活动获得机会</view>
-      <view>4.总共5个奖品，每个奖品的中奖概率相同</view>
-      <view>5.中奖信息在首页显示 </view>
-      <view>6.抽奖获得的奖品会在我的显示，提交地址后会在1~3个工作日发货，节假日不发货。 </view>
-      <view>7.活动过程中如发现违规作弊行为，我公司有权取消您已获得的奖品，必要时追究法律责任 </view>
+       <template is="wxParse" data="{{wxParseData:ruleData.nodes}}" />
     </view>
   </view>
   <image src='../../images/other/bottombg.jpg' class='bottombg'></image>

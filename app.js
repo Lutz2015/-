@@ -17,15 +17,11 @@ App({
       let that = this;
       if (e.detail.errMsg == "getUserInfo:ok") {
         //同意授权
-        toast('同意授权')
-       
         wx.setStorageSync('userInfo', e.detail);
         that.globalData.userInfo = e.detail;
         pageThis.agreelogin(e.detail);
       } else {
         //不同意授权
-        toast('不同意授权')
-        
         pageThis.openSetting();
       }
     },

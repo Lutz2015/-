@@ -1,4 +1,5 @@
 <import src="../../template/template.wxml" />
+<import src="../../wxParse/wxParse.wxml" />
 <template is="loginView" data="{{isLogin}}" />
 <template is="footer" data="{{activeType}}" />
 <view class='pubCover' hidden='{{pubCoverHide}}'></view>
@@ -7,7 +8,7 @@
 </view>
 <view class='pageTop'>
   <image class='pageTopBg' src='../../images/icon/topbg.png'></image>
-  <swiper class='bannerSwiper' indicator-color="#999"  indicator-active-color="#fff" indicator-dots="true" autoplay="true" interval="5000" duration="1000">
+  <swiper class='bannerSwiper' indicator-color="#000" indicator-active-color="#fff" indicator-dots="true" autoplay="true" interval="5000" duration="1000">
     <block wx:for="{{bannerInfo}}" wx:for-index="idx" wx:for-item="item">
       <swiper-item>
         <image bindtap='gotoWhere' data-url='{{item.url}}' src="{{item.image}}" class="slide-image" mode='aspectFill' />
@@ -15,12 +16,12 @@
     </block>
   </swiper>
 </view>
- <view class="marquee_container" style="--marqueeWidth--:{{-marquee.width}}em;">
+<view class="marquee_container" style="--marqueeWidth--:{{-marquee.width}}em;">
   <view class='leftIcon'>
     <image src='../../images/icon/lb.png'></image>
   </view>
   <view class="marquee_text" style='animation-duration: {{marquee.time}}s;'>{{marquee.text}}</view>
-</view> 
+</view>
 <view class='tabBox'>
   <view class='tab winInfo' bindtap='gotoWinInfo'>
     <image class='winInfoImg' src='../../images/icon/win_info.png'></image>
@@ -51,28 +52,28 @@
   <block wx:for="{{list1}}" wx:for-index="idx" wx:for-item="item">
     <template is="countryTeam" data="{{item,idx}}" />
   </block>
-  <view class='isNullBox'  wx:if="{{list1.length <= 0}}">
-        <image class='isNullBg' src='../../images/other/null.png'></image>   
-         <view>暂无场次</view>     
-      </view>
+  <view class='isNullBox' wx:if="{{list1.length <= 0}}">
+    <image class='isNullBg' src='../../images/other/null.png'></image>
+    <view>暂无场次</view>
+  </view>
 </view>
 <view class='ibox didnotBox' hidden='{{statusCheck != 2}}'>
   <block wx:for="{{list}}" wx:for-index="idx" wx:for-item="item">
     <template is="countryTeamNoStar" data="{{item,idx}}" />
   </block>
-  <view class='isNullBox'  wx:if="{{lists.length <= 0}}">
-        <image class='isNullBg' src='../../images/other/null.png'></image>   
-         <view>暂无场次</view>     
-      </view>
+  <view class='isNullBox' wx:if="{{list.length <= 0}}">
+    <image class='isNullBg' src='../../images/other/null.png'></image>
+    <view>暂无场次</view>
+  </view>
 </view>
 <view class='ibox endingBox' hidden='{{statusCheck != 3}}'>
   <block wx:for="{{list2}}" wx:for-index="idx" wx:for-item="item">
     <template is="countryTeamEnd" data="{{item,idx}}" />
   </block>
-  <view class='isNullBox'  wx:if="{{list2.length <= 0}}">
-        <image class='isNullBg' src='../../images/other/null.png'></image>   
-         <view>暂无场次</view>     
-      </view>
+  <view class='isNullBox' wx:if="{{list2.length <= 0}}">
+    <image class='isNullBg' src='../../images/other/null.png'></image>
+    <view>暂无场次</view>
+  </view>
 </view>
 <view class='botomBlock'></view>
 
@@ -92,43 +93,26 @@
 <view class='ruleBox' hidden='{{ruleBoxHide}}'>
   <view class='titleRule'>竞猜规则</view>
   <view class='ruleContBox'>
-    <view>前60场猜中比分得5分，猜中胜负平得2分（90分钟赛制为准）</view>
-    <view>2.1. 按照每天的赛事来计算积分，每天的比赛场次不同分别为</view>
-    <view>4场：最高得分为28分，抽奖者必须在4~28分之间有资格参与抽奖</view>
-    <view>3场：最高得分为21分，抽奖者必须在4~18分之间有资格参与抽奖</view>
-    <view>2场：最高得分为14分，抽奖者必须在2~14分之间有资格参与抽奖</view>
-    <view>1场：最高得分为7分，抽奖者必须在2~7分之间有资格参与抽奖</view>
-
-    <view>半决赛猜中比分得10分，猜中输赢得5分（猜中任意即可参与抽奖）</view>
-    <view>3/4名比赛猜中比分得15分，猜中输赢得10分（猜中任意即可参与抽奖）</view>
-    <view>决赛猜中比分得20分，猜中输赢得15分（猜中任意即可参与抽奖）</view>
-    <view>28天总共420个竞猜中奖名额（不包含积分中奖，邀好友中奖，冠军中奖名额）</view>
-
-    <view>抽奖时间：每天比赛结束后只要符合积分区间到64场结束后都可进行抽奖（7月16号晚上6点截止）</view>
-    <view>每抽奖一次消耗一积分，记入总积分</view>
-    <view>每天比赛的竞猜截止时间为开赛前2小时，6月14号早上9点开始竞猜</view>
-
-    <view>64场竞猜结束后，总积分达到100积分以上的用户可参与抽奖（20个中奖名额）</view>
-    <view>抽奖时间：7月16晚上6点到18号晚上6点</view>
+    <template is="wxParse" data="{{wxParseData:ruleData.nodes}}" />
   </view>
   <image class="close" bindtap='closeAll' src='../../images/other/close.png'></image>
 </view>
 
 <view class='inviteBox' hidden='{{inviteBoxhide}}'>
-    <image  class="inviteImg" src='../../images/other/invite.jpg'></image>
-    <button class='inviteBtn' open-type='share' data-type='2'>邀请好友</button>
-    <image class="close" bindtap='closeAll' src='../../images/other/close.png'></image>    
+  <image class="inviteImg" src='../../images/other/invite.jpg'></image>
+  <button class='inviteBtn' open-type='share' data-type='2'>邀请好友</button>
+  <image class="close" bindtap='closeAll' src='../../images/other/close.png'></image>
 </view>
 
 <view class='drawBox' hidden='{{drawBoxhide}}'>
-    <image  class="drawImg" src='../../images/other/drawbg.png'></image>
-    <view class='textBox'>
-        <view>恭喜您赢得昨日的竞猜</view>
-        <view>获得抽奖机会1次，快去看看吧！</view>
-    </view>
-    <view class='btnBox'>
-      <button class='inviteBtn' open-type='share' data-type='1'>炫耀一下</button>
-      <view class='goDraw' bindtap='gotoDraw'>去抽奖</view>
-    </view>
-    <image class="close" bindtap='closeAll' src='../../images/other/close.png'></image> 
+  <image class="drawImg" src='../../images/other/drawbg.png'></image>
+  <view class='textBox'>
+    <view>恭喜您赢得昨日的竞猜</view>
+    <view>获得抽奖机会1次，快去看看吧！</view>
+  </view>
+  <view class='btnBox'>
+    <button class='inviteBtn' open-type='share' data-type='1'>炫耀一下</button>
+    <view class='goDraw' bindtap='gotoDraw'>去抽奖</view>
+  </view>
+  <image class="close" bindtap='closeAll' src='../../images/other/close.png'></image>
 </view>

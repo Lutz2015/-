@@ -1,3 +1,4 @@
+ @import "../../wxParse/wxParse.wxss"; 
 .pageBox{
   height: 100%;
   width: 100%;
@@ -119,11 +120,11 @@
   bottom: 0;
 }
 .ruleBox{
-  height: 360rpx;
+  height: 460rpx;
   width: 90%;
   position: fixed;
   top: 50%;
-  margin-top: -180rpx;
+  margin-top: -230rpx;
   left: 5%;
   border-radius: 5px;
   z-index: 9999;
@@ -159,4 +160,8 @@
     bottom: -100rpx;
   left: 50%;
   margin-left: -42rpx
+}
+.ruleContbox {
+  overflow-y: auto;
+  height: 400rpx;
 }

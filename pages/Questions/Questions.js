@@ -1,5 +1,5 @@
-
-var utils = require('../../utils/util2.js');
+import { question } from '../../utils/getdata.js'
+// var WxParse = require('../../wxParse/wxParse.js');
 Page({
 
   /**
@@ -7,31 +7,22 @@ Page({
    */
   data: {
     pageContent:'',
-    list:[{
-      title:'1.如何收到获得的奖品',
-      content:'厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥',
-      isOpen:false
-    }, {
-      title: '1.如何收到获得的奖品',
-      content: '厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥',
-      isOpen: false
-      }, {
-        title: '1.如何收到获得的奖品',
-        content: '厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥厉害了我的哥',
-        isOpen: false
-      }]
+    list:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let that = this;
     wx.hideShareMenu();
-    var body = utils.parseStory('<p><span>这是一段p标签</span></p>', false);
-    console.log(body)
-    this.setData({
-      "pageContent": body[0]
-    });
+    question()
+      .then(res => {
+        var that = this;
+        that.setData({
+          list:res.data.list
+        })
+      })
   },
 
   /**
@@ -86,7 +77,7 @@ Page({
     let _data = e.currentTarget.dataset;
     let _list = this.data.list.map(function(item,index){
       if(_data.index == index){
-        item.isOpen = true;        
+        item.isOpen = !item.isOpen;        
       }else{
         item.isOpen = false;       
       }

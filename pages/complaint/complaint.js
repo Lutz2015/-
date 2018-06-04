@@ -1,11 +1,13 @@
+import { toast } from '../../utils/util.js';
 Page({
   /**
    * 页面的初始数据
    */
   data: {
     complaintList:['欺诈','色情','政治谣言','诱导分享','恶意营销','隐私信息收集'],
-    check:1,
-    checkInfo:'欺诈'
+    check:0,
+    checkInfo:'欺诈',
+    phone:null
   },
 
   /**
@@ -68,6 +70,27 @@ Page({
     this.setData({
       check:_data.index + 1,
       checkInfo: this.data.complaintList[_data.index]
+    })
+  },
+  go(){
+    if (!(/^1[3|4|5|7|8][0-9]\d{4,8}$/.test(this.data.phone))) {
+      toast("请输入正确的手机号");
+      return;
+    } 
+    if (!this.data.checkInfo){
+      toast("请选择投诉原因");
+    }
+    toast("投诉成功");
+    setTimeout(function(){
+      wx.navigateBack({
+        delta: 1
+      })
+    },2000)
+   
+  },
+  userinput(e){
+    this.setData({
+      phone: e.detail.value
     })
   }
 })

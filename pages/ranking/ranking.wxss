@@ -32,7 +32,7 @@
 }
 .corerank,.invete{background: #fff}
 .list{
-  height: 144rpx;
+  height: 140rpx;
   border-bottom: 1px solid #e9e9e9;
   margin-left: 30rpx;
   padding-right:30rpx;
@@ -61,7 +61,7 @@
   position: absolute;
   right: 30rpx;
   height: 100%;
-  line-height: 144rpx;
+  line-height: 140rpx;
   top: 0;
 }
 .kefu{
@@ -90,7 +90,6 @@
   left: 40%;
 }
 .listActive{
-  background: rgba(255, 91, 91,0.1); 
   margin-left: 0;
   padding-left: 30rpx;
   border: 0;
@@ -100,10 +99,18 @@
   width: 100%;
   z-index: 99;
   position: fixed;
-  top: 76rpx;
+  padding-top: 20rpx;
+  top: 70rpx;
   left: 0;
-  height: 144rpx;
+  height: 140rpx;
   background: #fff;
+}
+.topListBox .pmImg{
+  width: 130rpx;
+  height: 43rpx;
+  position: absolute;
+  left: 0;
+  top:0;
 }
 
 .ruleBox{

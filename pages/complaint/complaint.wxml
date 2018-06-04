@@ -3,11 +3,11 @@
 <block wx:for="{{complaintList}}" wx:for-index="idx" wx:for-item="item">
     <view class='list' bindtap='checkIndex' data-index='{{idx}}'>
       <text>{{item}}</text>
-      <icon wx:if="{{idx + 1 == check}}" type='success_no_circle' size='20' color='green'></icon>
+      <icon wx:if="{{idx + 1 == check}}" type='success_no_circle' size='20' color='#1aad19'></icon>
     </view>
 </block>
-<input class='youPhone' type='number' placeholder='请填写您的手机号，方便我们与您联系'></input>
+<input class='youPhone' bindinput="userinput" type='number' placeholder='请填写您的手机号，方便我们与您联系'></input>
 <view class='list'>
   <text>{{checkInfo}}</text>
 </view>
-<button>确认投诉</button>
+<button bindtap='go'>确认投诉</button>

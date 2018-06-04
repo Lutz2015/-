@@ -1,4 +1,5 @@
 @import "../../template/countryteam.wxss";
+ @import "../../wxParse/wxParse.wxss"; 
 
 .pageTop {
   height: 308rpx;
@@ -173,10 +174,10 @@
 
 .guideBox4 {
   position: fixed;
-  height: 480rpx;
-  width: 596rpx;
-  bottom: 0rpx;
-  right: 10rpx;
+  height: 420rpx;
+  width: 690rpx;
+  bottom: 40rpx;
+  right: -30rpx;
   z-index: 1000;
 }
 
@@ -238,9 +239,8 @@
   height: 84rpx;
   width: 84rpx;
   position: absolute;
-  bottom: -100rpx;
-  left: 50%;
-  margin-left: -42rpx;
+  top:-40px;
+  right:0rpx;
 }
 .drawBox{
   height: 765rpx;

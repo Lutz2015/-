@@ -103,5 +103,29 @@ const matchGuess = (data) => {
 const getBannerInfo = (data) => {
   return getApi('wcup/index/getBannerInfo', data)
 }
-export { getRewardList, getOverMatchList, myPrizeList, GetPrize, scoreRank, inviteRank, myScoreDetail, myData, myQuizRecordList, inviteCallBack, matchGuessList, matchGuess, initLotteryData, lottery, getBannerInfo, championGuessList, championGuess};
+//赛事通知
+const matchMessage = () => {
+  return getApi('wcup/index/matchMessage')
+}
+//获取常见问题
+const question = () => {
+  return getApi('wcup/my/question')
+}
+//首页规则
+const guessRule = () => {
+  return getApi('wcup/match/guessRule')
+}
+//冠亚军规则
+const guessChampionRule = () => {
+  return getApi('wcup/match/guessChampionRule')
+}
+//抽奖页规则
+const lotteryrule = () => {
+  return getApi('wcup/lottery/rule')
+}
+//邀请页规则
+const inviteRule = () => {
+  return getApi('wcup/index/inviteRule')
+}
+export { getRewardList, getOverMatchList, myPrizeList, GetPrize, scoreRank, inviteRank, myScoreDetail, myData, myQuizRecordList, inviteCallBack, matchGuessList, matchGuess, initLotteryData, lottery, getBannerInfo, championGuessList, championGuess, question, guessRule, guessChampionRule, matchMessage, lotteryrule, inviteRule};
 

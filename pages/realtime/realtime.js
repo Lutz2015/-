@@ -1,5 +1,6 @@
-import { getOverMatchList } from '../../utils/getdata.js'
+import { getOverMatchList, matchMessage } from '../../utils/getdata.js'
 import { week } from '../../utils/util.js'
+var WxParse = require('../../wxParse/wxParse.js');
 
 Page({
   /**
@@ -7,6 +8,7 @@ Page({
    */
   data: {
     realtimeCheck: 1,
+    ruleData: "",
     isLoding: false,//加载状态
     lists: [],//列表
     pages: [],//分页
@@ -16,9 +18,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let that = this;
     wx.hideShareMenu();
     this.getOverMatchListFn(1, 1); //首次加载
-
+    matchMessage()
+      .then(res => {
+        WxParse.wxParse('ruleData', 'html', res.data, that);
+      })
   },
 
   /**

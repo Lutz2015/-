@@ -25,12 +25,12 @@
   font-size:32rpx;
 }
 button{
-  width: 400rpx;
+  width: 460rpx;
   height: 80rpx;
   line-height: 80rpx;
   color: #fff;
   border-radius: 5px;
   font-size: 32rpx;
   border: 0;
-  background: green;
+  background: #1aad19;
 }

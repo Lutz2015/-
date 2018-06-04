@@ -1,12 +1,11 @@
+<import src="../../wxParse/wxParse.wxml" />
 <view class='invitePage'>
     <image class='top' src='../../images/other/invite.jpg'></image>
     <view class='ruleBox'>
         <view class='titleRule'>活动规则</view>
-         <view>1.转发此页或者首页到微信好友和微信群，用户通过你转发的页面进入小程序即邀请成功。</view>
-         <view>2.活动于6月14号早9点开始到7月16晚18点结束。 </view>
-         <view>3.邀请好友越多排名越靠前，前20名可以参与抽奖。</view>
-         <view>4.抽奖于7月16号18点开始到7月18号18点结束。</view>
-         <view>5.活动过程中如发现违规作弊行为，我公司有权取消您已获得的奖品，必要时追究法律责任。</view>
+        <view class='ruleContBox'>
+                <template is="wxParse" data="{{wxParseData:ruleData.nodes}}" />
+        </view>        
     </view>
     <button class='kefu' open-type='share' data-type='2'>邀请好友</button>
     <image src='../../images/other/bottombg.jpg' class='bottombg'></image>

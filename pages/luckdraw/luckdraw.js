@@ -1,5 +1,6 @@
 import { toast } from '../../utils/util.js';
-import { initLotteryData, lottery, GetPrize} from '../../utils/getdata.js'
+import { initLotteryData, lottery, GetPrize, lotteryrule} from '../../utils/getdata.js'
+var WxParse = require('../../wxParse/wxParse.js');
 
 Page({
   data: {
@@ -11,6 +12,7 @@ Page({
     alertBoxTwoHide: true,//中奖弹窗2
     inviteBoxhide:true,
     animationData: {},
+    ruleData:"",
     sum: 0, //当前角度
     prevSum: 0,//记录上一次的角度
     isRoll: false,
@@ -26,11 +28,15 @@ Page({
     this.animation = animation;
     initLotteryData()
       .then(res => {
-        console.log(res)
         that.setData({
           initLotteryData: res.data
         })
       })
+
+    lotteryrule()
+      .then(res => {
+        WxParse.wxParse('ruleData', 'html', res.data, that);
+      })  
     wx.hideShareMenu()
   },
   onReady: function () {
@@ -93,9 +99,6 @@ Page({
         prevSum: 60 * ruleFigure + 30
       })
       setTimeout(function () {
-        that.setData({
-          isRoll: false
-        })
         resolve(ratateTxt)
       }, 3000)
     })
@@ -104,30 +107,33 @@ Page({
   goDraw() {
     let that = this;
     if (this.data.isRoll) return;
+    if (that.data.initLotteryData.lottery_times <= 0) {
+      toast('抽奖次数不足～');
+      return;
+    }
     this.setData({
       isRoll: true
     })
-    if (that.data.initLotteryData.lottery_times <= 0) {
-      toast('抽奖次数不足～');
-      this.setData({
-        isRoll: false
-      })
-      return;
-    }
     lottery()
       .then(res => {
         if (res.code == "SUCCESS"){
-          if (!res.data.pid){
-            toast('很遗憾，您没有中奖～');
-            return ;
-          }
-
+       
           that.tran(res.data.pid)
             .then(ratateTxt => {
+              if (!res.data.pid) {
+                toast('很遗憾，您没有中奖～');
+                that.setData({
+                  isRoll: false,
+                  [`${'initLotteryData'}.lottery_times`]: res.data.lottery_times,
+                  [`${'initLotteryData'}.score`]: res.data.score
+                })
+                return;
+              }
               that.setData({
                 [`${'initLotteryData'}.lottery_times`]: res.data.lottery_times,
                 [`${'initLotteryData'}.score`]: res.data.score,
                 lotteryGoods: res.data,
+                isRoll: false,                
                 pubCoverHide:false,
                 alertBoxOneHide:false
               })
@@ -170,7 +176,7 @@ Page({
         },
         fail: function () {
           that.setData({
-            alertBoxTwoHide: false,
+            pubCoverHide: true,
             alertBoxOneHide: true
           })
           toast('授权失败，您将无法领取,重新授权请删除小程序后再次进入')

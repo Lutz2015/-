@@ -155,7 +155,7 @@ Page({
     wx.showModal({
       title: '邀请好友说明',
       showCancel: false,      
-      content: '邀请好哟数在前20名的用户可以参与抽奖，邀请好友数相同则视为同一名（均可参与抽奖）',
+      content: '邀请好友数在前20名的用户可以参与抽奖，邀请好友数相同则视为同一名（均可参与抽奖）',
       success: function (res) {
         console.log(res)
       }
