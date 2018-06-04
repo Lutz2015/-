@@ -16,7 +16,21 @@
   align-items: center;
   justify-content: space-between;
 }
-
+.phoneBox{
+  position: relative;
+}
+.phoneBox .tl{
+  height: 100rpx;
+  line-height: 100rpx;
+  width: 120rpx;
+  position: absolute;
+  top: 0;
+  left: 30rpx;
+  font-size: 36rpx;
+}
+.phoneBox .list{
+  padding-left: 150rpx;
+}
 .youPhone{
   height: 80rpx;
   line-height: 80rpx;

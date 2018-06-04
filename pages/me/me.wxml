@@ -8,15 +8,15 @@
       <view class='userInfo'>
           <view class='boxL'>
             <view class='red'>{{myData.myScore || 0}}</view>
-            <view>积分</view>
+            <view>我的积分</view>
           </view>
           <view class='boxC'>
             <view class='red'>{{myData.myInviteNum || 0}}</view>
-            <view>邀请好友</view>
+            <view>邀请好友数</view>
           </view>
           <view class='boxR'>
             <view class='red'>{{myData.myPrizeNum || 0}}</view>
-            <view>中奖</view>
+            <view>中奖次数</view>
           </view>
       </view>
   </view>

@@ -6,8 +6,9 @@
       <icon wx:if="{{idx + 1 == check}}" type='success_no_circle' size='20' color='#1aad19'></icon>
     </view>
 </block>
-<input class='youPhone' bindinput="userinput" type='number' placeholder='请填写您的手机号，方便我们与您联系'></input>
-<view class='list'>
-  <text>{{checkInfo}}</text>
+<input class='youPhone' disabled="true"  placeholder='请填写您的手机号，方便我们与您联系' ></input>
+<view class="phoneBox">
+    <view class='tl'>手机号</view>
+    <input class='list' bindinput="userinput" type='number' placeholder='选填' ></input>
 </view>
 <button bindtap='go'>确认投诉</button>

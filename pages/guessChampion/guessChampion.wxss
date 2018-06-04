@@ -35,10 +35,23 @@
   flex-direction:column;
   font-size: 24rpx;
   color: #fff;
+  margin: 20rpx 0 0;
 }
-.champion image{
+.champion .imageBox{
   height: 92rpx;
   width: 92rpx;
+  position: relative;
+}
+.champion .imageBox .countryImg{
+  width: 100%;
+  height: 100%;
+}
+.champion .imageBox .winIcon{
+  position: absolute;
+  right: 0rpx;
+  top: -15rpx;
+  height: 40rpx;
+  width: 40rpx;
 }
 .countryBox{
   display: flex;

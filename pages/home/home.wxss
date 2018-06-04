@@ -126,7 +126,7 @@
   height: 106rpx;
   position: fixed;
   right: 30rpx;
-  top: 480rpx;
+  top: 580rpx;
   z-index: 888;
 }
 
@@ -162,7 +162,7 @@
   position: fixed;
   height: 480rpx;
   width: 596rpx;
-  top: 460rpx;
+  top: 560rpx;
   right: 10rpx;
   z-index: 1000;
 }

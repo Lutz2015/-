@@ -127,5 +127,12 @@ const lotteryrule = () => {
 const inviteRule = () => {
   return getApi('wcup/index/inviteRule')
 }
-export { getRewardList, getOverMatchList, myPrizeList, GetPrize, scoreRank, inviteRank, myScoreDetail, myData, myQuizRecordList, inviteCallBack, matchGuessList, matchGuess, initLotteryData, lottery, getBannerInfo, championGuessList, championGuess, question, guessRule, guessChampionRule, matchMessage, lotteryrule, inviteRule};
+//模版消息
+const wxopensave = (formid) => {
+  return getApi('wcup/wxopen/save',{
+    'action':'saveMsgTpl',
+    'formId': formid
+  })
+}
+export { getRewardList, getOverMatchList, myPrizeList, GetPrize, scoreRank, inviteRank, myScoreDetail, myData, myQuizRecordList, inviteCallBack, matchGuessList, matchGuess, initLotteryData, lottery, getBannerInfo, championGuessList, championGuess, question, guessRule, guessChampionRule, matchMessage, lotteryrule, inviteRule, wxopensave};
 

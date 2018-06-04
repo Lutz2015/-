@@ -1,5 +1,5 @@
 import { toast, formatWeek, formatData, formatTime } from '../../utils/util.js';
-import { getBannerInfo, inviteCallBack, myData, matchGuessList, matchGuess, getRewardList, guessRule } from '../../utils/getdata.js';
+import { getBannerInfo, inviteCallBack, myData, matchGuessList, matchGuess, getRewardList, guessRule, wxopensave } from '../../utils/getdata.js';
 import { checklogin } from '../../utils/common.js';
 var WxParse = require('../../wxParse/wxParse.js');
 const app = getApp();
@@ -98,7 +98,6 @@ Page({
 
   },
   onShow: function () {
-
   },
   onHide: function () {
 
@@ -185,7 +184,10 @@ Page({
     let _list = that.data.list1[e.detail.target.dataset.idx];
     let _inputv = e.detail.value;
     let _data = {};
-    console.log(e)
+    wxopensave(e.detail.formId)
+     .then(res => {
+       console.log(res)
+     })
     //是否提交竞猜过
     if (_list.gameInStatus && _list.isGuess) {
       toast('无法修改!');

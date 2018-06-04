@@ -73,7 +73,7 @@ Page({
     })
   },
   go(){
-    if (!(/^1[3|4|5|7|8][0-9]\d{4,8}$/.test(this.data.phone))) {
+    if (this.data.phone && !(/^1[3|4|5|7|8][0-9]\d{4,8}$/.test(this.data.phone))) {
       toast("请输入正确的手机号");
       return;
     } 

@@ -43,7 +43,7 @@ const getToken = () => {
           reject(error);
         }
       },
-      fail:function(){
+      fail:function(err){
         wx.showModal({
           title: '提示',
           showCancel:false,
@@ -80,9 +80,11 @@ const getApi = (urls, options = {}, METHOD = "POST") => {
         url: BASEURL + urls,
         data: _data,
         success: function (res) {
+         
           if (res.data.code == "TOKEN_KEY_NULL") {
             getTokenApi(urls, _data, METHOD, resolve, reject)
-          } else {
+          }  
+          else {
             resolve(res.data);
           }
         },

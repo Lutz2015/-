@@ -22,10 +22,13 @@
         <view class='leftCbox'>
           <image class='leftC' src='../../images/country/{{item.htsign}}.png'></image>
           <view>{{item.htname}}</view>
+          <image class='winIcon' wx:if="{{item.htscore > item.vtscore}}" src='../../images/icon/hg.png'></image>
         </view>
         <view class='rightCbox'>
           <image class='rightC' src='../../images/country/{{item.vtsign}}.png'></image>
-          <view>{{item.vtname}}</view>          
+          <view>{{item.vtname}}</view>   
+          <image class='winIcon' wx:if="{{item.htscore < item.vtscore}}" src='../../images/icon/hg.png'></image>
+                 
         </view>
         <view class='cInfoBox'>
           <text class='red'>{{item.htscore}}</text>

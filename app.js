@@ -4,8 +4,10 @@ App({
     onLaunch: function(page) {
       let _loginKey = wx.getStorageSync('loginKey');
       console.log(page)
-      if (!_loginKey) {
-        console.log('未登陆')
+      if (!_loginKey && page.path != "pages/home/home") {
+            wx.redirectTo({
+              url: '../home/home'
+            })
       }
       if (!wx.canIUse('button.open-type.getUserInfo')){
         toast('请升级微信版本!','none',5000)        

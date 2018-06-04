@@ -121,7 +121,13 @@
   color: #bdbdbd;
   margin-top: 10rpx;
 }
-
+.winIcon{
+  height: 40rpx;
+  width: 40rpx;
+  position: absolute;
+  top: -15rpx;
+  right: 30rpx;
+}
 .timeBox image {
   width: 32rpx;
   height: 32rpx;

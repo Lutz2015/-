@@ -8,7 +8,10 @@
     <image class='activeRuleImg' bindtap='showRule' src="../../images/other/4.png" />
   </view>
   <view class='champion' wx:if="{{guess_result}}">
-    <image src='../../images/country/{{guess_result.id}}.png'></image>
+    <view class='imageBox'>
+      <image class='winIcon' src='../../images/icon/hg.png'></image>
+      <image class='countryImg' src='../../images/country/{{guess_result.id}}.png'></image>
+    </view>
     <view>您选中的冠军：{{guess_result.country}}</view>
   </view>
   <view class='countryBox'>
