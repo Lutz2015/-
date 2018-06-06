@@ -1,21 +1,34 @@
-import { isUserAutor, login } from './utils/common.js';
+import { isUserAutor, login, checklogin } from './utils/common.js';
 import { toast, formatData } from './utils/util.js';
 App({
     onLaunch: function(page) {
+      console.log('小程序初始化')
       let _loginKey = wx.getStorageSync('loginKey');
-      console.log(page)
       if (!_loginKey && page.path != "pages/home/home") {
             wx.redirectTo({
-              url: '../home/home'
+              url: 'pages/home/home'
             })
       }
+      
       if (!wx.canIUse('button.open-type.getUserInfo')){
         toast('请升级微信版本!','none',5000)        
       }
     },
+    onShow:function(){
+      console.log('后台进入前台')
+      checklogin()
+        .then(res => {
+          if (res.data.code != "LOGINED") {
+            toast('登陆信息失效，请退出重新登陆');
+            wx.removeStorageSync('loginKey');
+          } 
+        }, err => {
+          toast('登陆检测异常')
+        })
+    },
     //初始化用户授权机制
     getUserInfo(e, pageThis) {
-      //判断用户是否同意授权)
+      //判断用户是否同意授权
       let that = this;
       if (e.detail.errMsg == "getUserInfo:ok") {
         //同意授权
@@ -29,6 +42,9 @@ App({
     },
     agreelogin(userdata, c) {
       let that = this;
+      wx.showLoading({
+        title: '加载中',
+      })
       login(userdata)
         .then(res => {
           if (res.data.code == "SUCCESS") {
@@ -36,8 +52,11 @@ App({
             wx.setStorageSync('loginKey', res.data.data.loginKey);
             //成功获取loginkey后执行回调函数
             c && c();
+          }else{
+            wx.hideLoading();
           }
         }, err => {
+          wx.hideLoading();
         })
     },
     openSetting: function (pageThis) {

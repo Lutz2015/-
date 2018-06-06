@@ -3,64 +3,78 @@
 <view class='pageTop'>
   <image class='pageTopBg' src='../../images/icon/topbg.png'></image>
   <view class='userInfoBox'>
-      <image class='userImg' src='{{userinfo.avatarUrl}}'></image>
-      <view class='userName'>{{userinfo.nickName}}</view>
-      <view class='userInfo'>
-          <view class='boxL'>
-            <view class='red'>{{myData.myScore || 0}}</view>
-            <view>我的积分</view>
-          </view>
-          <view class='boxC'>
-            <view class='red'>{{myData.myInviteNum || 0}}</view>
-            <view>邀请好友数</view>
-          </view>
-          <view class='boxR'>
-            <view class='red'>{{myData.myPrizeNum || 0}}</view>
-            <view>中奖次数</view>
-          </view>
+    <image class='userImg' src='{{userinfo.avatarUrl}}'></image>
+    <view class='userName'>{{userinfo.nickName}}</view>
+    <view class='userInfo'>
+      <view class='boxL'>
+        <view class='red'>{{myData.myScore || 0}}</view>
+        <view>我的积分</view>
       </view>
+      <view class='boxC'>
+        <view class='red'>{{myData.myInviteNum || 0}}</view>
+        <view>邀请好友数</view>
+      </view>
+      <view class='boxR'>
+        <view class='red'>{{myData.myPrizeNum || 0}}</view>
+        <view>中奖次数</view>
+      </view>
+    </view>
   </view>
 </view>
+<form bindsubmit="gotoIntegral" report-submit>
+  <button class='meList' formType="submit">
+    <image class='icon' src='../../images/me/1.png'></image>
+    <view>积分明细</view>
+    <image class='right' src='../../images/me/right.png'></image>
+  </button>
+</form>
+<form bindsubmit="gotoRanking" report-submit>
+  <button class='meList' formType="submit">
+    <image class='icon' src='../../images/me/2.png'></image>
+    <view>我的排行榜</view>
+    <image class='right' src='../../images/me/right.png'></image>
+  </button>
+</form>
+<form bindsubmit="gotoMygoods" report-submit>
+  <button class='meList' formType="submit">
+    <image class='icon' src='../../images/me/3.png'></image>
+    <view>我的奖品</view>
+    <image class='right' src='../../images/me/right.png'></image>
+  </button>
+</form>
+<form bindsubmit="gotoMyaddress" report-submit>
 
-<view class='meList' bindtap='gotoIntegral'>
-  <image class='icon' src='../../images/me/1.png'></image>
-  <view>积分明细</view>  
-  <image class='right' src='../../images/me/right.png'></image>
-</view>
-<view class='meList' bindtap='gotoRanking'>
-  <image class='icon' src='../../images/me/2.png'></image>
-  <view>我的排行榜</view>  
-  <image class='right' src='../../images/me/right.png'></image>
-  
-</view>
-<view class='meList' bindtap='gotoMygoods'>
-  <image class='icon' src='../../images/me/3.png'></image>
-  <view>我的奖品</view>  
-  <image class='right' src='../../images/me/right.png'></image>
-  
-</view>
-<view class='meList' bindtap='gotoMyaddress'>
-  <image class='icon' src='../../images/me/4.png'></image>
-  <view>我的地址</view>  
-  <image class='right' src='../../images/me/right.png'></image>
-  
-</view>
-<view class='meList' bindtap='gotoGuess'>
-  <image class='icon' src='../../images/me/5.png'></image>
-  <view>竞猜记录</view>  
-  <image class='right' src='../../images/me/right.png'></image>
-  
-</view>
-<view class='meList' bindtap='gotoQuestions'>
-  <image class='icon' src='../../images/me/6.png'></image>
-  <view>常见问题</view>  
-  <image class='right' src='../../images/me/right.png'></image>
-  
-</view>
-<view class='meList kefu' >
+  <button class='meList' formType="submit">
+    <image class='icon' src='../../images/me/4.png'></image>
+    <view>我的地址</view>
+    <image class='right' src='../../images/me/right.png'></image>
+
+  </button>
+</form>
+<form bindsubmit="gotoGuess" report-submit>
+
+  <button class='meList' formType="submit">
+    <image class='icon' src='../../images/me/5.png'></image>
+    <view>竞猜记录</view>
+    <image class='right' src='../../images/me/right.png'></image>
+
+  </button>
+</form>
+<form bindsubmit="gotoQuestions" report-submit>
+
+  <button class='meList' formType="submit">
+
+    <image class='icon' src='../../images/me/6.png'></image>
+    <view>常见问题</view>
+    <image class='right' src='../../images/me/right.png'></image>
+
+  </button>
+</form>
+
+<view class='meList kefu'>
   <image class='icon' src='../../images/me/7.png'></image>
-  <view>联系客服</view>  
-  <image class='right' src='../../images/me/right.png'></image>  
+  <view>联系客服</view>
+  <image class='right' src='../../images/me/right.png'></image>
   <button open-type='contact'></button>
 </view>
 <view class='botomBlock'></view>

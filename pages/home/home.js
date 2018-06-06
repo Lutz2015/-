@@ -1,14 +1,13 @@
 import { toast, formatWeek, formatData, formatTime } from '../../utils/util.js';
 import { getBannerInfo, inviteCallBack, myData, matchGuessList, matchGuess, getRewardList, guessRule, wxopensave } from '../../utils/getdata.js';
-import { checklogin } from '../../utils/common.js';
 var WxParse = require('../../wxParse/wxParse.js');
 const app = getApp();
 Page({
   data: {
-    marquee: {},
+    marqueelist: [],
     shareid: "",//分享者id
     myLotteryTimesLastday: '',//昨日抽奖次数
-    ruleData:"",
+    ruleData: "",
     bannerInfo: [],
     list1: [],//可竞猜
     list2: [],//已结束
@@ -22,77 +21,48 @@ Page({
     inviteBoxhide: true,
     ruleBoxHide: true,
     drawBoxhide: true,
-    isLogin: true,//默认开启启动页
+    isLogin: false,//默认开启启动页
     activeType: 1 //底部tab选中
   },
   onLoad: function (options) {
     let that = this;
-    checklogin()
-      .then(res => {
-        if (res.data.code == "LOGINED") {
-          if (wx.getStorageSync('loginKey')) {
-            that.matchGuessListFn(1);
-            that.getRewardListFn();
-            that.getBannerInfoFn();
-            that.guessRuleFn();
-            let _data = new Date();
-            let _dataNow = formatData(Date.parse(new Date()));
-            var logs = wx.getStorageSync('logs') || {};
-            if (!logs[_dataNow] || !logs[_dataNow].hasLogin) {
-              logs[_dataNow] = {};
-              logs[_dataNow].hasLogin = true;
-              wx.setStorageSync('logs', logs);
-              myData()
-                .then(res => {
-                  if (res.data.myLotteryTimesLastday) {
-                    that.setData({
-                      myLotteryTimesLastday: res.data.myLotteryTimesLastday,
-                      pubCoverHide: false,
-                      drawBoxhide: false
-                    })
-                  }
-                })
-            }
-          } else {
-            //开启引导授权
-            if (options.shareid) {
+    let _loginKey = wx.getStorageSync('loginKey');
+    if (_loginKey) {
+      that.matchGuessListFn(1);
+      that.getRewardListFn();
+      that.getBannerInfoFn();
+      that.guessRuleFn();
+      let _data = new Date();
+      let _dataNow = formatData(Date.parse(new Date()));
+      var logs = wx.getStorageSync('logs') || {};
+      if (!logs[_dataNow] || !logs[_dataNow].hasLogin) {
+        logs[_dataNow] = {};
+        logs[_dataNow].hasLogin = true;
+        wx.setStorageSync('logs', logs);
+        myData()
+          .then(res => {
+            if (res.data.myLotteryTimesLastday) {
               that.setData({
-                isLogin: false,
-                shareid: options.shareid
-              })
-            } else {
-              that.setData({
-                isLogin: false
+                myLotteryTimesLastday: res.data.myLotteryTimesLastday,
+                pubCoverHide: false,
+                drawBoxhide: false
               })
             }
-          }
-        } else {
-          if (options.shareid) {
-            that.setData({
-              isLogin: false,
-              shareid: options.shareid
-            })
-          } else {
-            that.setData({
-              isLogin: false
-            })
-          }
-        }
-        console.log(res)
-      }, err => {
-        toast('系统错误')
-        if (options.shareid) {
-          that.setData({
-            isLogin: false,
-            shareid: options.shareid
           })
-        } else {
-          that.setData({
-            isLogin: false
-          })
-        }
-      })
-
+      }
+    } else {
+      //开启引导授权
+      if (options.shareid) {
+        that.setData({
+          isLogin: true,
+          shareid: options.shareid
+        })
+      }else{
+        that.setData({
+          isLogin: true
+        })
+      }
+    }
   },
   onReady: function () {
 
@@ -180,14 +150,15 @@ Page({
     this.setData({ [`${'list1'}[${_data.idx}].guessHistory.quiz_mode`]: _data.type });
   },
   formSubmit: function (e) {
+    console.log(e)
     let that = this;
     let _list = that.data.list1[e.detail.target.dataset.idx];
     let _inputv = e.detail.value;
     let _data = {};
     wxopensave(e.detail.formId)
-     .then(res => {
-       console.log(res)
-     })
+      .then(res => {
+        console.log(res)
+      })
     //是否提交竞猜过
     if (_list.gameInStatus && _list.isGuess) {
       toast('无法修改!');
@@ -196,15 +167,15 @@ Page({
     _data.match_id = e.detail.target.dataset.matchid;
     _data.quiz_mode = _list.guessHistory.quiz_mode;
     if (_list.guessHistory.quiz_mode == 1) {
-      if (!_inputv.input1 || !_inputv.input2) {
+      if (_inputv.input1 == "" || _inputv.input2 == "") {
         toast('请您输入比分～')
         return;
       }
-      _data.quiz_htscore = _inputv.input1;
-      _data.quiz_vtscore = _inputv.input2;
+      _data.quiz_htscore = parseInt(_inputv.input1);
+      _data.quiz_vtscore = parseInt(_inputv.input2);
       _data.quiz_result = "";
     } else if (_list.guessHistory.quiz_mode == 3) {
-      if (!_inputv.input3 || !_inputv.input4) {
+      if (_inputv.input3 == "" || _inputv.input4 == "") {
         toast('请您输入比分～')
         return;
       }
@@ -212,8 +183,8 @@ Page({
         toast('请您选择胜方～')
         return;
       }
-      _data.quiz_htscore = _inputv.input3;
-      _data.quiz_vtscore = _inputv.input4;
+      _data.quiz_htscore = parseInt(_inputv.input3);
+      _data.quiz_vtscore = parseInt(_inputv.input4);
       _data.quiz_result = _list.guessHistory.quiz_result;
     } else if (_list.guessHistory.quiz_mode == 2) {
       if (!_list.guessHistory.quiz_result) {
@@ -235,20 +206,31 @@ Page({
           })
           toast('提交成功', 'success')
         } else {
-          toast(res.msg)
         }
       })
   },
-  
-  gotoHome() {
+
+  gotoHome(e) {
     console.log('已经是首页了～')
+    wxopensave(e.detail.formId)
+      .then(res => {
+        console.log(res)
+      })
   },
-  gotoDraw() {
+  gotoDraw(e) {
+    wxopensave(e.detail.formId)
+      .then(res => {
+        console.log(res)
+      })
     wx.redirectTo({
       url: '../luckdraw/luckdraw'
     })
   },
-  gotoMe() {
+  gotoMe(e) {
+    wxopensave(e.detail.formId)
+      .then(res => {
+        console.log(res)
+      })
     wx.redirectTo({
       url: '../me/me'
     })
@@ -301,21 +283,7 @@ Page({
       pubCoverHide: false
     })
   },
-  /**
-   * marquee相关
-   */
-  getDuration: (width) => {// 保留，根据文字长度设置时间
-    return width / 6;
-  },
-  codePointLength: (text) => {
-    var result = text.match(/[\s\S]/gu);
-    return result ? result.length : 0;
-  },
-  startMarquee(str) {
-    const width = this.codePointLength(str);
-    const time = this.getDuration(width);
-    this.setData({ [`${'marquee'}.width`]: width, [`${'marquee'}.time`]: time });
-  },
+
   /**
    * 需要授权页面的
    */
@@ -375,24 +343,17 @@ Page({
     let that = this;
     getRewardList(1, 100)
       .then(res => {
-        let text = "";
-        for (var i = 0; i < res.data.lists.length; i++) {
-          let _nickName = res.data.lists[i].nickName || '玩家';
-          text += `球迷${_nickName}抽中了${res.data.lists[i].name}\xa0\xa0\xa0\xa0`
-        }
         that.setData({
-          [`${'marquee'}.text`]: text
+          marqueelist: res.data.lists
         })
-        that.startMarquee(text);
-
       })
   },
-  guessRuleFn(){
-    let that = this;    
+  guessRuleFn() {
+    let that = this;
     guessRule()
-     .then(res => {
-       WxParse.wxParse('ruleData', 'html', res.data, that);
-     })
+      .then(res => {
+        WxParse.wxParse('ruleData', 'html', res.data, that);
+      })
   },
   gotoWhere(e) {
     console.log(e)
@@ -417,23 +378,23 @@ Page({
     app.agreelogin(userdata, function () {
       console.log(that.data.shareid)//邀请用户身份
       console.log(wx.getStorageSync('loginKey'))//被邀请用户身份
+      that.setData({
+        isLogin: false,
+        pubCoverHide: false,
+        guideBox1hide: false
+      })
+      wx.hideLoading();
       if (that.data.shareid && wx.getStorageSync('loginKey')) {
         inviteCallBack(that.data.shareid, wx.getStorageSync('loginKey'))
           .then(res => {
             console.log(res)
           })
       }
-      // that.matchGuessListFn(0);
       that.matchGuessListFn(1);
-      // that.matchGuessListFn(2);
       that.getRewardListFn();
       that.getBannerInfoFn();
       that.guessRuleFn();
-      that.setData({
-        isLogin: true,
-        pubCoverHide: false,
-        guideBox1hide: false
-      })
+
     });
   },
   openSetting: function () {

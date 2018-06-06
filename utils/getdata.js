@@ -104,6 +104,14 @@ const getBannerInfo = (data) => {
   return getApi('wcup/index/getBannerInfo', data)
 }
 //赛事通知
+//抽奖页规则
+const lotteryrule = () => {
+  return getApi('wcup/lottery/rule')
+}
+//邀请页规则
+const inviteRule = () => {
+  return getApi('wcup/index/inviteRule')
+}
 const matchMessage = () => {
   return getApi('wcup/index/matchMessage')
 }
@@ -119,17 +127,9 @@ const guessRule = () => {
 const guessChampionRule = () => {
   return getApi('wcup/match/guessChampionRule')
 }
-//抽奖页规则
-const lotteryrule = () => {
-  return getApi('wcup/lottery/rule')
-}
-//邀请页规则
-const inviteRule = () => {
-  return getApi('wcup/index/inviteRule')
-}
 //模版消息
 const wxopensave = (formid) => {
-  return getApi('wcup/wxopen/save',{
+  return getApi('vapi/wxopen/save',{
     'action':'saveMsgTpl',
     'formId': formid
   })

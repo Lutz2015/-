@@ -153,7 +153,7 @@ Page({
           })
         },
         fail: function () {
-          toast('授权失败，您将无法领取,重新授权请删除小程序后再次进入')
+          that.checkAdressFn()
         }
       })
     } else {
@@ -196,6 +196,40 @@ Page({
         that.setData({
           address: res
         })
+      }
+    })
+  },
+  checkAdressFn() {
+    let that = this;
+    wx.showModal({
+      title: '获取地址失败',
+      showCancel: false,
+      content: '没有收获地址，无法正常发货，请您授权并选择地址',
+      success: function (res) {
+        if (res.confirm) {
+          wx.openSetting({
+            complete: function (data) {
+              if (data.authSetting["scope.address"]) {
+                wx.getSetting({
+                  success: function (res) {
+                    if (res.authSetting['scope.address']) {
+                      wx.chooseAddress({
+                        success: function (res) {
+                          wx.setStorageSync('address', res);
+                          that.setData({
+                            address: res
+                          })
+                        }
+                      })
+                    }
+                  }
+                })
+              } else {
+                that.checkAdressFn();
+              }
+            }
+          })
+        }
       }
     })
   }

@@ -9,6 +9,6 @@
 <input class='youPhone' disabled="true"  placeholder='请填写您的手机号，方便我们与您联系' ></input>
 <view class="phoneBox">
     <view class='tl'>手机号</view>
-    <input class='list' bindinput="userinput" type='number' placeholder='选填' ></input>
+    <input class='list' bindinput="userinput" maxlength="11" type='number' placeholder='选填' ></input>
 </view>
 <button bindtap='go'>确认投诉</button>

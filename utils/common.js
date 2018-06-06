@@ -1,6 +1,7 @@
 let { toast } = require("./util.js");
 // const BASEURL = "https://v-test.vdailian.com/"; //开发
 const BASEURL = "https://v-api.vdailian.com/"; //线上
+let timer = null;
 //登录
 const getLoginKey = (code, token, userInfo) => {
   let promise = new Promise(function (resolve, reject) {
@@ -17,12 +18,16 @@ const getLoginKey = (code, token, userInfo) => {
         code: code,
         encryptedData: userInfo.encryptedData,
         iv: userInfo.iv,
-        source:'wcup'
+        source: 'wcup'
       },
       success: function (res) {
+        console.log('获取loginkey成功')
+        console.log(res)
         resolve(res);
       },
       fail: function (error) {
+        console.log('获取loginkey失败')
+        console.log(error)
         reject(error);
       }
     })
@@ -33,23 +38,26 @@ const getLoginKey = (code, token, userInfo) => {
 const getToken = () => {
   let promise = new Promise(function (resolve, reject) {
     wx.request({
-      header: { 'content-type': 'application/x-www-form-urlencoded' },
       url: BASEURL + 'vapi/token/get',
+      header: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      method: 'POST',
       success: function (res) {
-        if (res.statusCode == 200) {
-          wx.setStorageSync('token',res.data.data) //保存token
+        if (res.data.code == "SUCCESS") {
+          wx.setStorageSync('token', res.data.data) //保存token
           resolve(res.data);
         } else {
-          reject(error);
+          reject(res.data);
         }
       },
-      fail:function(err){
+      fail: function (err) {
         wx.showModal({
           title: '提示',
-          showCancel:false,
+          showCancel: false,
           content: '当前网络不好！请检查网络！',
           success: function (res) {
-            
+
           }
         })
       }
@@ -67,7 +75,7 @@ const getApi = (urls, options = {}, METHOD = "POST") => {
       'loginKey': loginkey
     })
     if (!tokenKey || !tokenValue) {
-      getTokenApi(urls, _data, METHOD, resolve, reject)      
+      getTokenApi(urls, _data, METHOD, resolve, reject)
     } else {
       wx.request({
         method: METHOD,
@@ -80,10 +88,9 @@ const getApi = (urls, options = {}, METHOD = "POST") => {
         url: BASEURL + urls,
         data: _data,
         success: function (res) {
-         
           if (res.data.code == "TOKEN_KEY_NULL") {
             getTokenApi(urls, _data, METHOD, resolve, reject)
-          }  
+          }
           else {
             resolve(res.data);
           }
@@ -103,7 +110,6 @@ const getTokenApi = (urls, _data, METHOD, resolve, reject) => {
   getToken().then(res => {
     wx.request({
       method: METHOD,
-      responseType: 'text',
       header: {
         'Content-Type': 'application/x-www-form-urlencoded',
         'Token-Key': res.data.TokenKey,
@@ -121,50 +127,61 @@ const getTokenApi = (urls, _data, METHOD, resolve, reject) => {
       }
     })
   }, err => {
-    toast('获取token失败')
     reject(err);
   })
 }
 //判断用户是否授权
 const isUserAutor = () => {
-  let promise = new Promise(function (resolve, reject){
-      wx.getSetting({
-        success: function (res) {
-          if (res.authSetting['scope.userInfo']) {
-            wx.getUserInfo({
-              success: function (res) {
-                resolve(res)
-              }
-            })
-          } else {
-            reject()
-          }
+  let promise = new Promise(function (resolve, reject) {
+    wx.getSetting({
+      success: function (res) {
+        if (res.authSetting['scope.userInfo']) {
+          wx.getUserInfo({
+            success: function (res) {
+              resolve(res)
+            }
+          })
         }
-      })
+      }
+    })
   })
   return promise;
 }
-//
-const login = (getUserInfo) => {;
+
+const login = (getUserInfo) => {
   let promise = new Promise(function (resolve, reject) {
     wx.login({
       success: getCode => {
         //获取toKen
-        getToken()
-          .then(getToken => {
-            getLoginKey(getCode.code, getToken.data, getUserInfo)
-              .then(res => {
-                //获取loginkey成功
-                resolve(res)
+        let tokenKey = wx.getStorageSync('token').TokenKey || null;
+        let tokenValue = wx.getStorageSync('token').TokenValue || null;
+        if (!tokenKey || !tokenValue) {
+          getToken().then(token => {
+            getLoginKey(getCode.code, token.data, getUserInfo)
+              .then(res => {               
+                if (res.data.code == "GET_WX_USERINFO_FAILED") {
+                  toast('获取用户信息失败，请在点击进入按钮')
+                } else {
+                  resolve(res)
+                }
               }, err => {
-                //获取loginkey失败
-                reject();
-                toast('当前网络不好，请稍后再试～')
+                reject(err);
               })
-
           }, err => {
-            toast('获取token失败!')
+            reject(err);            
           })
+        } else {
+          getLoginKey(getCode.code, wx.getStorageSync('token'), getUserInfo)
+            .then(res => {
+              if (res.data.code == "GET_WX_USERINFO_FAILED") {
+                toast('获取用户信息失败，请在点击进入按钮')                
+              } else {
+                resolve(res)
+              }
+            }, err => {
+              reject(err);
+            })
+        }
       }
     })
   })
@@ -172,14 +189,36 @@ const login = (getUserInfo) => {;
 }
 const checklogin = () => {
   let promise = new Promise(function (resolve, reject) {
-    getToken().then(res => {
+    let tokenKey = wx.getStorageSync('token').TokenKey || null;
+    let tokenValue = wx.getStorageSync('token').TokenValue || null;
+    if (!tokenKey || !tokenValue) {
+      getToken().then(res => {
+        wx.request({
+          method: 'POST',
+          header: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Token-Key': res.data.TokenKey,
+            'Token-Value': res.data.TokenValue
+          },
+          url: BASEURL + 'vapi/passport/checklogin',
+          data: {},
+          success: function (res) {
+            resolve(res);
+          },
+          fail: function (error) {
+            reject(error);
+          }
+        })
+      }, err => {
+        reject(err);
+      })
+    } else {
       wx.request({
         method: 'POST',
-        responseType: 'text',
         header: {
           'Content-Type': 'application/x-www-form-urlencoded',
-          'Token-Key': res.data.TokenKey,
-          'Token-Value': res.data.TokenValue
+          'Token-Key': tokenKey,
+          'Token-Value': tokenValue
         },
         url: BASEURL + 'vapi/passport/checklogin',
         data: {},
@@ -190,11 +229,12 @@ const checklogin = () => {
           reject(error);
         }
       })
-    }, err => {
-      toast('获取token失败')
-      reject(err);
-    })
+    }
+
+
+
+
   })
   return promise;
 }
-export { getApi, getToken, getLoginKey, isUserAutor, login, checklogin};
+export { getApi, getToken, getLoginKey, isUserAutor, login, checklogin };

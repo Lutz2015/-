@@ -1,5 +1,5 @@
 <template name="loginView">
-  <view class='loginView' hidden='{{isLogin}}'>
+  <view class='loginView' wx:if='{{!isLogin}}'>
     <image class='loginBg' mode='scaleToFill' src='../../images/login/loginbg.jpg'></image>
     <view class='agreebutton'>
       <view>点击进入</view>
@@ -10,26 +10,36 @@
 <!-- 底部模版 -->
 <template name="footer">
   <view class='footer'>
-    <view class='iconBox' bindtap='gotoHome'>
+    <view class='iconBox'>
       <image wx:if="{{activeType == 1}}" class='icon' src='../../images/login/home.png'></image>
       <image wx:else class='icon' src='../../images/login/home1.png'></image>
       <text class='{{activeType == 1?"active":""}}'>首页</text>
+      <form bindsubmit="gotoHome" report-submit>
+        <button formType="submit"></button>
+      </form>
     </view>
-    <view class='iconBox' bindtap='gotoDraw'>
+    <view class='iconBox'>
       <image wx:if="{{activeType == 2}}" class='icon' src='../../images/login/win.png'></image>
       <image wx:else class='icon' src='../../images/login/win1.png'></image>
       <text class='{{activeType == 2?"active":""}}'>抽奖</text>
+       <form bindsubmit="gotoDraw" report-submit>
+        <button formType="submit"></button>
+      </form>
     </view>
-    <view class='iconBox' bindtap='gotoMe'>
+    <view class='iconBox'>
       <image wx:if="{{activeType == 3}}" class='icon' src='../../images/login/me.png'></image>
       <image wx:else class='icon' src='../../images/login/me1.png'></image>
       <text class='{{activeType == 3?"active":""}}'>我的</text>
+      <form bindsubmit="gotoMe" report-submit>
+        <button formType="submit"></button>
+      </form>
     </view>
   </view>
 </template>
 <!-- 正在比赛 -->
 <template name="countryTeam">
   <form bindsubmit="formSubmit" report-submit>
+
     <view class='countryTeam'>
       <image class='leftC' src='../../images/country/{{item.htsign}}.png'></image>
       <image class='rightC' src='../../images/country/{{item.vtsign}}.png'></image>
@@ -48,7 +58,8 @@
           <image src='../../images/icon/time.png'></image>
           <text>{{item.match_date}}</text>
         </view>
-        <view class='btnRight {{item.isGuess?"hasCheck":""}}' bindtap='openPage' data-type='0' data-idx='{{idx}}'>{{item.isGuess?"修改结果":"我要竞猜"}}</view>
+
+        <view class='btnRight {{item.isGuess?"hasCheck":""}}' bindtap="openPage" data-type='0' data-idx='{{idx}}'>{{item.isGuess?"修改结果":"我要竞猜"}}</view>
       </view>
       <view class='upfoldBox' hidden='{{item.isopen}}'>
         <view class='checkBox'>
@@ -57,7 +68,7 @@
               <text class='{{item.guessHistory.quiz_mode == 1?"active":""}}'>猜比分</text>
               <image class='activeImg' hidden='{{item.guessHistory.quiz_mode != 1}}' src='../../images/icon/active.png'></image>
             </view>
-            <view class='checkTab' bindtap='itemCheckGameType' data-isguess="{{item.isGuess}}"  data-type='2' data-idx='{{idx}}'>
+            <view class='checkTab' bindtap='itemCheckGameType' data-isguess="{{item.isGuess}}" data-type='2' data-idx='{{idx}}'>
               <text class='{{item.guessHistory.quiz_mode == 2?"active":""}}'>猜输赢</text>
               <image class='activeImg' hidden='{{item.guessHistory.quiz_mode != 2}}' src='../../images/icon/active.png'></image>
             </view>
@@ -69,9 +80,9 @@
         </view>
         <view class='guessingBox guessingBox1' hidden='{{item.guessHistory.quiz_mode != 1}}'>
           <view class='guess'>
-            <input class="inputLeft" disabled="{{item.isGuess && item.gameInStatus }}" value='{{item.guessHistory.quiz_htscore}}' name="input1" maxlength="2" type='number' placeholder='请输入该队的比分'></input>
+            <input class="inputLeft" disabled="{{item.isGuess && item.gameInStatus }}" value='{{item.guessHistory.quiz_htscore}}' name="input1" maxlength="3" type='number' placeholder='请输入该队的比分'></input>
             <view>vs</view>
-            <input class="inputRight" disabled="{{item.isGuess && item.gameInStatus }}" value='{{item.guessHistory.quiz_vtscore}}' name="input2" type='number' maxlength="2" placeholder='请输入该队的比分'></input>
+            <input class="inputRight" disabled="{{item.isGuess && item.gameInStatus }}" value='{{item.guessHistory.quiz_vtscore}}' name="input2" type='number' maxlength="3" placeholder='请输入该队的比分'></input>
           </view>
         </view>
         <view class='guessingBox guessingBox2' hidden='{{item.guessHistory.quiz_mode != 2}}'>
@@ -84,9 +95,9 @@
         <view class='guessingBox guessingBox3' hidden='{{item.guessHistory.quiz_mode != 3}}'>
           <view class="guessView">猜比分</view>
           <view class='guess'>
-            <input class="inputLeft" disabled="{{item.isGuess && item.gameInStatus }}" value='{{item.guessHistory.quiz_htscore}}' name="input3" type='number' maxlength="2" placeholder='请输入该队的比分'></input>
+            <input class="inputLeft" disabled="{{item.isGuess && item.gameInStatus }}" value='{{item.guessHistory.quiz_htscore}}' name="input3" type='number' maxlength="3" placeholder='请输入该队的比分'></input>
             <view>vs</view>
-            <input class="inputRight" disabled="{{item.isGuess && item.gameInStatus }}" value='{{item.guessHistory.quiz_vtscore}}' name="input4" type='number' maxlength="2" placeholder='请输入该队的比分'></input>
+            <input class="inputRight" disabled="{{item.isGuess && item.gameInStatus }}" value='{{item.guessHistory.quiz_vtscore}}' name="input4" type='number' maxlength="3" placeholder='请输入该队的比分'></input>
           </view>
           <view class="guessView" style='margin-top:30rpx;'>猜输赢</view>
           <view class='suspect'>
@@ -96,13 +107,15 @@
           </view>
         </view>
         <view class='upBox'>
-          <view class='up' bindtap='openPage' data-type='1' data-idx='{{idx}}'>收起</view>
-          <button formType="submit"  data-matchid='{{item.m_id}}' data-idx='{{idx}}' class='postGuess {{item.isGuess && item.gameInStatus?"not_chose":""}}'>提交竞猜</button>
+          <view class='up' bindtap="openPage" data-type='1' data-idx='{{idx}}'>收起</view>
+          <button formType="submit" data-matchid='{{item.m_id}}' data-idx='{{idx}}' class='postGuess {{item.isGuess && item.gameInStatus?"not_chose":""}}'>提交竞猜</button>
+
         </view>
         <view class='infoTest'>*以上三种竞猜模式，提交选择后，赛前2小时内不能更改。</view>
       </view>
     </view>
   </form>
+
 </template>
 <!-- 比赛记录 -->
 <template name="countryTeamOver">

@@ -1,6 +1,6 @@
 <import src="../../template/template.wxml" />
 <import src="../../wxParse/wxParse.wxml" />
-<template is="loginView" data="{{isLogin}}" />
+<!-- <template is="loginView" data="{{isLogin}}" /> -->
 <template is="footer" data="{{activeType}}" />
 <view class='pubCover' hidden='{{pubCoverHide}}'></view>
 <view class='rule' bindtap='showRuleBox'>
@@ -16,11 +16,20 @@
     </block>
   </swiper>
 </view>
-<view class="marquee_container" style="--marqueeWidth--:{{-marquee.width}}em;">
+<view class="marquee_container">
   <view class='leftIcon'>
     <image src='../../images/icon/lb.png'></image>
   </view>
-  <view class="marquee_text" style='animation-duration: {{marquee.time}}s;'>{{marquee.text}}</view>
+   <swiper class="marqueeSwiper" vertical="true" autoplay="true" circular="true" interval="1500">
+       <block wx:for="{{marqueelist}}" wx:for-index="idx" wx:for-item="item">  
+        <swiper-item class="swiperitem">
+           <view class="swiper_item">球迷{{item.nickName}}抽中了{{item.name}}</view>
+         </swiper-item>
+       </block>  
+   </swiper>
+    <navigator class="more" url="../wininfo/wininfo" open-type="navigate">
+    更多
+    </navigator>
 </view>
 <view class='tabBox'>
   <view class='tab winInfo' bindtap='gotoWinInfo'>
@@ -99,9 +108,12 @@
 </view>
 
 <view class='inviteBox' hidden='{{inviteBoxhide}}'>
-  <image class="inviteImg" src='../../images/other/invite.jpg'></image>
+  <image class="inviteImg" src='../../images/other/invite.png'></image>
+  <view class="test">
+      赛事期间，邀请好友数排名前20名用户可参与抽奖，奖品多多，你还在等什么？
+  </view>
   <button class='inviteBtn' open-type='share' data-type='2'>邀请好友</button>
-  <image class="close" bindtap='closeAll' src='../../images/other/close.png'></image>
+  <image class="close" bindtap='closeAll' src='../../images/other/close1.png'></image>
 </view>
 
 <view class='drawBox' hidden='{{drawBoxhide}}'>
@@ -116,3 +128,10 @@
   </view>
   <image class="close" bindtap='closeAll' src='../../images/other/close.png'></image>
 </view>
+<view class='loginView' wx:if='{{isLogin}}'>
+    <image class='loginBg' mode='scaleToFill' src='../../images/login/loginbg.jpg'></image>
+    <view class='agreebutton'>
+      <view>点击进入</view>
+      <button open-type="getUserInfo" bindgetuserinfo="getUserInfo"></button>
+    </view>
+  </view>

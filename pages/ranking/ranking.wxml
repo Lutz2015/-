@@ -19,7 +19,7 @@
     </view>
     <image src='../../images/login/pm.png' class='pmImg'></image>
   </view>
-  <view style='height:180rpx;background:#f5f5f5'></view>
+  <view style='height:220rpx;background:#f5f5f5'></view>
   <view class='list' wx:for="{{lists}}" wx:for-index="idx" wx:for-item="item">
     <view class='rank'>{{idx + 1}}</view>
     <image class='userHead' src='{{item.avatar}}'></image>
@@ -28,8 +28,13 @@
   </view>
   <view class='noMore' wx:if='{{lists.length > 0}}'>{{pages.current == pages.last?'没有更多了～':'正在加载中～'}}</view>
   <view class='noMore' wx:else>空空如也～</view>
+  <view style='height:100rpx;background:#f5f5f5'></view>
+  
   <button class='kefu' open-type='share' data-type='1'>邀请好友</button>  
-  <view class='complain' bindtap='showJfRule'>规则说明</view>
+  <view class='complain' bindtap='showJfRule'>
+    <view style='margin-right:30rpx;'>规则说明</view>
+    <image src='../../images/icon/2.png'></image>
+  </view>
 </view>
 <view class='invete' hidden='{{realtimeCheck != 2}}'>
   <view class='topListBox'>
@@ -41,7 +46,7 @@
     </view>
     <image src='../../images/login/pm.png' class='pmImg'></image>    
   </view>
-  <view style='height:180rpx;background:#f5f5f5'></view>
+  <view style='height:220rpx;background:#f5f5f5'></view>
 
   <view class='list' wx:for="{{lists1}}" wx:for-index="idx" wx:for-item="item">
     <view class='rank'>{{idx + 1}}</view>
@@ -51,6 +56,11 @@
   </view>
   <view class='noMore' wx:if='{{lists1.length > 0}}'>{{pages1.current == pages1.last?'没有更多了～':'正在加载中～'}}</view>
   <view class='noMore' wx:else>空空如也～</view>
+  <view style='height:100rpx;background:#f5f5f5'></view>
+  
   <button class='kefu' open-type='share' data-type='2'>邀请好友</button>
-  <view class='complain' bindtap='showYqRule'>规则说明</view>
+  <view class='complain' bindtap='showYqRule'>
+    <view style='margin-right:30rpx;'>规则说明</view>
+    <image src='../../images/icon/2.png'></image>
+  </view>
 </view>

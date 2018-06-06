@@ -8,7 +8,7 @@
   color: #999;
   background: #fff;
     box-shadow: 0rpx 7rpx 6rpx rgba(255,91,91,0.1);
-
+z-index: 9;
   position: fixed;
   width: 100%;
 }

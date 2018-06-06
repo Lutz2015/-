@@ -1,5 +1,5 @@
 import { toast } from '../../utils/util.js';
-import { initLotteryData, lottery, GetPrize, lotteryrule} from '../../utils/getdata.js'
+import { wxopensave, initLotteryData, lottery, GetPrize, lotteryrule} from '../../utils/getdata.js'
 var WxParse = require('../../wxParse/wxParse.js');
 
 Page({
@@ -26,6 +26,7 @@ Page({
       timingFunction: 'ease-in-out',
     })
     this.animation = animation;
+    
     initLotteryData()
       .then(res => {
         that.setData({
@@ -179,7 +180,7 @@ Page({
             pubCoverHide: true,
             alertBoxOneHide: true
           })
-          toast('授权失败，您将无法领取,重新授权请删除小程序后再次进入')
+          that.checkAdressFn();
         }
       })
     } else {
@@ -222,15 +223,27 @@ Page({
     }
   },
   //底部tab页面跳转
-  gotoHome() {
+  gotoHome(e) {
+    wxopensave(e.detail.formId)
+      .then(res => {
+        console.log(res)
+      })
     wx.redirectTo({
       url: '../home/home'
     })
   },
-  gotoDraw() {
+  gotoDraw(e) {
+    wxopensave(e.detail.formId)
+      .then(res => {
+        console.log(res)
+      })
     console.log('已经是抽奖页了～')
   },
-  gotoMe() {
+  gotoMe(e) {
+    wxopensave(e.detail.formId)
+      .then(res => {
+        console.log(res)
+      })
     wx.redirectTo({
       url: '../me/me'
     })
@@ -239,6 +252,40 @@ Page({
     this.setData({
       pubCoverHide:true,
       inviteBoxhide:true
+    })
+  },
+  checkAdressFn() {
+    let that = this;
+    wx.showModal({
+      title: '获取地址失败',
+      showCancel: false,
+      content: '没有收获地址，无法正常发货，请您授权并选择地址',
+      success: function (res) {
+        if (res.confirm) {
+          wx.openSetting({
+            complete: function (data) {
+              if (data.authSetting["scope.address"]) {
+                wx.getSetting({
+                  success: function (res) {
+                    if (res.authSetting['scope.address']) {
+                      wx.chooseAddress({
+                        success: function (res) {
+                          wx.setStorageSync('address', res);
+                          that.setData({
+                            address: res
+                          })
+                        }
+                      })
+                    }
+                  }
+                })
+              } else {
+                that.checkAdressFn();
+              }
+            }
+          })
+        }
+      }
     })
   }
 })

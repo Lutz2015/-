@@ -176,5 +176,6 @@
 }
 .ruleContbox {
   overflow-y: auto;
-  height: 400rpx;
+  height: 380rpx;
+  margin-top: 20rpx;
 }

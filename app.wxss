@@ -76,8 +76,16 @@ page {
   align-items: center;
   justify-content: center;
   color: #999999;
+  position: relative;
 }
-
+.footer .iconBox button{
+  height: 100rpx;
+  width: 100%;
+  position: absolute;
+  opacity: 0;
+  left: 0;
+  top: 0;
+}
 .footer .iconBox .icon {
   width: 48rpx;
   height: 48rpx;
@@ -133,4 +141,13 @@ page {
   line-height: 40rpx;
   height: 40rpx;
   text-align: center;
+}
+button{
+  border-radius: 0;
+  background: none;
+  
+}
+button::after{
+  border: 0 ;
+  border-color: #fff;
 }

@@ -127,6 +127,8 @@ Page({
       wx.showModal({
         title: '提示',
         content: '冠军竞猜，结果仅能修改2次，确定修改？',
+        cancelColor:"#3CC51F",
+        confirmColor:"#000000",
         success: function (res) {
           if (res.confirm) {
             championGuess(_guessresult.country)
