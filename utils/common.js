@@ -1,7 +1,6 @@
 let { toast } = require("./util.js");
 // const BASEURL = "https://v-test.vdailian.com/"; //开发
 const BASEURL = "https://v-api.vdailian.com/"; //线上
-let timer = null;
 //登录
 const getLoginKey = (code, token, userInfo) => {
   let promise = new Promise(function (resolve, reject) {
@@ -21,13 +20,9 @@ const getLoginKey = (code, token, userInfo) => {
         source: 'wcup'
       },
       success: function (res) {
-        console.log('获取loginkey成功')
-        console.log(res)
         resolve(res);
       },
       fail: function (error) {
-        console.log('获取loginkey失败')
-        console.log(error)
         reject(error);
       }
     })
@@ -52,14 +47,7 @@ const getToken = () => {
         }
       },
       fail: function (err) {
-        wx.showModal({
-          title: '提示',
-          showCancel: false,
-          content: '当前网络不好！请检查网络！',
-          success: function (res) {
-
-          }
-        })
+        toast("请检查网络！", "none", 10000)
       }
     })
   })
@@ -90,12 +78,25 @@ const getApi = (urls, options = {}, METHOD = "POST") => {
         success: function (res) {
           if (res.data.code == "TOKEN_KEY_NULL") {
             getTokenApi(urls, _data, METHOD, resolve, reject)
-          }
-          else {
-            resolve(res.data);
+          } else if (res.data.code == "SUCCESS"){
+            resolve(res.data); 
+            wx.removeStorageSync('noneLoginkey');                       
+          } else if (res.data.code == "NOLOGIN"){
+            if (wx.getStorageSync('noneLoginkey')){
+               return;    
+            }
+            wx.removeStorageSync('loginKey');
+            wx.setStorageSync('noneLoginkey', true)
+            toast('没有登陆，请重新登陆～'); 
+            wx.redirectTo({
+              url: '/pages/home/home'
+            })           
+          }else {
+            resolve(res.data); 
           }
         },
         fail: function (err) {
+          toast("请检查网络！","none",10000)
           reject(err)
         },
         complete: function () {
@@ -147,7 +148,6 @@ const isUserAutor = () => {
   })
   return promise;
 }
-
 const login = (getUserInfo) => {
   let promise = new Promise(function (resolve, reject) {
     wx.login({
@@ -230,10 +230,6 @@ const checklogin = () => {
         }
       })
     }
-
-
-
-
   })
   return promise;
 }

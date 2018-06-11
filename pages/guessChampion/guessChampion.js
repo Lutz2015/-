@@ -9,12 +9,14 @@ Page({
    */
   data: {
     pubCoverHide: true,
+    showGoBack:false,
     ruleBoxHide:true, 
     lists:[],
     ruleData: "",
-    guess_result:null,
-    isFrist:null,
-    lottery_times:null
+    guess_result:null, //
+    canNewChose:false, //是否可以修改
+    canChoseTimes:null,
+    isFrist:null //存初始化数据，用来判断是否是第一次了
   },
 
   /**
@@ -24,12 +26,11 @@ Page({
     let that = this;
     championGuessList()
     .then(res => {
-      console.log(res)
       that.setData({
         lists:res.data.lists,
         isFrist: res.data.guess_result,
         guess_result: res.data.guess_result,
-        lottery_times:res.data.lottery_times
+        canChoseTimes: res.data.guess_result ?res.data.guess_result.lottery_times:null
       })
     })
     guessChampionRule()
@@ -37,7 +38,11 @@ Page({
         WxParse.wxParse('ruleData', 'html', res.data, that);
       })
     wx.hideShareMenu();
-
+    if(options.from == "formid"){
+      that.setData({
+        showGoBack:true
+      })
+    }
   },
 
   /**
@@ -86,7 +91,7 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+    
   },
   closeAll() {
     this.setData({
@@ -101,56 +106,68 @@ Page({
     })
   },
   choseCountry(e){
-    console.log(e)
-    let _guessresult = e.currentTarget.dataset;
-    toast(`您已选择：${_guessresult.country}`)    
-    this.setData({
-      guess_result: _guessresult
-    })
+    //第一次或者可修改的情况可以触发
+    if (this.data.canNewChose || !this.data.isFrist){
+      let _guessresult = e.currentTarget.dataset;
+      toast(`您已选择：${_guessresult.country}`)
+      this.setData({
+        guess_result: _guessresult
+      })
+    }
+    
   }, 
   postChampionGuess(){
-    let _guessresult = this.data.guess_result;
     let _this = this;
-    if(!_this.data.isFrist){
+    if (_this.data.canNewChose || !_this.data.isFrist) {
+      let _guessresult = this.data.guess_result;
       championGuess(_guessresult.country)
         .then(res => {
-          if (res.code == "SUCCESS") {
+          if (!_this.data.isFrist) {
             _this.setData({
-              isFrist: _guessresult
+              isFrist: _guessresult,
+              canNewChose: false,
+              canChoseTimes:2
+            })
+          }else{
+            _this.setData({
+              isFrist: _guessresult,
+              canNewChose: false,
+              canChoseTimes: --_this.data.canChoseTimes             
             })
           }
-          toast(res.msg)
+          toast(`${res.msg}`)
         }, err => {
           toast('修改失败')
         })
-    }else{
-      wx.showModal({
-        title: '提示',
-        content: '冠军竞猜，结果仅能修改2次，确定修改？',
-        cancelColor:"#3CC51F",
-        confirmColor:"#000000",
-        success: function (res) {
-          if (res.confirm) {
-            championGuess(_guessresult.country)
-              .then(res => {
-                if (res.code == "SUCCESS") {
-                  _this.setData({
-                    isFrist: null,
-                    guess_result: null
-                  })
-                }
-                toast(res.msg)
-              }, err => {
-                toast('修改失败')
-              })
-
-          } else if (res.cancel) {
-            console.log('用户点击取消')
+    }  
+  },
+  // 重置
+  canChose(){
+    let _this = this;
+    wx.showModal({
+      title: '提示',
+      content: '冠军竞猜，结果仅能修改2次，确定修改？',
+      cancelColor: "#3CC51F",
+      confirmColor: "#000000",
+      success: function (res) {
+        if (res.confirm) {
+          if (_this.data.canChoseTimes<=0){
+            toast('您已修改2次')
+            return;
           }
+          _this.setData({
+            canNewChose: true,
+            guess_result:null
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
         }
-      })
-    }
-     
-   
+      }
+    })
+  },
+  goHome: function () {
+    wx.redirectTo({
+      url: `/pages/home/home`,
+    })
   }
 })

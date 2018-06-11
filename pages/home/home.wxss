@@ -342,6 +342,7 @@
   overflow-y: auto;
   height: 520rpx;
   margin-top: 20rpx;
+  text-align: justify;
 }
 
 .ruleBox .ruleContBox view {

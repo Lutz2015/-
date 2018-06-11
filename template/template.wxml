@@ -1,3 +1,6 @@
+<template name="goHome">
+  <view wx:if="{{showGoBack}}"  class='goHome' bindtap="goHome">首页</view>
+</template>
 <template name="loginView">
   <view class='loginView' wx:if='{{!isLogin}}'>
     <image class='loginBg' mode='scaleToFill' src='../../images/login/loginbg.jpg'></image>
@@ -18,7 +21,7 @@
         <button formType="submit"></button>
       </form>
     </view>
-    <view class='iconBox'>
+    <view class='iconBox' wx:if="{{isOn}}">
       <image wx:if="{{activeType == 2}}" class='icon' src='../../images/login/win.png'></image>
       <image wx:else class='icon' src='../../images/login/win1.png'></image>
       <text class='{{activeType == 2?"active":""}}'>抽奖</text>
@@ -80,9 +83,9 @@
         </view>
         <view class='guessingBox guessingBox1' hidden='{{item.guessHistory.quiz_mode != 1}}'>
           <view class='guess'>
-            <input class="inputLeft" disabled="{{item.isGuess && item.gameInStatus }}" value='{{item.guessHistory.quiz_htscore}}' name="input1" maxlength="3" type='number' placeholder='请输入该队的比分'></input>
+            <input class="inputLeft" disabled="{{item.isGuess && item.gameInStatus }}" value='{{item.guessHistory.quiz_htscore}}' name="input1" maxlength="3" type='number' placeholder='请输入比分'></input>
             <view>vs</view>
-            <input class="inputRight" disabled="{{item.isGuess && item.gameInStatus }}" value='{{item.guessHistory.quiz_vtscore}}' name="input2" type='number' maxlength="3" placeholder='请输入该队的比分'></input>
+            <input class="inputRight" disabled="{{item.isGuess && item.gameInStatus }}" value='{{item.guessHistory.quiz_vtscore}}' name="input2" type='number' maxlength="3" placeholder='请输入比分'></input>
           </view>
         </view>
         <view class='guessingBox guessingBox2' hidden='{{item.guessHistory.quiz_mode != 2}}'>
@@ -95,9 +98,9 @@
         <view class='guessingBox guessingBox3' hidden='{{item.guessHistory.quiz_mode != 3}}'>
           <view class="guessView">猜比分</view>
           <view class='guess'>
-            <input class="inputLeft" disabled="{{item.isGuess && item.gameInStatus }}" value='{{item.guessHistory.quiz_htscore}}' name="input3" type='number' maxlength="3" placeholder='请输入该队的比分'></input>
+            <input class="inputLeft" disabled="{{item.isGuess && item.gameInStatus }}" value='{{item.guessHistory.quiz_htscore}}' name="input3" type='number' maxlength="3" placeholder='请输入比分'></input>
             <view>vs</view>
-            <input class="inputRight" disabled="{{item.isGuess && item.gameInStatus }}" value='{{item.guessHistory.quiz_vtscore}}' name="input4" type='number' maxlength="3" placeholder='请输入该队的比分'></input>
+            <input class="inputRight" disabled="{{item.isGuess && item.gameInStatus }}" value='{{item.guessHistory.quiz_vtscore}}' name="input4" type='number' maxlength="3" placeholder='请输入比分'></input>
           </view>
           <view class="guessView" style='margin-top:30rpx;'>猜输赢</view>
           <view class='suspect'>

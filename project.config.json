@@ -10,7 +10,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.0.1",
 	"appid": "wx3d4f61b14bb4c99c",
-	"projectname": "%E6%88%91%E7%9A%84%E5%95%86%E5%9F%8E",
+	"projectname": "2018%E4%B8%96%E7%95%8C%E6%9D%AF%E7%AB%9E%E7%8C%9C",
 	"condition": {
 		"search": {
 			"current": -1,
@@ -29,7 +29,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 1,
 			"list": [
 				{
 					"id": -1,
@@ -80,10 +80,10 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 8,
 					"name": "我的奖品",
 					"pathName": "pages/mygoods/mygoods",
-					"query": ""
+					"query": "from=formid"
 				},
 				{
 					"id": -1,
@@ -104,10 +104,10 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 12,
 					"name": "猜冠亚军",
 					"pathName": "pages/guessChampion/guessChampion",
-					"query": ""
+					"query": "from=formid"
 				},
 				{
 					"id": 13,
@@ -116,10 +116,10 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 14,
 					"name": "邀请好友",
 					"pathName": "pages/invite/invite",
-					"query": ""
+					"query": "from=formid"
 				}
 			]
 		}

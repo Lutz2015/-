@@ -134,5 +134,9 @@ const wxopensave = (formid) => {
     'formId': formid
   })
 }
-export { getRewardList, getOverMatchList, myPrizeList, GetPrize, scoreRank, inviteRank, myScoreDetail, myData, myQuizRecordList, inviteCallBack, matchGuessList, matchGuess, initLotteryData, lottery, getBannerInfo, championGuessList, championGuess, question, guessRule, guessChampionRule, matchMessage, lotteryrule, inviteRule, wxopensave};
+//抽奖隐藏
+const switchVersion = () => {
+  return getApi('wcup/index/switchVersion')
+}
+export { getRewardList, getOverMatchList, myPrizeList, GetPrize, scoreRank, inviteRank, myScoreDetail, myData, myQuizRecordList, inviteCallBack, matchGuessList, matchGuess, initLotteryData, lottery, getBannerInfo, championGuessList, championGuess, question, guessRule, guessChampionRule, matchMessage, lotteryrule, inviteRule, wxopensave, switchVersion};
 

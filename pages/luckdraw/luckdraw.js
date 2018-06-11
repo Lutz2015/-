@@ -1,5 +1,5 @@
 import { toast } from '../../utils/util.js';
-import { wxopensave, initLotteryData, lottery, GetPrize, lotteryrule} from '../../utils/getdata.js'
+import { wxopensave, initLotteryData, lottery, GetPrize, lotteryrule, switchVersion} from '../../utils/getdata.js'
 var WxParse = require('../../wxParse/wxParse.js');
 
 Page({
@@ -16,7 +16,8 @@ Page({
     sum: 0, //当前角度
     prevSum: 0,//记录上一次的角度
     isRoll: false,
-    address:{}
+    address:{},
+    isOn:true
   },
   onLoad: function (options) {
     //初始化动画
@@ -26,7 +27,12 @@ Page({
       timingFunction: 'ease-in-out',
     })
     this.animation = animation;
-    
+    switchVersion()
+      .then(res => {
+        that.setData({
+          isOn: res.data.isOn
+        })
+      })
     initLotteryData()
       .then(res => {
         that.setData({
@@ -82,22 +88,23 @@ Page({
   tran: function (idx) {
     let that = this;
     let tran_promise = new Promise(function (resolve, reject) {
-      let ruleFigure; //获取规定产品转盘位置
-      for (let i = 0; i < that.data.initLotteryData.prize_config.length;i++){
-        if (that.data.initLotteryData.prize_config[i].wp_id == idx){
-           ruleFigure = i;
-           break;
-         }
-      }
+      // let ruleFigure; //获取规定产品转盘位置
+      // for (let i = 0; i < that.data.initLotteryData.prize_config.length;i++){
+      //   if (that.data.initLotteryData.prize_config[i].wp_id == idx){
+      //      ruleFigure = i;
+      //      break;
+      //    }
+      // }
+      // toast(`${ruleFigure}`)
       let ratateTxt = that.data.initLotteryData.prize_config.filter(function(item,index){
         return item.wp_id == idx;
       }); //获取规定产品名字
-      let sum = that.data.sum - that.data.prevSum + 360 * (Math.floor((Math.random() * 5)) + 5) + 60 * ruleFigure + 30; //最终角度
+      let sum = that.data.sum - that.data.prevSum + 360 * (Math.floor((Math.random() * 5)) + 5) + 60 * idx + 30; //最终角度
       that.animation.rotate(sum).step();
       that.setData({
         animationData: that.animation.export(),
         sum: sum,
-        prevSum: 60 * ruleFigure + 30
+        prevSum: 60 * idx + 30
       })
       setTimeout(function () {
         resolve(ratateTxt)
@@ -109,7 +116,7 @@ Page({
     let that = this;
     if (this.data.isRoll) return;
     if (that.data.initLotteryData.lottery_times <= 0) {
-      toast('抽奖次数不足～');
+      toast('暂无抽奖机会～');
       return;
     }
     this.setData({
@@ -118,7 +125,7 @@ Page({
     lottery()
       .then(res => {
         if (res.code == "SUCCESS"){
-       
+
           that.tran(res.data.pid)
             .then(ratateTxt => {
               if (!res.data.pid) {

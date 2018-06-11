@@ -1,5 +1,5 @@
 import { toast, formatWeek, formatData, formatTime } from '../../utils/util.js';
-import { getBannerInfo, inviteCallBack, myData, matchGuessList, matchGuess, getRewardList, guessRule, wxopensave } from '../../utils/getdata.js';
+import { getBannerInfo, inviteCallBack, myData, matchGuessList, matchGuess, getRewardList, guessRule, wxopensave, switchVersion } from '../../utils/getdata.js';
 var WxParse = require('../../wxParse/wxParse.js');
 const app = getApp();
 Page({
@@ -21,12 +21,20 @@ Page({
     inviteBoxhide: true,
     ruleBoxHide: true,
     drawBoxhide: true,
+    scrolltop:0,
     isLogin: false,//默认开启启动页
-    activeType: 1 //底部tab选中
+    activeType: 1, //底部tab选中
+    isOn:true
   },
   onLoad: function (options) {
     let that = this;
     let _loginKey = wx.getStorageSync('loginKey');
+    switchVersion()
+      .then(res => {
+        that.setData({
+          isOn: res.data.isOn
+        })
+      })
     if (_loginKey) {
       that.matchGuessListFn(1);
       that.getRewardListFn();
@@ -280,7 +288,8 @@ Page({
   showRuleBox() {
     this.setData({
       ruleBoxHide: false,
-      pubCoverHide: false
+      pubCoverHide: false,
+      scrolltop:0
     })
   },
 

@@ -7,6 +7,7 @@ Page({
    */
   data: {
     realtimeCheck: 1,
+    showGoBack: false,
     isLoding: false,//待领取加载状态
     lists: [],//待领取列表
     pages: [],//待领取分页
@@ -20,6 +21,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    if (options.type){
+      this.setData({
+        realtimeCheck:options.type
+      })
+    }
+    if (options.from == "formid") {
+      this.setData({
+        showGoBack: true
+      })
+    }
     wx.hideShareMenu();
     this.myPrizeListFn(1, 1 ,0); //首次加载未领取
     this.myPrizeListFn(1, 1 ,1); //首次加载已领取
@@ -231,6 +242,11 @@ Page({
           })
         }
       }
+    })
+  },
+  goHome: function () {
+    wx.redirectTo({
+      url: `/pages/home/home`,
     })
   }
 })

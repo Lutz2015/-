@@ -19,6 +19,11 @@ Page({
       .then(res => {
         WxParse.wxParse('ruleData', 'html', res.data, that);
       })
+    if (options.from == "formid") {
+      that.setData({
+        showGoBack: true
+      })
+    }
   },
 
   /**
@@ -86,5 +91,10 @@ Page({
         }
       }
     }
+  },
+  goHome: function () {
+    wx.redirectTo({
+      url: `/pages/home/home`,
+    })
   }
 })

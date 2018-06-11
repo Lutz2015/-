@@ -1,7 +1,7 @@
 <import src="../../template/template.wxml" />
 <import src="../../wxParse/wxParse.wxml" />
 <!-- <template is="loginView" data="{{isLogin}}" /> -->
-<template is="footer" data="{{activeType}}" />
+<template is="footer" data="{{activeType,isOn}}" />
 <view class='pubCover' hidden='{{pubCoverHide}}'></view>
 <view class='rule' bindtap='showRuleBox'>
   <image src="../../images/icon/rules.png" class="slide-image" mode='aspectFill' />
@@ -101,9 +101,9 @@
 </view>
 <view class='ruleBox' hidden='{{ruleBoxHide}}'>
   <view class='titleRule'>竞猜规则</view>
-  <view class='ruleContBox'>
+  <scroll-view scroll-y  scroll-top="{{scrolltop}}" class='ruleContBox'>
     <template is="wxParse" data="{{wxParseData:ruleData.nodes}}" />
-  </view>
+  </scroll-view>
   <image class="close" bindtap='closeAll' src='../../images/other/close.png'></image>
 </view>
 

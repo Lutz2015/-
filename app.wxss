@@ -151,3 +151,25 @@ button::after{
   border: 0 ;
   border-color: #fff;
 }
+.newtype{
+  position: absolute;
+  top: 40%;
+  left: 0;
+  width: 100%;
+}
+/* 返回首页 */
+.goHome{
+  position: fixed;
+  bottom: 180rpx;
+  right: 30rpx;
+  width:100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 100rpx;
+  box-shadow: 1px 1px 1px  #949494; 
+  background: #FF5B5B;
+  color:#fff;
+  font-size: 32rpx;
+  z-index: 9999999;
+}

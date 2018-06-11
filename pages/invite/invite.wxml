@@ -1,4 +1,6 @@
 <import src="../../wxParse/wxParse.wxml" />
+<import src="../../template/template.wxml" />
+<template is="goHome" data="{{showGoBack}}"/>
 <view class='invitePage'>
     <image class='top' src='../../images/other/invite.jpg'></image>
     <view class='ruleBox'>
@@ -8,6 +10,6 @@
         </view>        
     </view>
     <button class='kefu' open-type='share' data-type='2'>邀请好友</button>
-    <image src='../../images/other/bottombg.jpg' class='bottombg'></image>
+    <!-- <image src='../../images/other/bottombg.jpg' class='bottombg'></image> -->
 
 </view>

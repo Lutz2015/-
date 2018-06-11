@@ -1,12 +1,13 @@
 import { myData } from '../../utils/getdata.js';
-import { wxopensave } from '../../utils/getdata.js';
+import { wxopensave, switchVersion} from '../../utils/getdata.js';
 const app = getApp();
 Page({
 
   data: {
     activeType: 3,
     userinfo: {},
-    myData: {}
+    myData: {},
+    isOn: true
   },
 
   /**
@@ -18,6 +19,12 @@ Page({
     that.setData({
       userinfo: _userInfo
     })
+    switchVersion()
+      .then(res => {
+        that.setData({
+          isOn: res.data.isOn
+        })
+      })
     myData()
       .then(res => {
         that.setData({

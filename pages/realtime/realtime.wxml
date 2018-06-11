@@ -43,7 +43,7 @@
     </view>
   </view>
    <view class='noMore' wx:if='{{lists.length > 0}}'>{{pages.current == pages.last?'没有更多了～':'正在加载中～'}}</view>
-    <view class='noMore' wx:else>空空如也～</view>
+    <view class='noMore newtype' wx:else>空空如也～</view>
 </view>
 <view class='competitionT' hidden='{{realtimeCheck != 2}}'>
    <template is="wxParse" data="{{wxParseData:ruleData.nodes}}" />

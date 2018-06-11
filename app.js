@@ -3,6 +3,7 @@ import { toast, formatData } from './utils/util.js';
 App({
     onLaunch: function(page) {
       console.log('小程序初始化')
+      console.log(page)
       let _loginKey = wx.getStorageSync('loginKey');
       if (!_loginKey && page.path != "pages/home/home") {
             wx.redirectTo({
@@ -15,7 +16,6 @@ App({
       }
     },
     onShow:function(){
-      console.log('后台进入前台')
       checklogin()
         .then(res => {
           if (res.data.code != "LOGINED") {

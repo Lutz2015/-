@@ -99,8 +99,8 @@ page{
   margin: 80rpx auto 0;
   color: #fff;
   box-sizing: border-box;
-  text-align: left;
   position: relative;
+    text-align: justify;
 }
 .activeRuleBox .titleRule{
    position: absolute;

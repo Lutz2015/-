@@ -1,6 +1,6 @@
 <import src="../../template/template.wxml" />
 <import src="../../wxParse/wxParse.wxml" />
-
+<template is="goHome" data="{{showGoBack}}"/>
 <view class='pubCover' hidden='{{pubCoverHide}}' bindtap='closeAll'></view>
 <view class="pageBox">
   <view class='pageTop'>
@@ -29,13 +29,28 @@
       <image src="../../images/other/btnbg.png" />
       <view>选择冠军</view>
     </view> -->
-    <view class='hasChoseChampion'>
+
+    <view class='hasChoseChampion' wx:if="{{isFrist}}">
       <view class='hasChoseName'>{{guess_result?'已选：':'请选择国家'}}  {{guess_result.country?guess_result.country:''}}</view>
-      <view class='sureBox'  bindtap='postChampionGuess'>
-        <view>{{guess_result?isFrist?'修改':'确定':'请选择'}}</view>
+    
+      <view class='sureBox' wx:if="{{!canNewChose}}"  bindtap='canChose'>
+        <view>修改</view>
+        <image src="../../images/other/sure.png" />
+      </view>
+      <view class='sureBox' wx:else  bindtap='postChampionGuess'>
+        <view>{{guess_result?'确定':'请选择'}}</view>
         <image src="../../images/other/sure.png" />
       </view>
     </view>
+
+    <view class='hasChoseChampion' wx:else>
+      <view class='hasChoseName'>{{guess_result?'已选：':'请选择国家'}}  {{guess_result.country?guess_result.country:''}}</view>
+      <view class='sureBox'  bindtap='postChampionGuess'>
+        <view>{{guess_result?'确定':'请选择'}}</view>
+        <image src="../../images/other/sure.png" />
+      </view>
+    </view>
+
   </view>
   <view class='ruleBox' hidden='{{ruleBoxHide}}'>
     <view class='titleRule'>活动说明</view>

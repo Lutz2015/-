@@ -102,7 +102,7 @@ Page({
             pages1: res.data.pages
           })
         } else {
-          let _nowLists = that.data.lists.concat(res.data.lists);
+          let _nowLists = that.data.lists1.concat(res.data.lists);
           that.setData({
             lists1: _nowLists,
             pages1: res.data.pages
@@ -145,7 +145,7 @@ Page({
     wx.showModal({
       title: '积分说明',
       showCancel:false,
-      content: '积分达到100积分以上的用户均可参与抽奖',
+      content: '积分达到100积分以上的用户均可在7月16号18:00到7月18号18:00参与抽大奖',
       success: function (res) {
         console.log(res)
       }
@@ -155,7 +155,7 @@ Page({
     wx.showModal({
       title: '邀请好友说明',
       showCancel: false,      
-      content: '邀请好友数在前20名的用户可以参与抽奖，邀请好友数相同则视为同一名（均可参与抽奖）',
+      content: '邀请好友数在前20名的用户可以参与抽奖，邀请好友数相同则视为同一名（均可在7月16号18:00到7月18号18:00参与抽大奖）',
       success: function (res) {
         console.log(res)
       }

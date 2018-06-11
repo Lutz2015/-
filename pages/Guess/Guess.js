@@ -125,7 +125,7 @@ Page({
       })
   },
   onShareAppMessage: function () {
-
+    
   },
   openPage(e) {
     let _data = e.currentTarget.dataset;

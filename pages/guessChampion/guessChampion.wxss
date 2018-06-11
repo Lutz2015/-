@@ -145,7 +145,7 @@
   font-size: 24rpx;
   padding: 30rpx;
   box-sizing: border-box;
-  text-align: left;
+  text-align: justify;
 }
 .ruleBox view{
   line-height: 50rpx;

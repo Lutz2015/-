@@ -6,7 +6,7 @@ Page({
   data: {
     complaintList:['欺诈','色情','政治谣言','诱导分享','恶意营销','隐私信息收集'],
     check:0,
-    checkInfo:'欺诈',
+    checkInfo:'',
     phone:null
   },
 
@@ -73,12 +73,13 @@ Page({
     })
   },
   go(){
-    if (this.data.phone && !(/^1[3|4|5|7|8][0-9]\d{4,8}$/.test(this.data.phone))) {
+    if (this.data.phone && !(/^1[3|4|5|7|8][0-9]\d{4,8}$/.test(this.data.phone)))     {
       toast("请输入正确的手机号");
       return;
     } 
     if (!this.data.checkInfo){
       toast("请选择投诉原因");
+      return;
     }
     toast("投诉成功");
     setTimeout(function(){

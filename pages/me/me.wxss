@@ -15,7 +15,7 @@
   position: absolute;
   left: 50%;
   margin-left: -346rpx;
-  top: 60rpx;
+  top: 70rpx;
   background: #fff;
   border-radius: 5px;
     box-shadow: 0rpx 7rpx 6rpx rgba(255,91,91,0.1);
